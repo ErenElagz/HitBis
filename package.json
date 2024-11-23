@@ -1,5 +1,5 @@
 {
-  "name": "HitBis",
+  "name": "hitbis",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -22,7 +22,6 @@
     "react-native-iconify": "^2.0.3",
     "react-native-maps": "^1.20.1",
     "react-native-maps-directions": "^1.9.0",
-    "react-native-markdown-display": "^7.0.2",
     "react-native-permissions": "^5.2.0",
     "react-native-reanimated": "^3.16.2",
     "react-native-safe-area-context": "^4.14.0",
