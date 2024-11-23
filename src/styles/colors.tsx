@@ -1,9 +1,25 @@
 export const Colors = {
-  primary: '#FF6F61',
-  secondary: '#FFD166',
-  tertiary: '#06D6A0',
-  dark: '#073B4C',
-  light: '#F0F0F0',
-  backgroundColor: '#161616',
-  textColor: '#001110',
+  // Main Colors
+  primary: '#45BD89',
+  secondary: '#',
+  tertiary: '#',
+  // Design System Colors
+  backgroundColor: '#001110',
+  borderColor: '#242424',
+  // Semantic Colors
+  light: '#fff',
+  secondaryLight: '#fafafa',
+  dark: '#000',
+  secondaryDark: '#161616',
+  // Colors
+  red: '#',
+  orange: '#',
+  yellow: '#',
+  green: '#',
+  cyan: '#',
+  blue: '#',
+  pink: '#',
+  purple: '#',
+  brown: '#',
+  gray: '#',
 };
