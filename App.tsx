@@ -1,5 +1,5 @@
 import React from 'react';
-import {BottomTabs} from './src/navigation/BottomTabs';
+import {BottomTabs} from './src/navigators/BottomTabs';
 
 export default function App() {
   return (
