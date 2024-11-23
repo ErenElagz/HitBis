@@ -1,118 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import RentCycleScreen from './src/screens/RentCycleScreen';
+import CommunityScreen from './src/screens/CommunityScreen';
+import HistoryScreen from './src/screens/HistoryScreen';
+import {Iconify} from 'react-native-iconify';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Tab = createBottomTabNavigator();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const TabBarIcon = ({route}) => {
+  if (route.name === 'Home') {
+    return <Iconify icon="mdi:home" size={24} color="#900" />;
+  } else if (route.name === 'Community') {
+    return <Iconify icon="mdi:group" size={24} color="#900" />;
+  } else if (route.name === 'RentCycle') {
+    return <Iconify icon="mdi:car" size={24} color="#900" />;
+  } else if (route.name === 'History') {
+    return <Iconify icon="mdi:history" size={24} color="#900" />;
+  } else if (route.name === 'Profile') {
+    return <Iconify icon="mdi:user" size={24} color="#900" />;
+  }
+};
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function MyTabs() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: '#2196F3', // Active tab color
+        tabBarInactiveTintColor: 'gray', // Inactive tab color
+        tabBarStyle: {
+          height: 72, // Height of the tab bar
+          backgroundColor: '#000', // Background color
+          alignItems: 'center', // Horizontal alignment
+          justifyContent: 'center', // Vertical alignment
+        },
+        headerShown: false,
+        tabBarLabelStyle: {
+          fontWeight: '600', // Optional: make text bold
+          alignItems: 'center', // Horizontal alignment
+        },
+        tabBarIcon: props => <TabBarIcon {...props} route={route} />,
+      })}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Community" component={CommunityScreen} />
+      <Tab.Screen name="RentCycle" component={RentCycleScreen} />
+      <Tab.Screen name="History" component={HistoryScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+export default function App() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
