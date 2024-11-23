@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import {Colors} from '../styles/colors';
+import {Colors} from '../../styles/colors';
 
-export default function HistoryScreen() {
+export default function SignUp() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>History</Text>
+      <Text style={styles.text}>Sign Up</Text>
     </View>
   );
 }
