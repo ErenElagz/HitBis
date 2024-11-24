@@ -3,6 +3,8 @@ import React from 'react';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
+import Fonts from '../../styles/fonts';
+
 export default function SignIn() {
   const nav = useNavigation();
   return (
@@ -28,5 +30,6 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
+    fontFamily: Fonts.main,
   },
 });

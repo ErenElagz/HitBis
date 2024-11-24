@@ -1,27 +1,21 @@
 import React from 'react';
-import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import styles from './Button.style';
 
 const Button = ({
   title = 'Button',
   onPress = () => {},
   style = {},
-  textStyle = {},
-  loading = false,
+  textStyle = ['light', 'dark', 'link', 'disabled'],
   disabled = false,
-  type = ['primary', 'secondary', 'link'],
+  type = ['primary', 'secondary', 'link', 'disabled'],
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, disabled && styles.disabledButton, style]}
+      style={[styles.button, styles[type], style]}
       onPress={onPress}
-      activeOpacity={0.8}
-      disabled={disabled || loading}>
-      {loading ? (
-        <ActivityIndicator size="small" color="#fff" />
-      ) : (
-        <Text style={[styles.text, textStyle]}>{title}</Text>
-      )}
+      disabled={disabled}>
+      <Text style={[styles.text, styles[textStyle]]}>{title}</Text>
     </TouchableOpacity>
   );
 };
