@@ -4,18 +4,47 @@ import Colors from '../../styles/colors';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import Fonts from '../../styles/fonts';
-
+import TextInputComponent from '../../components/TextInput';
+import defaultStyles from '../../styles/defaultStyles';
+import OrDivider from '../../components/Ordivider';
 export default function SignIn() {
   const nav = useNavigation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Sign In</Text>
+      <View
+        style={{width: '100%', gap: 8, marginBottom: 24, marginHorizontal: 4}}>
+        <Text style={defaultStyles.HeaderText}>Login in the HitBis</Text>
+        <Text style={defaultStyles.HeaderBottomText}>
+          Login to your account to see your progress and routes
+        </Text>
+      </View>
+      <View style={{width: '100%', gap: 8}}>
+        <TextInputComponent placeholder="Email" value></TextInputComponent>
+        <TextInputComponent placeholder="Password" value></TextInputComponent>
+      </View>
       <Button
-        title="Log In"
+        title="forgot password?"
+        textStyle={['link']}
+        onPress={() => {
+          nav.navigate('ForgotPassword');
+        }}
+      />
+      <Button
+        type={['tertiary']}
+        title="Sign In"
         onPress={() => {
           nav.navigate('SignUp');
         }}
       />
+      <Button
+        title="Create a Account? Sign Up"
+        textStyle={['link']}
+        onPress={() => {
+          nav.navigate('SignUp');
+        }}
+      />
+      <OrDivider />
     </View>
   );
 }
@@ -23,9 +52,8 @@ export default function SignIn() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: Colors.backgroundColor,
+    padding: 16,
   },
   text: {
     color: Colors.primary,

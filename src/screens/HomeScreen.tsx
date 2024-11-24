@@ -11,7 +11,6 @@ export default function HomeScreen() {
       <Text style={styles.text}>Home</Text>
       <Button
         title="Tıkla Beni"
-        type='link'
         textStyle={['link']}
         onPress={() => {
           nav.navigate('SignIn');

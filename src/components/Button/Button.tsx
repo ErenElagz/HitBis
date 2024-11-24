@@ -8,7 +8,7 @@ const Button = ({
   style = {},
   textStyle = ['light', 'dark', 'link', 'disabled'],
   disabled = false,
-  type = ['primary', 'secondary', 'link', 'disabled'],
+  type = ['primary', 'secondary','tertiary', 'link', 'disabled'],
 }) => {
   return (
     <TouchableOpacity

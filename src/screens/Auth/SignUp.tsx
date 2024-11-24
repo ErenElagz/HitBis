@@ -1,7 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
-import Fonts from '../../styles/fonts';
 
 export default function SignUp() {
   return (
@@ -21,6 +20,5 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
-    fontFamily: Fonts.main,
   },
 });

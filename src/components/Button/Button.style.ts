@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '700',
   },
   primary: {
@@ -21,10 +21,15 @@ const styles = StyleSheet.create({
   secondary: {
     backgroundColor: Colors.secondary,
   },
+  tertiary: {
+    backgroundColor: Colors.tertiary,
+  },
   link: {
     backgroundColor: 'transparent',
     textDecorationLine: 'underline',
     color: Colors.gray,
+    alignSelf: 'flex-end',
+    paddingHorizontal: 8,
   },
   disabled: {
     backgroundColor: Colors.gray,

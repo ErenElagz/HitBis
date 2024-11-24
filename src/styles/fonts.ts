@@ -1,5 +1,5 @@
 const Fonts = {
-  main: 'CalSans-SemiBold',
+  main: 'CalSans',
   inter: 'Inter',
 };
 

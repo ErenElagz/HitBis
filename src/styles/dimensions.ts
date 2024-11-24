@@ -16,6 +16,7 @@ export const rem = (size: number): number => {
 const RemSizes = {
   r0_25: rem(BASE_REM / 4),
   r0_5: rem(BASE_REM / 2),
+  r0_75: rem(BASE_REM / 1.5),
   r1: rem(BASE_REM),
   r1_25: rem(BASE_REM * 1.25),
   r1_5: rem(BASE_REM * 1.5),

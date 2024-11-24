@@ -5,6 +5,7 @@ const Colors = {
   tertiary: '#355DEC',
   // Design System Colors
   backgroundColor: '#001110',
+  backgroundColorSecondary: '#192827',
   borderColor: '#323232',
   // Semantic Colors
   light: '#fff',

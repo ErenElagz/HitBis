@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/CalSans.ttf",
+      "sha1": "bf152aee9ca71d660f4a83dcf7784761f35ed130"
+    },
+    {
       "path": "src/assets/fonts/Inter.ttf",
       "sha1": "ee5c2e22ffeddefc433c9aa4c76779bb73a5c682"
     }
