@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textDecorationLine: 'underline',
     color: Colors.gray,
-    alignSelf: 'flex-end',
     paddingHorizontal: 8,
+    width: 'auto',
+
   },
   disabled: {
     backgroundColor: Colors.gray,

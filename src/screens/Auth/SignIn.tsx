@@ -7,9 +7,10 @@ import Fonts from '../../styles/fonts';
 import TextInputComponent from '../../components/TextInput';
 import defaultStyles from '../../styles/defaultStyles';
 import OrDivider from '../../components/Ordivider';
+import LinkText from '../../components/Linktext';
 export default function SignIn() {
-  const nav = useNavigation();
 
+  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View
@@ -20,31 +21,33 @@ export default function SignIn() {
         </Text>
       </View>
       <View style={{width: '100%', gap: 8}}>
-        <TextInputComponent placeholder="Email" value></TextInputComponent>
-        <TextInputComponent placeholder="Password" value></TextInputComponent>
+        <TextInputComponent placeholder="Email" value="" style={{}} />
+        <TextInputComponent placeholder="Password" value="" style={{}} />
       </View>
-      <Button
+      <LinkText
+        align="right"
         title="forgot password?"
-        textStyle={['link']}
+        textStyle="link"
         onPress={() => {
-          nav.navigate('ForgotPassword');
+          nav.navigate('ForgotPassword' as never);
         }}
       />
       <Button
         type={['tertiary']}
         title="Sign In"
         onPress={() => {
-          nav.navigate('SignUp');
-        }}
-      />
-      <Button
-        title="Create a Account? Sign Up"
-        textStyle={['link']}
-        onPress={() => {
-          nav.navigate('SignUp');
+          nav.navigate('ResetPassword' as never);
         }}
       />
       <OrDivider />
+      <LinkText
+        align="center"
+        title="Create a Account? Sign Up"
+        textStyle="link"
+        onPress={() => {
+          nav.navigate('SignUp' as never);
+        }}
+      />
     </View>
   );
 }

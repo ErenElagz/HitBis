@@ -8,7 +8,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    paddingHorizontal: 12,
+    padding: 16,
   },
   line: {
     flex: 1,
@@ -16,7 +16,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.backgroundColorSecondary,
   },
   text: {
-    marginHorizontal: 10,
+    marginHorizontal: 8,
     fontSize: 12,
     fontFamily: Fonts.inter,
     color: Colors.light,

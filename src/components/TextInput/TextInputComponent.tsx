@@ -13,11 +13,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   value,
   style,
 }) => {
-  return (
-      <TextInput style={styles.textInput} placeholder={placeholder}>
-        {value}
-      </TextInput>
-  );
+  return <TextInput style={styles.textInput} placeholder={placeholder} />;
 };
 
 export default TextInputComponent;
