@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import {Colors} from '../../styles/colors';
+import Colors from '../../styles/colors';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
 export default function SignIn() {
@@ -9,7 +9,7 @@ export default function SignIn() {
     <View style={styles.container}>
       <Text style={styles.text}>Sign In</Text>
       <Button
-        title="Tıkla Beni"
+        title="Log In"
         onPress={() => {
           nav.navigate('SignUp');
         }}

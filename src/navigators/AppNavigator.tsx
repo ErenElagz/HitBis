@@ -1,12 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
+// Screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RentCycleScreen from '../screens/RentCycleScreen';
 import CommunityScreen from '../screens/CommunityScreen';
 import AssistantScreen from '../screens/AssistantScreen';
-import {Colors} from '../styles/colors';
+// Styles
+import Colors from '../styles/colors';
 
 const Tab = createBottomTabNavigator();
 

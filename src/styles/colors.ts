@@ -1,8 +1,8 @@
-export const Colors = {
+const Colors = {
   // Main Colors
   primary: '#45BD89',
   secondary: '#DAB94C',
-  tertiary: '#',
+  tertiary: '#355DEC',
   // Design System Colors
   backgroundColor: '#001110',
   borderColor: '#323232',
@@ -21,5 +21,7 @@ export const Colors = {
   pink: '#',
   purple: '#',
   brown: '#',
-  gray: '#',
+  gray: '#A9A9A9',
 };
+
+export default Colors;
