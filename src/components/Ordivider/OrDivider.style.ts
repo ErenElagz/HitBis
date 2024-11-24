@@ -17,7 +17,7 @@ export default StyleSheet.create({
   text: {
     marginHorizontal: 8,
     fontSize: 12,
-    fontFamily: Fonts.inter,
+    fontFamily: Fonts.interMedium,
     color: Colors.light,
     opacity: 0.25,
   },

@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import Colors from '../styles/colors';
 
 export default function HomeScreen() {
