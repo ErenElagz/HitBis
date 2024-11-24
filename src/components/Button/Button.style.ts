@@ -5,7 +5,7 @@ import RemSizes from '../../styles/dimensions';
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.tertiary,
-    width: '100%',
+    width: '90%',
     paddingVertical: RemSizes.r1,
     borderRadius: RemSizes.r1,
     alignItems: 'center',

@@ -19,7 +19,7 @@ const """+name+""": React.FC<"""+name+"""Props> = () => {
 export default """+name+""""""
 
 def styleTemplate():
-    return """import { StyleSheet } from "react-native";
+    return """import {StyleSheet} from "react-native";
 import Colors from "../../styles/colors";
 import Fonts from "../../styles/fonts";
 import RemSizes from "../../styles/dimensions";
@@ -27,7 +27,7 @@ import RemSizes from "../../styles/dimensions";
 export default StyleSheet.create({})"""
 
 def indexTemplate(name):
-    return "export { default } from \"./"+name+"\""
+    return "export {default} from \"./"+name+"\""
 
 name = sys.argv[1]
 if name.startswith("0"):

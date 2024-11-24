@@ -9,6 +9,7 @@ const Button = ({
   textStyle = {},
   loading = false,
   disabled = false,
+  type = ['primary', 'secondary', 'link'],
 }) => {
   return (
     <TouchableOpacity
