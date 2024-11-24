@@ -4,7 +4,7 @@ import Fonts from '../../styles/fonts';
 import RemSizes from '../../styles/dimensions';
 
 export default StyleSheet.create({
-  textInput: {
+  inputText: {
     width: '100%',
     paddingVertical: RemSizes.r1_25,
     paddingHorizontal: RemSizes.r1,

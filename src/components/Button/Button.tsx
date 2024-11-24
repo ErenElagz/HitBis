@@ -1,37 +1,28 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import styles from './Button.style';
+import Colors from '../../styles/colors';
 
-const Button = ({
-  title = 'Button',
-  onPress = () => {},
-  style = {},
-  textStyle = ['light', 'dark', 'link', 'disabled'],
-  disabled = false,
-  type = ['primary', 'secondary', 'tertiary', 'link', 'disabled'],
-  align = ['center', 'left', 'right'],
-}) => {
+interface ButtonProps {
+  title: string;
+  onPress: () => void;
+  type?: 'primary' | 'secondary' | 'tertiary';
+}
+
+const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary'}) => {
   return (
     <TouchableOpacity
       style={[
         styles.button,
-        styles[type],
-        style,
-        align === 'left'
-          ? {alignSelf: 'flex-start'}
-          : align === 'right'
-          ? {alignSelf: 'flex-end'}
-          : {alignSelf: 'center'},
-      ]}
-      onPress={onPress}
-      disabled={disabled}>
-      <Text
-        style={[
-          styles.text,
-          type === 'link' ? styles.link : styles[textStyle],
-        ]}>
-        {title}
-      </Text>
+        type === 'primary'
+          ? {backgroundColor: Colors.primary}
+          : type === 'secondary'
+          ? {backgroundColor: Colors.secondary}
+          : type === 'tertiary'
+          ? {backgroundColor: Colors.tertiary}
+          : {backgroundColor: Colors.primary},]}
+      onPress={onPress}>
+      <Text style={[styles.text]}>{title}</Text>
     </TouchableOpacity>
   );
 };

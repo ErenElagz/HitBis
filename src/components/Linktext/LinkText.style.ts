@@ -5,15 +5,12 @@ import RemSizes from '../../styles/dimensions';
 
 export default StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
         marginVertical: RemSizes.r1,
-        marginHorizontal: RemSizes.r0_5,
+        marginHorizontal: RemSizes.r1,
     },
     text: {
         color: Colors.gray,
         fontSize: 14,
-        fontFamily: Fonts.inter,
         textDecorationLine: 'underline',
     },
 });

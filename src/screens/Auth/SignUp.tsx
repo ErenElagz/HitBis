@@ -4,7 +4,7 @@ import Colors from '../../styles/colors';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import Fonts from '../../styles/fonts';
-import TextInputComponent from '../../components/TextInput';
+import TextInputComponent from '../../components/InputText';
 import defaultStyles from '../../styles/defaultStyles';
 import OrDivider from '../../components/Ordivider';
 import LinkText from '../../components/Linktext';
