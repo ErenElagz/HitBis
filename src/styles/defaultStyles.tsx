@@ -4,7 +4,6 @@ import Fonts from '../styles/fonts';
 
 export default StyleSheet.create({
   HeaderText: {
-    marginTop: 48,
     color: Colors.light,
     fontSize: 40,
     fontFamily: Fonts.main,

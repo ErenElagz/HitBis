@@ -9,6 +9,7 @@ import Button from '../../components/Button';
 // Components
 import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ResetPassword() {
   const nav = useNavigation();
@@ -16,7 +17,14 @@ export default function ResetPassword() {
   return (
     <View style={styles.container}>
       <View
-        style={{width: '100%', gap: 8, marginBottom: 24, marginHorizontal: 4}}>
+        style={{
+          width: '100%',
+          gap: 4,
+          marginTop: 48,
+          marginBottom: 24,
+          marginHorizontal: 4,
+        }}>
+        <Icon name="lock-reset" size={54} color={Colors.light} />
         <Text style={defaultStyles.HeaderText}>Reset Password</Text>
         <Text style={defaultStyles.HeaderBottomText}>
           Enter Your New Password.
@@ -25,14 +33,14 @@ export default function ResetPassword() {
 
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
         <InputText placeholder="Password" />
-        <InputText placeholder="Re-Password"  />
+        <InputText placeholder="Re-Password" />
       </View>
 
       <Button
         type="secondary"
         title="Reset Password"
         onPress={() => {
-          nav.navigate('SignIn' as never);
+          nav.navigate('WelcomeScreen' as never);
         }}
       />
 

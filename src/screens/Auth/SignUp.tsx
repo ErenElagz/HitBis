@@ -16,11 +16,10 @@ export default function SignUp() {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{width: '100%', gap: 8, marginBottom: 24, marginHorizontal: 4}}>
+      <View style={{width: '100%', gap: 8, marginTop: 48, marginBottom: 24}}>
         <Text style={defaultStyles.HeaderText}>Create an Account</Text>
         <Text style={defaultStyles.HeaderBottomText}>
-          Create your account for save your progress and rent a bike!{' '}
+          Create your account for save your progress and rent a bike!
         </Text>
       </View>
 

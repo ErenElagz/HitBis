@@ -5,7 +5,7 @@ import AuthNavigator from './AuthNavigator';
 import AppNavigator from './AppNavigator';
 
 export default function RootNavigator() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
 
   // Simulate login check (replace with your auth logic)
 

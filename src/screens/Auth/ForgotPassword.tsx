@@ -9,6 +9,7 @@ import Button from '../../components/Button';
 // Components
 import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ForgotPassword() {
   const nav = useNavigation();
@@ -16,7 +17,14 @@ export default function ForgotPassword() {
   return (
     <View style={styles.container}>
       <View
-        style={{width: '100%', gap: 8, marginBottom: 24, marginHorizontal: 4}}>
+        style={{
+          width: '100%',
+          gap: 4,
+          marginTop: 48,
+          marginBottom: 24,
+          marginHorizontal: 4,
+        }}>
+        <Icon name="password" size={54} color={Colors.light} />
         <Text style={defaultStyles.HeaderText}>Forgot Password</Text>
         <Text style={defaultStyles.HeaderBottomText}>
           Enter your email to get your verification link to reset password
@@ -31,7 +39,7 @@ export default function ForgotPassword() {
         type="secondary"
         title="Send Verification Link"
         onPress={() => {
-          nav.navigate('SignIn' as never);
+          nav.navigate('SplashScreen' as never);
         }}
       />
       <LinkText
