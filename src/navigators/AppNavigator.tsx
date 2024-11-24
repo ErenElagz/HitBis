@@ -6,30 +6,25 @@ import ProfileScreen from '../screens/ProfileScreen';
 import RentCycleScreen from '../screens/RentCycleScreen';
 import CommunityScreen from '../screens/CommunityScreen';
 import AssistantScreen from '../screens/AssistantScreen';
+import {Colors} from '../styles/colors';
 
 const Tab = createBottomTabNavigator();
 
-export function BottomTabs() {
+export default function AppNavigator() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={({route}) => ({
-          tabBarActiveTintColor: '#45BD89',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: Colors.primary,
+          tabBarInactiveTintColor: Colors.light,
           tabBarStyle: {
-            height: 66,
+            height: 60,
             backgroundColor: '#001110',
             alignItems: 'center',
             justifyContent: 'center',
-            borderColor: '#505050',
-            paddingTop: 10,
+            borderColor: Colors.borderColor,
           },
           headerShown: false,
-          tabBarLabelStyle: {
-            fontWeight: '600',
-            alignItems: 'center',
-          },
         })}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Community" component={CommunityScreen} />
@@ -37,6 +32,5 @@ export function BottomTabs() {
         <Tab.Screen name="Assistant" component={AssistantScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }

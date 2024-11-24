@@ -1,14 +1,27 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import styles from './Button.style';
 
-interface ButtonProps {}
-
-const Button: React.FC<ButtonProps> = () => {
+const Button = ({
+  title = 'Button',
+  onPress = () => {},
+  style = {},
+  textStyle = {},
+  loading = false,
+  disabled = false,
+}) => {
   return (
-    <View>
-      <Text>Button</Text>
-    </View>
+    <TouchableOpacity
+      style={[styles.button, disabled && styles.disabledButton, style]}
+      onPress={onPress}
+      activeOpacity={0.8}
+      disabled={disabled || loading}>
+      {loading ? (
+        <ActivityIndicator size="small" color="#fff" />
+      ) : (
+        <Text style={[styles.text, textStyle]}>{title}</Text>
+      )}
+    </TouchableOpacity>
   );
 };
 

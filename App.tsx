@@ -1,10 +1,16 @@
 import React from 'react';
-import {BottomTabs} from './src/navigators/BottomTabs';
+import {StatusBar} from 'react-native';
+import RootNavigator from './src/navigators/RootNavigator';
 
 export default function App() {
   return (
     <React.StrictMode>
-      <BottomTabs />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={'transparent'}
+        translucent={true}
+      />
+      <RootNavigator />
     </React.StrictMode>
   );
 }

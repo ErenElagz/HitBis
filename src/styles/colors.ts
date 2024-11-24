@@ -1,11 +1,11 @@
 export const Colors = {
   // Main Colors
   primary: '#45BD89',
-  secondary: '#',
+  secondary: '#DAB94C',
   tertiary: '#',
   // Design System Colors
   backgroundColor: '#001110',
-  borderColor: '#242424',
+  borderColor: '#323232',
   // Semantic Colors
   light: '#fff',
   secondaryLight: '#fafafa',
