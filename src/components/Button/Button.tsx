@@ -20,7 +20,8 @@ const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary'}) => {
           ? {backgroundColor: Colors.secondary}
           : type === 'tertiary'
           ? {backgroundColor: Colors.tertiary}
-          : {backgroundColor: Colors.primary},]}
+          : {backgroundColor: Colors.primary},
+      ]}
       onPress={onPress}>
       <Text style={[styles.text]}>{title}</Text>
     </TouchableOpacity>

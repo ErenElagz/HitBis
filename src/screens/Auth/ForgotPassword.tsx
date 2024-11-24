@@ -59,8 +59,4 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundColor,
     padding: 16,
   },
-  text: {
-    color: Colors.primary,
-    fontSize: 20,
-  },
 });

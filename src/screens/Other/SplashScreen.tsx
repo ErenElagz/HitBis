@@ -20,8 +20,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.secondary,
   },
-  text: {
-    color: Colors.primary,
-    fontSize: 20,
-  },
 });
