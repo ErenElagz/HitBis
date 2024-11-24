@@ -1,15 +1,13 @@
 import {TextInput} from 'react-native';
 import React from 'react';
-import styles from './InputTextComponent.style';
+import styles from './InputText.style';
 import Colors from '../../styles/colors';
 
-interface InputTextComponentProps {
-  placeholder: any;
+interface InputTextProps {
+  placeholder: string;
 }
 
-const InputTextComponent: React.FC<InputTextComponentProps> = ({
-  placeholder,
-}) => {
+const InputText: React.FC<InputTextProps> = ({placeholder}) => {
   return (
     <TextInput
       style={styles.inputText}
@@ -19,4 +17,4 @@ const InputTextComponent: React.FC<InputTextComponentProps> = ({
   );
 };
 
-export default InputTextComponent;
+export default InputText;

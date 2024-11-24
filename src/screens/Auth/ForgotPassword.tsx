@@ -1,15 +1,18 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
+import defaultStyles from '../../styles/defaultStyles';
+import Fonts from '../../styles/fonts';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import Fonts from '../../styles/fonts';
-import TextInputComponent from '../../components/InputText';
-import defaultStyles from '../../styles/defaultStyles';
+// Components
+import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
 
 export default function ForgotPassword() {
   const nav = useNavigation();
+
   return (
     <View style={styles.container}>
       <View
@@ -19,12 +22,14 @@ export default function ForgotPassword() {
           Enter your email to get your verification link to reset password
         </Text>
       </View>
+
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
-        <TextInputComponent placeholder="E-mail" value="" style={{}} />
+        <InputText placeholder="E-mail" />
       </View>
+
       <Button
-        type={['tertiary']}
-        title="Get Code"
+        type="secondary"
+        title="Send Verification Link"
         onPress={() => {
           nav.navigate('SignIn' as never);
         }}
@@ -32,7 +37,6 @@ export default function ForgotPassword() {
       <LinkText
         align="center"
         title="Go Back!"
-        textStyle="link"
         onPress={() => {
           nav.goBack();
         }}

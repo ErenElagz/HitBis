@@ -5,7 +5,7 @@ import RemSizes from '../styles/dimensions';
 
 export default StyleSheet.create({
   HeaderText: {
-    marginTop: RemSizes.r3,
+    marginTop: RemSizes.48,
     color: Colors.light,
     fontSize: 40,
     fontFamily: Fonts.main,

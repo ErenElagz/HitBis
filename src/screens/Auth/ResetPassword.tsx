@@ -1,15 +1,18 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
+import defaultStyles from '../../styles/defaultStyles';
+import Fonts from '../../styles/fonts';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import Fonts from '../../styles/fonts';
-import TextInputComponent from '../../components/InputText';
-import defaultStyles from '../../styles/defaultStyles';
+// Components
+import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
 
 export default function ResetPassword() {
   const nav = useNavigation();
+
   return (
     <View style={styles.container}>
       <View
@@ -19,21 +22,23 @@ export default function ResetPassword() {
           Enter Your New Password.
         </Text>
       </View>
+
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
-        <TextInputComponent placeholder="Password" value="" style={{}} />
-        <TextInputComponent placeholder="Password" value="" style={{}} />
+        <InputText placeholder="Password" />
+        <InputText placeholder="Re-Password"  />
       </View>
+
       <Button
-        type={['tertiary']}
+        type="secondary"
         title="Reset Password"
         onPress={() => {
           nav.navigate('SignIn' as never);
         }}
       />
+      
       <LinkText
         align="center"
         title="Go Back!"
-        textStyle="link"
         onPress={() => {
           nav.goBack();
         }}

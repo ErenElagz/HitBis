@@ -20,10 +20,10 @@ export default function AppNavigator() {
           tabBarInactiveTintColor: Colors.light,
           tabBarStyle: {
             height: 60,
-            backgroundColor: '#001110',
             alignItems: 'center',
             justifyContent: 'center',
             borderColor: Colors.borderColor,
+            backgroundColor: Colors.backgroundColor,
           },
           headerShown: false,
         })}>

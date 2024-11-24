@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../styles/colors';
-import RemSizes from '../../styles/dimensions';
+import Fonts from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   text: {
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: RemSizes.r1,
-    borderRadius: RemSizes.r1,
+    paddingVertical: 16,
+    borderRadius: 16,
   },
 });
 

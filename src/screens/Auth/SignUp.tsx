@@ -1,15 +1,19 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
+import defaultStyles from '../../styles/defaultStyles';
+import Fonts from '../../styles/fonts';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import Fonts from '../../styles/fonts';
-import TextInputComponent from '../../components/InputText';
-import defaultStyles from '../../styles/defaultStyles';
-import OrDivider from '../../components/Ordivider';
+// Components
+import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
+import OrDivider from '../../components/OrDivider';
+
 export default function SignUp() {
   const nav = useNavigation();
+  
   return (
     <View style={styles.container}>
       <View
@@ -19,22 +23,25 @@ export default function SignUp() {
           Create your account for save your progress and rent a bike!{' '}
         </Text>
       </View>
+
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
-        <TextInputComponent placeholder="Email" value="" style={{}} />
-        <TextInputComponent placeholder="Password" value="" style={{}} />
+        <InputText placeholder="Email" />
+        <InputText placeholder="Password" />
       </View>
+
       <Button
-        type={['tertiary']}
+        type="secondary"
         title="Sign Up"
         onPress={() => {
           nav.navigate('SignIn' as never);
         }}
       />
+
       <OrDivider />
+
       <LinkText
         align="center"
         title="Already Have an Account? Sign In"
-        textStyle="link"
         onPress={() => {
           nav.navigate('SignIn' as never);
         }}

@@ -8,6 +8,7 @@ export default function RootNavigator() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
 
   // Simulate login check (replace with your auth logic)
+
     // useEffect(() => {
     //   const checkLoginStatus = async () => {
     //     // Example: Replace with API or AsyncStorage check

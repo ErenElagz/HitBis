@@ -1,16 +1,19 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
+import defaultStyles from '../../styles/defaultStyles';
+import Fonts from '../../styles/fonts';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import Fonts from '../../styles/fonts';
-import TextInputComponent from '../../components/InputText';
-import defaultStyles from '../../styles/defaultStyles';
-import OrDivider from '../../components/Ordivider';
+// Components
+import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
-export default function SignIn() {
+import OrDivider from '../../components/OrDivider';
 
+export default function SignIn() {
   const nav = useNavigation();
+
   return (
     <View style={styles.container}>
       <View
@@ -20,30 +23,48 @@ export default function SignIn() {
           Login to your account to see your progress and routes
         </Text>
       </View>
+
       <View style={{width: '100%', gap: 8}}>
-        <TextInputComponent placeholder="Email" value="" style={{}} />
-        <TextInputComponent placeholder="Password" value="" style={{}} />
+        <InputText placeholder="Email" />
+        <InputText placeholder="Password" />
       </View>
+
       <LinkText
         align="right"
         title="forgot password?"
-        textStyle="link"
         onPress={() => {
           nav.navigate('ForgotPassword' as never);
         }}
       />
+
       <Button
-        type={['tertiary']}
+        type="secondary"
         title="Sign In"
         onPress={() => {
           nav.navigate('ResetPassword' as never);
         }}
       />
+
       <OrDivider />
+
+      <Button
+        type="tertiary"
+        title="Sign In with Google"
+        onPress={() => {
+          nav.navigate('HomeScreen' as never);
+        }}
+      />
+      <Button
+        type="tertiary"
+        title="Sign In with Facebook"
+        onPress={() => {
+          nav.navigate('HomeScreen' as never);
+        }}
+      />
+
       <LinkText
         align="center"
         title="Create a Account? Sign Up"
-        textStyle="link"
         onPress={() => {
           nav.navigate('SignUp' as never);
         }}

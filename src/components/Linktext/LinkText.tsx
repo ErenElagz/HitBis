@@ -5,7 +5,6 @@ import styles from './LinkText.style';
 interface LinkTextProps {
   title: string;
   onPress: () => void;
-  style: {};
   align: 'center' | 'left' | 'right';
 }
 
