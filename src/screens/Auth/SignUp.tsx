@@ -13,7 +13,7 @@ import OrDivider from '../../components/OrDivider';
 
 export default function SignUp() {
   const nav = useNavigation();
-  
+
   return (
     <View style={styles.container}>
       <View
@@ -59,6 +59,5 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
-    fontFamily: Fonts.main,
   },
 });

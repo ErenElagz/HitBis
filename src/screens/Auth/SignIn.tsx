@@ -47,21 +47,6 @@ export default function SignIn() {
 
       <OrDivider />
 
-      <Button
-        type="tertiary"
-        title="Sign In with Google"
-        onPress={() => {
-          nav.navigate('HomeScreen' as never);
-        }}
-      />
-      <Button
-        type="tertiary"
-        title="Sign In with Facebook"
-        onPress={() => {
-          nav.navigate('HomeScreen' as never);
-        }}
-      />
-
       <LinkText
         align="center"
         title="Create a Account? Sign Up"
@@ -82,6 +67,5 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
-    fontFamily: Fonts.main,
   },
 });

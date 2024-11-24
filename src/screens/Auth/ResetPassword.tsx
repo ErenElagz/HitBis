@@ -35,7 +35,7 @@ export default function ResetPassword() {
           nav.navigate('SignIn' as never);
         }}
       />
-      
+
       <LinkText
         align="center"
         title="Go Back!"
@@ -56,6 +56,5 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
-    fontFamily: Fonts.main,
   },
 });

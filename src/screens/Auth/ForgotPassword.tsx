@@ -54,6 +54,5 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.primary,
     fontSize: 20,
-    fontFamily: Fonts.main,
   },
 });

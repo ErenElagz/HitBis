@@ -1,11 +1,10 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../styles/colors';
 import Fonts from '../styles/fonts';
-import RemSizes from '../styles/dimensions';
 
 export default StyleSheet.create({
   HeaderText: {
-    marginTop: RemSizes.48,
+    marginTop: 48,
     color: Colors.light,
     fontSize: 40,
     fontFamily: Fonts.main,
