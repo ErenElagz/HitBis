@@ -28,10 +28,9 @@ export default function WelcomeScreen() {
         style={{
           position: 'absolute',
           bottom: 0,
-
           width: '100%',
           marginBottom: 16,
-          alignItems: 'center',
+          alignSelf: 'center',
         }}>
         <Button
           type="secondary"
@@ -49,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    paddingTop: 36,
     backgroundColor: Colors.backgroundColor,
   },
 });
