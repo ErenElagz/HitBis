@@ -6,15 +6,13 @@ import Colors from '../styles/colors';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {CustomMapStyle} from '../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 
 export default function MapScreen() {
-  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View
         style={{
-          borderRadius: 16,
+          borderRadius: 32,
           overflow: 'hidden',
         }}>
         <MapView
@@ -51,7 +49,6 @@ export default function MapScreen() {
             borderRadius: 16,
           }}>
           <Icon name="chevron-left" size={28} color={Colors.light} 
-            onPress={() => nav.goBack()}
           />
         </View>
       </View>

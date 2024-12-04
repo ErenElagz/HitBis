@@ -7,6 +7,12 @@ import AppNavigator from './AppNavigator';
 export default function RootNavigator() {
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Login state
 
+  
+
+  <NavigationContainer>
+    <AppNavigator />
+  </NavigationContainer>;
+
   // Simulate login check (replace with your auth logic)
 
   // useEffect(() => {

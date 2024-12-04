@@ -6,7 +6,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import RentCycleScreen from '../screens/RentCycleScreen';
 import CommunityScreen from '../screens/CommunityScreen';
 import AssistantScreen from '../screens/AssistantScreen';
-import MapScreen from '../screens/MapScreen';
+
 // Styles
 import Colors from '../styles/colors';
 // Components
@@ -51,7 +51,6 @@ export default function AppNavigator() {
       <Tab.Screen name="RentCycle" component={RentCycleScreen} />
       <Tab.Screen name="Assistant" component={AssistantScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Map" component={MapScreen} />
     </Tab.Navigator>
   );
 }

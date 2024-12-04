@@ -7,10 +7,8 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {CustomMapStyle} from '../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TextInput} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
 export default function HomeScreen() {
-  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View
@@ -55,7 +53,6 @@ export default function HomeScreen() {
             name="crop-free"
             size={28}
             color={Colors.light}
-            onPress={() => nav.navigate('Map' as never)}
           />
         </View>
         <View
