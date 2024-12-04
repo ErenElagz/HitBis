@@ -13,7 +13,7 @@ const Colors = {
   dark: '#000000',
   secondaryDark: '#161616',
   // Colors
-  red: '#',
+  red: '#FF8C8C',
   orange: '#',
   yellow: '#',
   green: '#',
