@@ -28,6 +28,7 @@ export default function AppNavigator() {
           justifyContent: 'center',
           borderColor: Colors.borderColor,
           backgroundColor: Colors.backgroundColor,
+          display: route.name === 'Assistant' ? 'none' : 'flex', // Hide tab bar for Assistant
         },
         headerShown: false,
         tabBarIcon(props) {
