@@ -129,7 +129,7 @@ export default function AssistantScreen() {
       <FlatList
         style={{padding: 16}}
         data={listData}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item}
         renderItem={({item}) => (
           <View key={item}>
             <Message message={item} />
