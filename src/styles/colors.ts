@@ -6,7 +6,7 @@ const Colors = {
   // Helper Colors
   backgroundColor: '#001110',
   backgroundColorSecondary: '#192827',
-  borderColor: '#323232',
+  borderColor: '#ffffff20',
   // Semantic Colors
   light: '#ffffff',
   secondaryLight: '#fafafa',

@@ -5,9 +5,7 @@ import AuthNavigator from './AuthNavigator';
 import AppNavigator from './AppNavigator';
 
 export default function RootNavigator() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
-
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Login state
 
   <NavigationContainer>
     <AppNavigator />

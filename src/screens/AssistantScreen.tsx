@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Colors from '../styles/colors';
 
@@ -15,6 +7,7 @@ import {GoogleGenerativeAI} from '@google/generative-ai';
 import Markdown from 'react-native-markdown-display';
 import Fonts from '../styles/fonts';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const date = new Date();
 const API_KEY = 'AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk';
@@ -35,7 +28,7 @@ function Response(props: any) {
   }, []);
 
   return (
-    <View style={styles.message}>
+    <View style={styles.response}>
       <View
         style={{
           flexDirection: 'row',
@@ -43,7 +36,8 @@ function Response(props: any) {
           justifyContent: 'space-between',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-          <Text style={{fontWeight: 600, color: '#fff'}}>Gemini</Text>
+          <Icon name="robot" size={20} color="#fff" />
+          <Text style={{fontWeight: 600, color: '#fff'}}>Biscuit</Text>
         </View>
         <Text style={{fontSize: 10, fontWeight: '600', color: '#fff'}}>
           {date.getHours()}:{date.getMinutes()}
@@ -71,6 +65,7 @@ function Message(props: any) {
           justifyContent: 'space-between',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+          <Icon name="account" size={20} color="#fff" />
           <Text style={{fontWeight: 500, color: '#fff'}}>Username</Text>
         </View>
         <Text style={{fontSize: 10, fontWeight: 600, color: '#fff'}}>
@@ -103,7 +98,16 @@ export default function AssistantScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
+      <LinearGradient
+        colors={['#4c669f', '#3b5998', Colors.backgroundColor]}
+        style={{
+          position: 'absolute',
+          top: 0,
+          height: '100%',
+          width: '100%',
+          opacity: 0.2,
+        }}
+      />
       <View style={styles.header}>
         <Icon
           name="arrow-left"
@@ -126,7 +130,7 @@ export default function AssistantScreen() {
 
       {/* Content */}
       <FlatList
-        style={{paddingHorizontal: 16}}
+        style={{padding: 16}}
         data={listData}
         renderItem={({item}) => (
           <View>
@@ -139,12 +143,7 @@ export default function AssistantScreen() {
 
       {/* Search-Bar */}
       <View style={styles.searchBar}>
-        <TextInput
-          placeholder="Ask to Gemini AI"
-          style={styles.input}
-          value={inputText}
-          onChangeText={text => setInputText(text)}
-          selectionColor={'#fff'}></TextInput>
+        <TextInput placeholder="Ask to Biscuit" style={styles.input} value={inputText} onChangeText={text => setInputText(text)} selectionColor={'#fff'}></TextInput>
         <TouchableOpacity onPress={SearchInput}>
           <Icon name="send" size={24} color="#fff" />
         </TouchableOpacity>
@@ -164,15 +163,8 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     padding: 16,
     gap: 8,
-    backgroundColor: Colors.backgroundColor,
-    borderBottomWidth: 1
-    ,
+    borderBottomWidth: 1,
     borderColor: Colors.borderColor,
-  },
-
-  icon: {
-    width: 32,
-    height: 32,
   },
   searchBar: {
     backgroundColor: Colors.backgroundColor,
@@ -202,7 +194,16 @@ const styles = StyleSheet.create({
   message: {
     flexDirection: 'column',
     gap: 8,
-    backgroundColor: '#323232',
+    backgroundColor: '#ffffff25',
+    marginBottom: 8,
+    padding: 16,
+    borderRadius: 16,
+    color: '#fff',
+  },
+  response: {
+    flexDirection: 'column',
+    gap: 8,
+    backgroundColor: '#ffffff50',
     marginBottom: 8,
     padding: 16,
     borderRadius: 16,
