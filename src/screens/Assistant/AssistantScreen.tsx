@@ -1,18 +1,20 @@
 import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import Colors from '../styles/colors';
+import Colors from '../../styles/colors';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {GoogleGenerativeAI} from '@google/generative-ai';
 import Markdown from 'react-native-markdown-display';
-import Fonts from '../styles/fonts';
+import Fonts from '../../styles/fonts';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const date = new Date();
 const API_KEY = 'AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk';
 const genAI = new GoogleGenerativeAI(API_KEY);
-
+const showAlert = () => {
+  ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
+};
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   useEffect(() => {
@@ -106,6 +108,7 @@ export default function AssistantScreen() {
           opacity: 0.25,
         }}
       />
+      
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => {
@@ -113,8 +116,6 @@ export default function AssistantScreen() {
           }}>
           <Icon name="arrow-left" size={24} color="#fff" />
         </TouchableOpacity>
-        <Icon name="cookie" size={24} color="#fff" />
-
         <Text
           style={{
             fontSize: 24,
@@ -124,6 +125,7 @@ export default function AssistantScreen() {
           HitBis Assistant
         </Text>
       </View>
+
       <FlatList
         style={{padding: 16}}
         data={listData}
@@ -135,12 +137,16 @@ export default function AssistantScreen() {
           </View>
         )}
       />
+
       <View style={styles.searchBar}>
         <TextInput placeholder="Ask to Biscuit  : )" style={styles.input} value={inputText} onChangeText={text => setInputText(text)} selectionColor={'#fff'}></TextInput>
         <TouchableOpacity onPress={SearchInput}>
           <Icon name="send" size={24} color="#fff" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            showAlert();
+          }}>
           <Icon name="microphone" size={24} color="#fff" />
         </TouchableOpacity>
       </View>

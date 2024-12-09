@@ -1,13 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import Colors from '../styles/colors';
-
+import Colors from '../../styles/colors';
 // Libraries
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {CustomMapStyle} from '../utils/mapStyle';
+import {CustomMapStyle} from '../../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
+import Button from '../../components/Button';
 
-export default function MapScreen() {
+export default function RentCycleScreen() {
+  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View
@@ -34,7 +36,7 @@ export default function MapScreen() {
             description="Istanbul, Turkey"
           />
         </MapView>
-        <View
+        <TouchableOpacity
           style={{
             marginTop: 16,
             alignItems: 'center',
@@ -48,9 +50,30 @@ export default function MapScreen() {
             height: 48,
             borderRadius: 16,
           }}>
-          <Icon name="chevron-left" size={28} color={Colors.light} 
+          <Icon
+            name="chevron-left"
+            size={28}
+            color={Colors.light}
+            onPress={() => {
+              nav.goBack();
+            }}
           />
-        </View>
+        </TouchableOpacity>
+
+        <Button
+          title="Scan QR Code"
+          type="tertiary"
+          icon = "qrcode-scan"
+          style={{
+            position: 'absolute',
+            bottom: 16,
+            width: '94%',
+            alignSelf: 'center',
+          }}
+          onPress={() => {
+            nav.navigate('QrScanScreen' as never);
+          }}
+        />
       </View>
     </View>
   );

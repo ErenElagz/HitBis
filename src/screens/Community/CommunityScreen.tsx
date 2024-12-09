@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import Colors from '../styles/colors';
+import Colors from '../../styles/colors';
 
-export default function ProfileScreen() {
+export default function CommunityScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Profile</Text>
+      <Text style={styles.text}>Community</Text>
     </View>
   );
 }

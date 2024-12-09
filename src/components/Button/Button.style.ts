@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
+    flexDirection: 'row',
+    gap: 16,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 16,

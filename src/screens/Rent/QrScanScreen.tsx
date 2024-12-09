@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import Colors from '../styles/colors';
+import Colors from '../../styles/colors';
 
-export default function RentCycleScreen() {
+export default function QrScanScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Rent Cycle</Text>
+      <Text style={styles.text}>QrScanScreen</Text>
     </View>
   );
 }

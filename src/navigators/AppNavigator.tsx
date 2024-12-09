@@ -2,11 +2,10 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 // Screens
 import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import RentCycleScreen from '../screens/RentCycleScreen';
-import CommunityScreen from '../screens/CommunityScreen';
-import AssistantScreen from '../screens/AssistantScreen';
-
+import ProfileScreen from '../screens/Profile/ProfileScreen';
+import CommunityScreen from '../screens/Community/CommunityScreen';
+import AssistantScreen from '../screens/Assistant/AssistantScreen';
+import RentCycleRouters from './PageNavigators/RentCycleRouter';
 // Styles
 import Colors from '../styles/colors';
 // Components
@@ -28,7 +27,8 @@ export default function AppNavigator() {
           justifyContent: 'center',
           borderColor: Colors.borderColor,
           backgroundColor: Colors.backgroundColor,
-          display: route.name === 'Assistant' ? 'none' : 'flex', // Hide tab bar for Assistant
+          display: route.name === 'Assistant' ? 'none' : route.name === 'RentCycle' ? 'none' : 'flex',
+
         },
         headerShown: false,
         tabBarIcon(props) {
@@ -49,7 +49,7 @@ export default function AppNavigator() {
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Community" component={CommunityScreen} />
-      <Tab.Screen name="RentCycle" component={RentCycleScreen} />
+      <Tab.Screen name="RentCycle" component={RentCycleRouters} />
       <Tab.Screen name="Assistant" component={AssistantScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
