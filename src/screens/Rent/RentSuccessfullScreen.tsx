@@ -2,10 +2,13 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
 
-export default function RentSuccessfullScreen() {
+export default function RentSuccessfullScreen({route}:any) {
+  const {codes} = route.params;
+  console.log(codes);
   return (
     <View style={styles.container}>
       <Text style={styles.text}>RentSuccessfullScreen</Text>
+      <Text style={styles.text}>{codes}</Text>
     </View>
   );
 }

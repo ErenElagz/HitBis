@@ -3,7 +3,7 @@ import React from 'react';
 // Screens
 import RentCycleScreen from '../../screens/Rent/RentCycleScreen';
 import QrScanScreen from '../../screens/Rent/QrScanScreen';
-import RentSuccessfullScreen from '../../screens/Rent/RentSuccesfull';
+import RentSuccessfullScreen from '../../screens/Rent/RentSuccessfullScreen';
 
 const Stack = createNativeStackNavigator();
 
