@@ -13,7 +13,7 @@ export default function QrScanScreen() {
     codeTypes: ['qr', 'ean-13'],
 
     onCodeScanned: codes => {
-      nav.navigate('RentSuccessfullScreen', {codes: codes[0].value});
+      nav.navigate('RentSuccessfullScreen' as never, {codes: codes[0].value});
     },
   });
 
