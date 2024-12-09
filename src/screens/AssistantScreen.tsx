@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Colors from '../styles/colors';
 
@@ -28,7 +28,7 @@ function Response(props: any) {
   }, []);
 
   return (
-    <View style={styles.response}>
+    <View style={[styles.message, {backgroundColor: '#ffffff50'}]}>
       <View
         style={{
           flexDirection: 'row',
@@ -57,7 +57,7 @@ function Response(props: any) {
 
 function Message(props: any) {
   return (
-    <View style={styles.message}>
+    <View style={[styles.message, {backgroundColor: '#ffffff25'}]}>
       <View
         style={{
           flexDirection: 'row',
@@ -87,6 +87,7 @@ function Message(props: any) {
 }
 
 export default function AssistantScreen() {
+  const nav = useNavigation();
   const [inputText, setInputText] = useState('');
   const [listData, setListData] = useState<string[]>([]);
   const SearchInput = () => {
@@ -94,58 +95,53 @@ export default function AssistantScreen() {
     setInputText('');
   };
 
-  const nav = useNavigation();
-
   return (
     <View style={styles.container}>
       <LinearGradient
         colors={['#4c669f', '#3b5998', Colors.backgroundColor]}
         style={{
           position: 'absolute',
-          top: 0,
           height: '100%',
           width: '100%',
-          opacity: 0.2,
+          opacity: 0.25,
         }}
       />
       <View style={styles.header}>
-        <Icon
-          name="arrow-left"
-          size={24}
-          color="#fff"
+        <TouchableOpacity
           onPress={() => {
             nav.goBack();
-          }}
-        />
+          }}>
+          <Icon name="arrow-left" size={24} color="#fff" />
+        </TouchableOpacity>
+        <Icon name="cookie" size={24} color="#fff" />
+
         <Text
           style={{
             fontSize: 24,
             fontFamily: Fonts.main,
-            fontWeight: '800',
             color: '#fff',
           }}>
           HitBis Assistant
         </Text>
       </View>
-
-      {/* Content */}
       <FlatList
         style={{padding: 16}}
         data={listData}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => (
-          <View>
+          <View key={item}>
             <Message message={item} />
             <Response prompt={item} />
           </View>
         )}
-        keyExtractor={(item, index) => index.toString()}
       />
-
-      {/* Search-Bar */}
       <View style={styles.searchBar}>
-        <TextInput placeholder="Ask to Biscuit" style={styles.input} value={inputText} onChangeText={text => setInputText(text)} selectionColor={'#fff'}></TextInput>
+        <TextInput placeholder="Ask to Biscuit  : )" style={styles.input} value={inputText} onChangeText={text => setInputText(text)} selectionColor={'#fff'}></TextInput>
         <TouchableOpacity onPress={SearchInput}>
           <Icon name="send" size={24} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon name="microphone" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
     </View>
@@ -174,8 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 16,
+    padding: 12,
     gap: 16,
     borderTopWidth: 1,
     borderColor: Colors.borderColor,
@@ -183,30 +178,17 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: Colors.backgroundColor,
     flex: 1,
-    fontSize: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 16,
     borderRadius: 16,
-    borderWidth: 0.1,
-    borderColor: '#fff',
+    borderWidth: 1,
+    borderColor: Colors.borderColor,
     color: '#fff',
   },
   message: {
     flexDirection: 'column',
     gap: 8,
-    backgroundColor: '#ffffff25',
-    marginBottom: 8,
     padding: 16,
-    borderRadius: 16,
-    color: '#fff',
-  },
-  response: {
-    flexDirection: 'column',
-    gap: 8,
-    backgroundColor: '#ffffff50',
     marginBottom: 8,
-    padding: 16,
     borderRadius: 16,
-    color: '#fff',
   },
 });
