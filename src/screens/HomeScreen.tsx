@@ -7,8 +7,10 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {CustomMapStyle} from '../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TextInput} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function HomeScreen() {
+  const nav = useNavigation();
   return (
     <View style={styles.container}>
       <View
@@ -35,7 +37,8 @@ export default function HomeScreen() {
             description="Istanbul, Turkey"
           />
         </MapView>
-        <View
+        <TouchableOpacity
+          onPress={() => {}}
           style={{
             marginTop: 16,
             alignItems: 'center',
@@ -49,13 +52,9 @@ export default function HomeScreen() {
             height: 48,
             borderRadius: 16,
           }}>
-          <Icon
-            name="crop-free"
-            size={28}
-            color={Colors.light}
-          />
-        </View>
-        <View
+          <Icon name="crop-free" size={28} color={Colors.light} />
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             marginTop: 16,
             alignItems: 'center',
@@ -70,7 +69,7 @@ export default function HomeScreen() {
             borderRadius: 20,
           }}>
           <Icon name="near-me" size={20} color={Colors.red} />
-        </View>
+        </TouchableOpacity>
       </View>
       <View
         style={{

@@ -18,9 +18,9 @@ export default function RentCycleScreen() {
           overflow: 'hidden',
         }}>
         <MapView
-          customMapStyle={CustomMapStyle}
           style={styles.map}
           provider={PROVIDER_GOOGLE}
+          customMapStyle={CustomMapStyle}
           initialRegion={{
             latitude: 41.0082,
             longitude: 28.9784,
@@ -63,7 +63,7 @@ export default function RentCycleScreen() {
         <Button
           title="Scan QR Code"
           type="tertiary"
-          icon = "qrcode-scan"
+          icon="qrcode-scan"
           style={{
             position: 'absolute',
             bottom: 16,
