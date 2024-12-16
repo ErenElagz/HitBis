@@ -13,12 +13,12 @@ export default function CommunityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    padding: 20,
     alignItems: 'center',
     backgroundColor: Colors.backgroundColor,
   },
   text: {
     color: Colors.primary,
-    fontSize: 20,
+    fontSize: 32,
   },
 });

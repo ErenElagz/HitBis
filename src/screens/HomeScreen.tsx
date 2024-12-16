@@ -8,7 +8,7 @@ import {CustomMapStyle} from '../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
+import StationsList from '../data/stations';
 export default function HomeScreen() {
   const nav = useNavigation();
   return (
@@ -28,14 +28,9 @@ export default function HomeScreen() {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
-          <Marker
-            coordinate={{
-              latitude: 41.0082,
-              longitude: 28.9784,
-            }}
-            title="Istanbul"
-            description="Istanbul, Turkey"
-          />
+          {StationsList.map(station => (
+            <Marker key={station.id} coordinate={station.location} title={station.name} description={`Bike Count: ${station.bikeCount} Docked Count: ${station.dockedCount}`} />
+          ))}
         </MapView>
         <TouchableOpacity
           onPress={() => {}}
