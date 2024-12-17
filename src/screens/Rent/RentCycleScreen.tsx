@@ -26,17 +26,18 @@ export default function RentCycleScreen() {
           latitudeDelta: 0.2, // Harita kapsama alanını genişlettim
           longitudeDelta: 0.2,
         }}>
-        {StationsList && StationsList.map(station => (
-          <Marker
-            key={station.id}
-            coordinate={{
-              latitude: station.location.latitude,
-              longitude: station.location.longitude,
-            }}
-            title={station.name}
-            description={`Docked Count: ${station.dockedCount} - Bike Count: ${station.bikeCount}`}
-          />
-        ))}
+        {StationsList &&
+          StationsList.map(station => (
+            <Marker
+              key={station.id}
+              coordinate={{
+                latitude: station.location.latitude,
+                longitude: station.location.longitude,
+              }}
+              title={station.name}
+              description={`Docked Count: ${station.dockedCount} - Bike Count: ${station.bikeCount}`}
+            />
+          ))}
       </MapView>
 
       {/* Geri Dön Butonu */}
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 24,
     left: 16,
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.backgroundColor,
     width: 48,
     height: 48,
     borderRadius: 16,
@@ -111,7 +112,6 @@ const styles = StyleSheet.create({
     width: width - 128,
     height: 160,
     margin: 4,
-
   },
   stationName: {
     color: Colors.light,

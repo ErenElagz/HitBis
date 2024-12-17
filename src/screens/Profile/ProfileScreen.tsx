@@ -1,14 +1,16 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const nav = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={{
           width: '100%',
@@ -50,16 +52,28 @@ export default function ProfileScreen() {
           }}
         />
       </View>
-    </View>
+      <View style={{marginTop: 24, width: '100%', gap: 8}}>
+        <Text style={styles.text}>Last Activities</Text>
+        <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
+      </View>
+      <View style={{marginTop: 24, width: '100%', gap: 8}}>
+        <Text style={styles.text}>My Groups</Text>
+        <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
+      </View>
+      <View style={{marginTop: 24, width: '100%', gap: 8}}>
+        <Text style={styles.text}>My Routes</Text>
+        <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
+      </View>
+    </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingTop: 32,
-    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
   },
   text: {
