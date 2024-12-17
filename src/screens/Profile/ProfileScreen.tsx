@@ -65,6 +65,14 @@ export default function ProfileScreen() {
               // logout
             }}
           />
+          <Button
+            icon="archive-outline"
+            type="secondary"
+            style={{flex: 0.4}}
+            onPress={() => {
+              // logout
+            }}
+          />
         </View>
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
           <Text style={styles.text}>Last Activities</Text>

@@ -2,10 +2,10 @@ import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import styles from './Button.style';
 import Colors from '../../styles/colors';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   onPress: () => void;
   type?: 'primary' | 'secondary' | 'tertiary';
   style?: object;
@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style,
       ]}
       onPress={onPress}>
       {icon && <Icon name={icon} size={20} color={Colors.light} />}
-      <Text style={[styles.text]}>{title}</Text>
+      {title && <Text style={[styles.text]}>{title}</Text>}{' '}
     </TouchableOpacity>
   );
 };
