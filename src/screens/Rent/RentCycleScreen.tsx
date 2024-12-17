@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
 import Colors from '../../styles/colors';
 // Libraries
-import MapView, {PROVIDER_GOOGLE, Marker, PROVIDER_DEFAULT} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_DEFAULT} from 'react-native-maps';
 import {CustomMapStyle} from '../../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
