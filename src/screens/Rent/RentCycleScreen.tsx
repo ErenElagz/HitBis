@@ -1,91 +1,41 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  ScrollView,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
 import Colors from '../../styles/colors';
 // Libraries
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import { CustomMapStyle } from '../../utils/mapStyle';
+import MapView, {PROVIDER_GOOGLE, Marker, PROVIDER_DEFAULT} from 'react-native-maps';
+import {CustomMapStyle} from '../../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 import StationsList from '../../data/stations';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 export default function RentCycleScreen() {
   const nav = useNavigation();
 
   return (
     <View style={styles.container}>
-      <View style={styles.mapContainer}>
-        <MapView
-          style={styles.map}
-          provider={PROVIDER_GOOGLE}
-          customMapStyle={CustomMapStyle}
-          initialRegion={{
-            latitude: 41.0082,
-            longitude: 28.9784,
-            latitudeDelta: 0.2, // Harita kapsama alanını genişlettim
-            longitudeDelta: 0.2,
-          }}
-        >
-          {/* Marker'ları Listele */}
-          {StationsList.map(station => (
-            <Marker
-              key={station.id}
-              coordinate={station.location}
-              title={station.name}
-              description={`Docked Count: ${station.dockedCount}\nBike Count: ${station.bikeCount}`}
-            />
-          ))}
-        </MapView>
-
-        {/* Geri Dön Butonu */}
-        <TouchableOpacity
-          onPress={() => {
-            nav.goBack();
-          }}
-          style={styles.backButton}
-        >
-          <Icon name="chevron-left" size={28} color={Colors.light} />
-        </TouchableOpacity>
-
-        {/* İstasyon Detayları ve QR Kod */}
-        <View style={styles.detailsContainer}>
-          <ScrollView
-            horizontal
-            style={styles.stationScrollView}
-            showsHorizontalScrollIndicator={false}
-          >
-            {StationsList.map(station => (
-              <View key={station.id} style={styles.stationCard}>
-                <Text style={styles.stationName}>{station.name}</Text>
-                <Text style={styles.stationText}>
-                  {`Docked Count: ${station.dockedCount}`}
-                </Text>
-                <Text style={styles.stationText}>
-                  {`Bike Count: ${station.bikeCount}`}
-                </Text>
-              </View>
-            ))}
-          </ScrollView>
-          <Button
-            title="Scan QR Code"
-            type="tertiary"
-            icon="qrcode-scan"
-            onPress={() => {
-              nav.navigate('QrScanScreen' as never);
-            }}
+      <MapView
+        style={styles.map}
+        provider={PROVIDER_DEFAULT}
+        customMapStyle={CustomMapStyle}
+        initialRegion={{
+          latitude: 41.0082,
+          longitude: 28.9784,
+          latitudeDelta: 0.2, // Harita kapsama alanını genişlettim
+          longitudeDelta: 0.2,
+        }}>
+        {StationsList.map(station => (
+          <Marker
+            key={station.id}
+            coordinate={station.location}
+            title={station.name}
+            description={`Bisiklet: ${station.bikeCount} Boş Park: ${station.dockedCount}`}
           />
-        </View>
-      </View>
-    </View>
+        ))}
+      </MapView>
+   </View>
   );
 }
 
@@ -94,14 +44,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backgroundColor,
   },
-  mapContainer: {
-    borderRadius: 32,
-    overflow: 'hidden',
-    flex: 1,
-  },
   map: {
-    width: '100%',
-    height: '100%',
+      flex: 1,
+
   },
   backButton: {
     position: 'absolute',

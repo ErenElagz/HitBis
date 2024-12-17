@@ -28,9 +28,6 @@ export default function HomeScreen() {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}>
-          {StationsList.map(station => (
-            <Marker key={station.id} coordinate={station.location} title={station.name} description={`Bike Count: ${station.bikeCount} Docked Count: ${station.dockedCount}`} />
-          ))}
         </MapView>
         <TouchableOpacity
           onPress={() => {}}
