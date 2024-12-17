@@ -26,16 +26,49 @@ export default function RentCycleScreen() {
           latitudeDelta: 0.2, // Harita kapsama alanını genişlettim
           longitudeDelta: 0.2,
         }}>
-        {StationsList.map(station => (
+        {StationsList && StationsList.map(station => (
           <Marker
             key={station.id}
-            coordinate={station.location}
+            coordinate={{
+              latitude: station.location.latitude,
+              longitude: station.location.longitude,
+            }}
             title={station.name}
-            description={`Bisiklet: ${station.bikeCount} Boş Park: ${station.dockedCount}`}
+            description={`Docked Count: ${station.dockedCount} - Bike Count: ${station.bikeCount}`}
           />
         ))}
       </MapView>
-   </View>
+
+      {/* Geri Dön Butonu */}
+      <TouchableOpacity
+        onPress={() => {
+          nav.goBack();
+        }}
+        style={styles.backButton}>
+        <Icon name="chevron-left" size={28} color={Colors.light} />
+      </TouchableOpacity>
+
+      {/* İstasyon Detayları ve QR Kod */}
+      <View style={styles.detailsContainer}>
+        <ScrollView horizontal style={styles.stationScrollView} showsHorizontalScrollIndicator={false}>
+          {StationsList.map(station => (
+            <View key={station.id} style={styles.stationCard}>
+              <Text style={styles.stationName}>{station.name}</Text>
+              <Text style={styles.stationText}>{`Docked Count: ${station.dockedCount}`}</Text>
+              <Text style={styles.stationText}>{`Bike Count: ${station.bikeCount}`}</Text>
+            </View>
+          ))}
+        </ScrollView>
+        <Button
+          title="Scan QR Code"
+          type="tertiary"
+          icon="qrcode-scan"
+          onPress={() => {
+            nav.navigate('QrScanScreen' as never);
+          }}
+        />
+      </View>
+    </View>
   );
 }
 
@@ -45,14 +78,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundColor,
   },
   map: {
-      flex: 1,
-
+    width: '100%',
+    height: '100%',
   },
   backButton: {
     position: 'absolute',
-    top: 16,
+    top: 24,
     left: 16,
-    backgroundColor: Colors.dark,
+    backgroundColor: Colors.secondary,
     width: 48,
     height: 48,
     borderRadius: 16,
@@ -72,12 +105,13 @@ const styles = StyleSheet.create({
     overflow: 'visible',
   },
   stationCard: {
-    backgroundColor: '#000000dd',
+    backgroundColor: Colors.secondary,
     padding: 16,
     borderRadius: 16,
     width: width - 128,
     height: 160,
     margin: 4,
+
   },
   stationName: {
     color: Colors.light,
