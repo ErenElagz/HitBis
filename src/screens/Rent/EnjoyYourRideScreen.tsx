@@ -11,7 +11,9 @@ export default function EnjoyYourRideScreen() {
 
   return (
     <View style={styles.container}>
-      <LottieView style={{flex: 1}} source={require('../../assets/lottie/bike.json')} autoPlay loop />
+      <View style={{height: 300, width: '100%',aspectRatio: 1}}>
+        <LottieView style={{flex: 1}} source={require('../../assets/lottie/bike.json')} autoPlay loop />
+      </View>
 
       <Button
         title="Go Home"
