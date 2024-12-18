@@ -14,8 +14,6 @@ export default function ProfileScreen() {
         <View
           style={{
             width: '100%',
-            alignItems: 'center',
-            gap: 20,
             borderRadius: 16,
             padding: 24,
             backgroundColor: Colors.backgroundColorSecondary,
@@ -27,17 +25,18 @@ export default function ProfileScreen() {
               justifyContent: 'center',
               borderRadius: 20,
               gap: 8,
+              flex: 1,
             }}>
             <Image source={require('../../assets/image/avatar.jpg')} style={{width: 100, height: 100, borderRadius: 50}} />
-            <Text style={styles.text}>ErenElagz</Text>
+            <Text style={styles.textUsername}>ErenElagz</Text>
           </View>
-          <View style={{flex: 1, alignItems: 'flex-start', gap: 4, paddingLeft: 32}}>
+          <View style={{gap: 8, flex: 1, alignItems: 'flex-start',paddingLeft: 32}}>
             <View>
-              <Text style={styles.text}>6.37K</Text>
+              <Text style={styles.text}>6.37 K</Text>
               <Text style={styles.textSoft}>Point</Text>
             </View>
             <View>
-              <Text style={styles.text}>217km</Text>
+              <Text style={styles.text}>217 km</Text>
               <Text style={styles.textSoft}>On the Way</Text>
             </View>
             <View>
@@ -46,7 +45,7 @@ export default function ProfileScreen() {
             </View>
           </View>
         </View>
-        <View style={{marginTop: 16, width: '100%', gap: 8, flexDirection: 'row', justifyContent: 'center'}}>
+        <View style={{marginTop: 16, width: '100%', gap: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start'}}>
           <Button
             icon="account-outline"
             type="secondary"
@@ -94,7 +93,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
   },
@@ -107,5 +106,10 @@ const styles = StyleSheet.create({
     color: Colors.gray,
     fontSize: 12,
     fontFamily: Fonts.interRegular,
+  },
+  textUsername: {
+    color: Colors.light,
+    fontSize: 28,
+    fontFamily: Fonts.main,
   },
 });

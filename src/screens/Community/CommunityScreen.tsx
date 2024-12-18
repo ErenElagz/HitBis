@@ -4,6 +4,7 @@ import Colors from '../../styles/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Fonts from '../../styles/fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export default function CommunityScreen() {
   return (
     <SafeAreaView style={styles.container}>
@@ -41,7 +42,7 @@ export default function CommunityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
     overflow: 'visible',
