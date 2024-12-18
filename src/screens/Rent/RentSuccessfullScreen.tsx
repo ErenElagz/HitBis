@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
     color: Colors.light,
     fontSize: 28,
     fontFamily: Fonts.main,
-  },  text2: {
+  },
+  text2: {
     color: Colors.gray,
     fontSize: 28,
     fontFamily: Fonts.main,
