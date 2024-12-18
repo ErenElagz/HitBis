@@ -72,7 +72,9 @@ export default function RentSuccessfullScreen({route}: any) {
       </View>
       <View style={{position: 'absolute', zIndex: 999, bottom: 16, alignSelf: 'center', width: '100%'}}>
         <SwipeButton
-          onSwipeSuccess={() => nav.navigate('EnjoyYourRideScreen' as never)}
+          onSwipeSuccess={() => {
+            nav.navigate('EnjoyYourRideScreen' as never);
+          }}
           containerStyles={{borderRadius: 16}}
           height={60}
           railBackgroundColor={Colors.backgroundColorSecondary}
