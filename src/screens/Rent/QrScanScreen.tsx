@@ -12,7 +12,6 @@ export default function QrScanScreen() {
 
     switch (result) {
       case RESULTS.GRANTED:
-        Alert.alert('İzin Verildi', 'Kamera kullanımı için izin alındı.');
         break;
       case RESULTS.DENIED:
         Alert.alert('İzin Reddedildi', 'Kamera kullanımı için izin reddedildi.');
@@ -33,7 +32,6 @@ export default function QrScanScreen() {
   const devices = useCameraDevice('back');
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
-
     onCodeScanned: codes => {
       nav.navigate('RentSuccessfullScreen' as never, {codes: codes[0].value});
     },

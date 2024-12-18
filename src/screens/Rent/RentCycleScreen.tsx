@@ -26,6 +26,13 @@ export default function RentCycleScreen() {
           latitudeDelta: 0.2, // Harita kapsama alanını genişlettim
           longitudeDelta: 0.2,
         }}>
+        {StationsList.map(station => (
+          <Marker
+            key={station.id}
+            coordinate= {station.location}
+            title={station.name}
+          />
+        ))}
       </MapView>
 
       {/* Geri Dön Butonu */}
