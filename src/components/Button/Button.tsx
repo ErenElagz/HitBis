@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style,
       ]}
       onPress={onPress}>
       {icon && <Icon name={icon} size={20} color={Colors.light} />}
-      {title && <Text style={[styles.text]}>{title}</Text>}{' '}
+      {title && <Text style={[styles.text]}>{title}</Text>}
     </TouchableOpacity>
   );
 };

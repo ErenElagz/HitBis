@@ -116,7 +116,13 @@ export default function HomeScreen() {
                 Upcoming Events
               </Text>
             </View>
-            <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View style={{width: '100%', gap: 8, flexDirection: 'row', overflow: 'visible'}}>
+                <View style={{height: 200, width: 320, backgroundColor: Colors.tertiary, borderRadius: 16}} />
+                <View style={{height: 200, width: 320, backgroundColor: Colors.secondary, borderRadius: 16}} />
+                <View style={{height: 200, width: 320, backgroundColor: Colors.primary, borderRadius: 16}} />
+              </View>
+            </ScrollView>
           </View>
           <View style={{marginTop: 24, width: '100%', gap: 8}}>
             <Text style={styles.text}>On the way</Text>

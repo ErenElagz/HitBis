@@ -27,10 +27,10 @@ export default function ProfileScreen() {
               gap: 8,
               flex: 1,
             }}>
-            <Image source={require('../../assets/image/avatar.jpg')} style={{width: 100, height: 100, borderRadius: 50}} />
+            <Image source={require('../../assets/image/avatar.jpg')} style={{width: 120, height: 120, borderRadius: 999}} />
             <Text style={styles.textUsername}>ErenElagz</Text>
           </View>
-          <View style={{gap: 8, flex: 1, alignItems: 'flex-start',paddingLeft: 32}}>
+          <View style={{gap: 8, flex: 1, alignItems: 'flex-start', paddingLeft: 32}}>
             <View>
               <Text style={styles.text}>6.37 K</Text>
               <Text style={styles.textSoft}>Point</Text>
@@ -45,14 +45,14 @@ export default function ProfileScreen() {
             </View>
           </View>
         </View>
-        <View style={{marginTop: 16, width: '100%', gap: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start'}}>
+        <View style={{marginTop: 12, width: '100%', gap: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start'}}>
           <Button
             icon="account-outline"
             type="secondary"
             title="My Profile"
             style={{flex: 1}}
             onPress={() => {
-              nav.goBack;
+              nav.navigate('MyProfile' as never);
             }}
           />
           <Button
@@ -61,7 +61,7 @@ export default function ProfileScreen() {
             title="Settings"
             style={{flex: 1}}
             onPress={() => {
-              // logout
+              nav.navigate('Settings' as never);
             }}
           />
           <Button
@@ -69,7 +69,7 @@ export default function ProfileScreen() {
             type="secondary"
             style={{flex: 0.4}}
             onPress={() => {
-              // logout
+              nav.navigate('Notifications' as never);
             }}
           />
         </View>
