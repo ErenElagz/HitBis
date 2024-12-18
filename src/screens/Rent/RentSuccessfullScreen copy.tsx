@@ -66,10 +66,13 @@ export default function RentSuccessfullScreen({route}: any) {
           <Icon name="near-me" size={20} color={Colors.red} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.text}>Open the Bicycle and Enjoy Your Ride</Text>
-      <Text style={styles.text}>{codes}</Text>
+      <View style={{padding: 16}}>
+        <Text style={styles.text}>Open the Bicycle and Enjoy Your Ride</Text>
+        <Text style={styles.text2}>{codes}</Text>
+      </View>
       <View style={{position: 'absolute', zIndex: 999, bottom: 16, alignSelf: 'center', width: '100%'}}>
         <SwipeButton
+          onSwipeSuccess={() => nav.navigate('EnjoyYourRideScreen' as never)}
           containerStyles={{borderRadius: 16}}
           height={60}
           railBackgroundColor={Colors.backgroundColorSecondary}
@@ -77,13 +80,13 @@ export default function RentSuccessfullScreen({route}: any) {
           thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.secondaryDark}}
           thumbIconWidth={60}
           thumbIconHeight={20}
-          railBorderColor='transparent'
-          thumbIconBorderColor='transparent'
+          railBorderColor="transparent"
+          thumbIconBorderColor="transparent"
           thumbIconComponent={() => <Icon name="lock-open" size={32} color={Colors.light} />}
           railFillBackgroundColor={Colors.secondaryDark}
           titleColor="#fff"
           titleFontSize={16}
-          title="Swipe and Unlock"
+          title="Slide and Unlock"
         />
       </View>
     </SafeAreaView>
@@ -99,6 +102,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.light,
+    fontSize: 28,
+    fontFamily: Fonts.main,
+  },  text2: {
+    color: Colors.gray,
     fontSize: 28,
     fontFamily: Fonts.main,
   },
