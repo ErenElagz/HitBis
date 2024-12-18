@@ -49,7 +49,7 @@ export default function ProfileScreen() {
           <Button
             icon="account-outline"
             type="secondary"
-            title="My Profile"
+            title="Edit Profile"
             style={{flex: 1}}
             onPress={() => {
               nav.navigate('MyProfile' as never);

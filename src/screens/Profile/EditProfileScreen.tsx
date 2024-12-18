@@ -5,19 +5,19 @@ import Fonts from '../../styles/fonts';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {SafeAreaView} from 'react-native-safe-area-context';
-export default function SettingsScreen() {
+export default function EditProfileScreen() {
   const nav = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={() => nav.goBack()} style={{flexDirection: 'row', alignItems: 'flex-start', gap: 8, paddingLeft: 20}}>
-        <Icon name="arrow-left" size={24} color={Colors.light} />
+        <Icon name="arrow-left" size={20} color={Colors.light} />
         <Text
           style={{
             color: Colors.light,
             fontSize: 20,
             fontFamily: Fonts.interBold,
           }}>
-          Settings
+          Edit Profile
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

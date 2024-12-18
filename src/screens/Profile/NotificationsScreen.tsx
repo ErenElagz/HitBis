@@ -1,17 +1,25 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {SafeAreaView} from 'react-native-safe-area-context';
 export default function NotificationsScreen() {
   const nav = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>
-        Notifications Page
-      </Text>
+      <TouchableOpacity onPress={() => nav.goBack()} style={{flexDirection: 'row', alignItems: 'flex-start', gap: 8, paddingLeft: 20}}>
+        <Icon name="arrow-left" size={20} color={Colors.light} />
+        <Text
+          style={{
+            color: Colors.light,
+            fontSize: 20,
+            fontFamily: Fonts.interBold,
+          }}>
+          All Notifications
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -19,15 +27,7 @@ export default function NotificationsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 20,
+    paddingTop: 16,
     backgroundColor: Colors.backgroundColor,
   },
-  text: {
-    color: Colors.light,
-    fontSize: 20,
-    fontFamily: Fonts.main,
-  }
 });
