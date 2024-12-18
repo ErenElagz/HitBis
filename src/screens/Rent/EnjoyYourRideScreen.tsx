@@ -6,13 +6,12 @@ import Button from '../../components/Button';
 import Fonts from '../../styles/fonts';
 import LottieView from 'lottie-react-native';
 
-export default function EnjoyYourRideScreen({route}: any) {
+export default function EnjoyYourRideScreen() {
   const nav = useNavigation();
-  const {codes} = route.params;
 
   return (
     <View style={styles.container}>
-      <LottieView source={require('../../assets/lottie/bike.json')} autoPlay loop />
+      <LottieView style={{flex: 1}} source={require('../../assets/lottie/bike.json')} autoPlay loop />
 
       <Button
         title="Go Home"
