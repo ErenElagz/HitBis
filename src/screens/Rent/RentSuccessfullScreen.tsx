@@ -1,10 +1,8 @@
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Button from '../../components/Button';
-import LinearGradient from 'react-native-linear-gradient';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {CustomMapStyle} from '../../utils/mapStyle';
 import Fonts from '../../styles/fonts';
@@ -66,9 +64,20 @@ export default function RentSuccessfullScreen({route}: any) {
           <Icon name="near-me" size={20} color={Colors.red} />
         </TouchableOpacity>
       </View>
-      <View style={{padding: 16}}>
-        <Text style={styles.text}>Open the Bicycle and Enjoy Your Ride</Text>
-        <Text style={styles.text2}>{codes}</Text>
+
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', borderRadius: 20, padding: 16, marginTop: 12, backgroundColor: Colors.backgroundColorSecondary}}>
+        <View>
+          <Text style={{color: Colors.light, fontSize: 24,marginBottom:8}}>Bike Details</Text>
+          <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
+          <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
+          <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
+        </View>
+        <View style={{backgroundColor: "#45BD8950", alignItems: 'center', justifyContent: 'center', borderRadius: 16,padding:8}}>
+          <Image style={{width: 160, height: 160}} source={require('../../assets/image/bikeImage.png')} />
+        </View>
+      </View>
+      <View style={{padding: 12}}>
+        <Text style={styles.text2}>Bike Code: {codes}</Text>
       </View>
       <View style={{position: 'absolute', zIndex: 999, bottom: 16, alignSelf: 'center', width: '100%'}}>
         <SwipeButton
@@ -87,7 +96,7 @@ export default function RentSuccessfullScreen({route}: any) {
           thumbIconComponent={() => <Icon name="lock-open" size={32} color={Colors.light} />}
           railFillBackgroundColor={Colors.secondaryDark}
           titleColor="#fff"
-          titleFontSize={16}
+          titleFontSize={18}
           title="Slide and Unlock"
         />
       </View>
@@ -104,13 +113,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.light,
-    fontSize: 28,
+    fontSize: 32,
     fontFamily: Fonts.main,
   },
   text2: {
     color: Colors.gray,
-    fontSize: 28,
-    fontFamily: Fonts.main,
+    fontSize: 20,
+    fontFamily: Fonts.interMedium,
+    letterSpacing: -1,
   },
   map: {
     width: '100%',

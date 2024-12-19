@@ -7,7 +7,7 @@ import RentSuccessfullScreen from '../../screens/Rent/RentSuccessfullScreen';
 import EnjoyYourRideScreen from '../../screens/Rent/EnjoyYourRideScreen';
 const Stack = createNativeStackNavigator();
 
-export default function RentCycleRouters() {
+export default function RentCycleRouter() {
   return (
     <Stack.Navigator
       initialRouteName="RentCycleScreen"
