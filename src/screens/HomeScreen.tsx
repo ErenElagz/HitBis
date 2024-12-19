@@ -160,7 +160,7 @@ export default function HomeScreen() {
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
                   <Image source={require('../assets/image/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
                   <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
-                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}>  1.2km</Text>
+                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 1.2km</Text>
                 </View>
                 <View>
                   <Button style={{width: 72}} type="tertiary" icon="vibrate" />
@@ -170,7 +170,7 @@ export default function HomeScreen() {
                 <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
                   <Image source={require('../assets/image/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
                   <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
-                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}>  1.4km</Text>
+                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 1.4km</Text>
                 </View>
                 <View>
                   <Button style={{width: 72}} type="tertiary" icon="vibrate" />
@@ -180,6 +180,8 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
+
+      <Button style={{position: 'absolute', bottom: 16, width: 180, alignSelf:"center", height: 60, borderRadius: 999}} title='Start the Ride ' type="secondary" icon="bike" />
     </View>
   );
 }
@@ -187,7 +189,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
   },
   text: {
