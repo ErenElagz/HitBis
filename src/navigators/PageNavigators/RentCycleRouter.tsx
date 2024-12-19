@@ -4,10 +4,10 @@ import React from 'react';
 import RentCycleScreen from '../../screens/Rent/RentCycleScreen';
 import QrScanScreen from '../../screens/Rent/QrScanScreen';
 import RentSuccessfullScreen from '../../screens/Rent/RentSuccessfullScreen';
-
+import EnjoyYourRideScreen from '../../screens/Rent/EnjoyYourRideScreen';
 const Stack = createNativeStackNavigator();
 
-export default function RentCycleRouters() {
+export default function RentCycleRouter() {
   return (
     <Stack.Navigator
       initialRouteName="RentCycleScreen"
@@ -17,7 +17,7 @@ export default function RentCycleRouters() {
       <Stack.Screen name="RentCycleScreen" component={RentCycleScreen} />
       <Stack.Screen name="QrScanScreen" component={QrScanScreen} />
       <Stack.Screen name="RentSuccessfullScreen" component={RentSuccessfullScreen} />
-      
+      <Stack.Screen name="EnjoyYourRideScreen" component={EnjoyYourRideScreen} />
     </Stack.Navigator>
   );
 }
