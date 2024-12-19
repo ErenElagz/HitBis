@@ -3,7 +3,7 @@ import React from 'react';
 import Colors from '../../styles/colors';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE,Marker} from 'react-native-maps';
 import {CustomMapStyle} from '../../utils/mapStyle';
 import Fonts from '../../styles/fonts';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -14,7 +14,7 @@ export default function RentSuccessfullScreen({route}: any) {
   const {codes} = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View
         style={{
           borderRadius: 16,
@@ -27,9 +27,19 @@ export default function RentSuccessfullScreen({route}: any) {
           initialRegion={{
             latitude: 41.0082,
             longitude: 28.9784,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}></MapView>
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
+          }}>
+            <Marker
+              coordinate={{
+                latitude: 41.0082,
+                longitude: 28.9784,
+              }}
+              title="Bike Location"
+              description="This is the location of your bike"
+            />
+
+          </MapView>
         <TouchableOpacity
           onPress={() => {}}
           style={{
@@ -100,15 +110,14 @@ export default function RentSuccessfullScreen({route}: any) {
           title="Slide and Unlock"
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
+    padding: 16,
     flex: 1,
-    paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
   },
   text: {
