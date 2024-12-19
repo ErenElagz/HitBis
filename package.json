@@ -21,7 +21,11 @@
     "react": "18.3.1",
     "react-native": "0.76.3",
     "react-native-display": "^1.0.8",
+<<<<<<< HEAD
+    "react-native-dotenv": "^3.4.11",
+=======
     "react-native-gesture-handler": "^2.21.2",
+>>>>>>> a16649b6ae40111c2fbbb5cecb6f4c7a3383122c
     "react-native-linear-gradient": "^2.8.3",
     "react-native-maps": "^1.20.1",
     "react-native-markdown-display": "^7.0.2",
@@ -47,6 +51,7 @@
     "@types/react-native-vector-icons": "^6.4.18",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
+    "babel-plugin-dotenv-import": "^3.0.1",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",

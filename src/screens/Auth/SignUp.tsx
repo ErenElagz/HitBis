@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 // Styles
 import defaultStyles from '../../styles/defaultStyles';
@@ -14,13 +14,14 @@ import OrDivider from '../../components/OrDivider';
 export default function SignUp() {
   const nav = useNavigation();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={{width: '100%', gap: 8, marginTop: 48, marginBottom: 24}}>
         <Text style={defaultStyles.HeaderText}>Create an Account</Text>
-        <Text style={defaultStyles.HeaderBottomText}>
-          Create your account for save your progress and rent a bike!
-        </Text>
+        <Text style={defaultStyles.HeaderBottomText}>Create your account for save your progress and rent a bike!</Text>
       </View>
 
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
