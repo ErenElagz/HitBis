@@ -1,3 +1,4 @@
+// React
 import {View, Text, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';

@@ -1,11 +1,17 @@
+// React
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import React,{useEffect} from 'react';
+// Styles
 import Colors from '../../styles/colors';
-import {useNavigation} from '@react-navigation/native';
-import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/native';
+import Fonts from '../../styles/fonts';
+// Libraries
+import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import {Platform} from 'react-native';
+// Components
+
 export default function QrScanScreen() {
   const checkCameraPermission = async () => {
     const result = await request(Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA);

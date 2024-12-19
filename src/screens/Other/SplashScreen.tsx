@@ -1,8 +1,13 @@
+// React
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+// Styles
 import Colors from '../../styles/colors';
-import defaultStyles from '../../styles/defaultStyles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import defaultStyles from '../../styles/defaultStyles';
+// Libraries
+// Components
+
 
 export default function SplashScreen() {
   return (

@@ -1,10 +1,15 @@
+// React
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
+// Styles
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
-import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SafeAreaView} from 'react-native-safe-area-context';
+// Libraries
+import {useNavigation} from '@react-navigation/native';
+// Components
+
 export default function ActivityHistoryScreen() {
   const nav = useNavigation();
   return (

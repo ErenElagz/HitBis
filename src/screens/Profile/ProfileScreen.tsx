@@ -1,11 +1,15 @@
-import {View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
+// React
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
+// Styles
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
-import Button from '../../components/Button';
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// Libraries
+import {useNavigation} from '@react-navigation/native';
+// Components
+import Button from '../../components/Button';
 
 export default function ProfileScreen() {
   const nav = useNavigation();

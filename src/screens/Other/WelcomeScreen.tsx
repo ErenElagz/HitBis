@@ -1,9 +1,14 @@
+// React
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+// Styles
 import Colors from '../../styles/colors';
 import defaultStyles from '../../styles/defaultStyles';
+// Components
 import Button from '../../components/Button';
+// Libraries
 import {useNavigation} from '@react-navigation/native';
+
 export default function WelcomeScreen() {
   const nav = useNavigation();
 

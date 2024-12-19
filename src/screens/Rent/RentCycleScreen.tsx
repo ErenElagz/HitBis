@@ -1,14 +1,19 @@
+// React
+import {View, Text, StyleSheet, TouchableOpacity,Dimensions,Image,ScrollView} from 'react-native';
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView} from 'react-native';
+// Styles
 import Colors from '../../styles/colors';
-// Libraries
-import MapView, {Marker, PROVIDER_DEFAULT} from 'react-native-maps';
-import {CustomMapStyle} from '../../utils/mapStyle';
+import Fonts from '../../styles/fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {CustomMapStyle} from '../../utils/mapStyle';
+// Libraries
 import {useNavigation} from '@react-navigation/native';
-import Button from '../../components/Button';
+import MapView, {Marker, PROVIDER_DEFAULT} from 'react-native-maps';
 import StationsList from '../../data/stations';
+// Components
+import Button from '../../components/Button';
 
+// Constants
 const {width} = Dimensions.get('window');
 
 export default function RentCycleScreen() {

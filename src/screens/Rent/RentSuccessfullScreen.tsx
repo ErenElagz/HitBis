@@ -1,15 +1,19 @@
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+// React
+import {View, Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
 import React from 'react';
+// Styles
 import Colors from '../../styles/colors';
-import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import MapView, {PROVIDER_GOOGLE,Marker} from 'react-native-maps';
-import {CustomMapStyle} from '../../utils/mapStyle';
 import Fonts from '../../styles/fonts';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {CustomMapStyle} from '../../utils/mapStyle';
+// Libraries
+import MapView, {PROVIDER_GOOGLE,Marker} from 'react-native-maps';
+import {useNavigation} from '@react-navigation/native';
+// Components
 import SwipeButton from 'rn-swipe-button';
 
 export default function RentSuccessfullScreen({route}: any) {
+  // Variables
   const nav = useNavigation();
   const {codes} = route.params;
 

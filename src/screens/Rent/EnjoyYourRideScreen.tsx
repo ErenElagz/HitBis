@@ -1,10 +1,15 @@
-import {View, StyleSheet, Image, Dimensions, Text, TouchableOpacity} from 'react-native';
+// React
+import {View, Text, StyleSheet, TouchableOpacity,Dimensions,Image} from 'react-native';
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
+// Styles
 import Colors from '../../styles/colors';
-import {useNavigation} from '@react-navigation/native';
-import Button from '../../components/Button';
 import Fonts from '../../styles/fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// Libraries
+import {useNavigation} from '@react-navigation/native';
+// Components
+import Button from '../../components/Button';
 
 export default function EnjoyYourRideScreen() {
   const nav = useNavigation();

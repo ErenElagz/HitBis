@@ -1,20 +1,27 @@
-import {API_KEY} from '@env';
+// React
 import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import React, {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
 import Colors from '../../styles/colors';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Fonts from '../../styles/fonts';
+// Libraries
 import {GoogleGenerativeAI} from '@google/generative-ai';
 import Markdown from 'react-native-markdown-display';
-import Fonts from '../../styles/fonts';
-import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import {API_KEY} from '@env';
+// Components
 
+// Constants
 const date = new Date();
 const genAI = new GoogleGenerativeAI(API_KEY);
+
 const showAlert = () => {
   ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
 };
+
+
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   useEffect(() => {

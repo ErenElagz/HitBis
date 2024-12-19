@@ -1,15 +1,16 @@
+// React
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+// Styles
 import Colors from '../styles/colors';
 import Fonts from '../styles/fonts';
-// Libraries
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {CustomMapStyle} from '../utils/mapStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {TextInput} from 'react-native';
+import {CustomMapStyle} from '../utils/mapStyle';
+// Libraries
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
-import StationsList from '../data/stations';
-import {SafeAreaView} from 'react-native-safe-area-context';
+// Components
+import {TextInput} from 'react-native';
 import Button from '../components/Button';
 
 export default function HomeScreen() {
@@ -181,7 +182,7 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      <Button style={{position: 'absolute', bottom: 16, width: 180, alignSelf:"center", height: 60, borderRadius: 999}} title='Start the Ride ' type="secondary" icon="bike" />
+      <Button style={{position: 'absolute', bottom: 16, width: 180, alignSelf: 'center', height: 60, borderRadius: 999}} title="Start the Ride " type="secondary" icon="bike" />
     </View>
   );
 }

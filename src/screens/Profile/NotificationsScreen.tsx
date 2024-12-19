@@ -1,10 +1,14 @@
+// React
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import React from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
+// Styles
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
-import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {SafeAreaView} from 'react-native-safe-area-context';
+// Libraries
+import {useNavigation} from '@react-navigation/native';
+// Components
 
 const notifications = [
   {
@@ -89,7 +93,13 @@ export default function NotificationsScreen() {
           All Notifications
         </Text>
       </TouchableOpacity>
-      <FlatList showsVerticalScrollIndicator={false} data={notifications} renderItem={renderNotificationCard} keyExtractor={item => item.id.toString()} contentContainerStyle={{padding: 16}} />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={notifications}
+        renderItem={renderNotificationCard}
+        keyExtractor={item => item.id.toString()}
+        contentContainerStyle={{padding: 16}}
+      />
     </SafeAreaView>
   );
 }
