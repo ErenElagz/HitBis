@@ -1,3 +1,4 @@
+import {API_KEY} from '@env';
 import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Colors from '../../styles/colors';
@@ -10,7 +11,6 @@ import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const date = new Date();
-const API_KEY = 'AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk';
 const genAI = new GoogleGenerativeAI(API_KEY);
 const showAlert = () => {
   ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
@@ -108,7 +108,7 @@ export default function AssistantScreen() {
           opacity: 0.25,
         }}
       />
-      
+
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => {
@@ -129,7 +129,7 @@ export default function AssistantScreen() {
       <FlatList
         style={{padding: 16}}
         data={listData}
-        keyExtractor={(item) => item}
+        keyExtractor={item => item}
         renderItem={({item}) => (
           <View key={item}>
             <Message message={item} />

@@ -23,9 +23,5 @@ export default function RootNavigator() {
   //   checkLoginStatus();
   // }, []);
 
-  return (
-    <NavigationContainer>
-      {isLoggedIn ? <AppNavigator /> : <AuthNavigator />}
-    </NavigationContainer>
-  );
+  return <NavigationContainer>{isLoggedIn ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>;
 }
