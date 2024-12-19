@@ -4937,11 +4937,6 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
-lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
-  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
-
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -4980,6 +4975,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-react-native@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/lottie-react-native/-/lottie-react-native-7.1.0.tgz"
+  integrity sha512-73jtQySxRZ8KTTSKf6CtcpCt8tpOCw4NRiCST4HTYgXlycxIihIp89jRcK8rS/QiBKl5bzyixMzpVmd4mYVH5Q==
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -5783,7 +5783,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5890,7 +5890,7 @@ react-native-fit-image@^1.5.5:
   dependencies:
     prop-types "^15.5.10"
 
-"react-native-gesture-handler@>= 2.0.0":
+react-native-gesture-handler@^2.21.2, "react-native-gesture-handler@>= 2.0.0":
   version "2.21.2"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.21.2.tgz"
   integrity sha512-HcwB225K9aeZ8e/B8nFzEh+2T4EPWTeamO1l/y3PcQ9cyCDYO2zja/G31ITpYRIqkip7XzGs6wI/gnHOQn1LDQ==
@@ -5905,15 +5905,7 @@ react-native-linear-gradient@^2.8.3:
   resolved "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
-react-native-maps-directions@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.npmjs.org/react-native-maps-directions/-/react-native-maps-directions-1.9.0.tgz"
-  integrity sha512-68SrMOUg4WQ5PmpS9sNOTZaYtdyVYJnnjQOOhABrgiKnb5BXCZRU2gDoS11gYf23hjUBjq8JXzgfn37WcINLwA==
-  dependencies:
-    lodash.isequal "^4.5.0"
-    prop-types "^15.6.0"
-
-react-native-maps@^1.20.1, react-native-maps@>=1.0.0:
+react-native-maps@^1.20.1:
   version "1.20.1"
   resolved "https://registry.npmjs.org/react-native-maps/-/react-native-maps-1.20.1.tgz"
   integrity sha512-NZI3B5Z6kxAb8gzb2Wxzu/+P2SlFIg1waHGIpQmazDSCRkNoHNY4g96g+xS0QPSaG/9xRBbDNnd2f2/OW6t6LQ==
@@ -5929,6 +5921,11 @@ react-native-markdown-display@^7.0.2:
     markdown-it "^10.0.0"
     prop-types "^15.7.2"
     react-native-fit-image "^1.5.5"
+
+react-native-permissions@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-5.2.1.tgz"
+  integrity sha512-F8CaDVi+zYjl2pO4Fwh5n5SCi5s0TvvRzQnczb8nwkzHJTv6HqlO6Sj1ZmqrAeuCN06b5Ysu9BEWhK4qT4ekXg==
 
 react-native-safe-area-context@^4.14.0, "react-native-safe-area-context@>= 4.0.0":
   version "4.14.0"
@@ -5956,7 +5953,7 @@ react-native-vision-camera@^4.6.3:
   resolved "https://registry.npmjs.org/react-native-vision-camera/-/react-native-vision-camera-4.6.3.tgz"
   integrity sha512-fVHww4cNFrxvMYOlUZcjl3iYmR3vcUtvLZKW9NHlKZ3o4zsspwYjbw2vheZvHrHtJ30OrE3N2NFqT6CxgPvRCw==
 
-react-native@*, "react-native@>= 0.64.3", react-native@>=0.50.4, react-native@0.76.3:
+react-native@*, "react-native@>= 0.64.3", react-native@>=0.46, react-native@>=0.50.4, react-native@>=0.70.0, react-native@0.76.3:
   version "0.76.3"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.76.3.tgz"
   integrity sha512-0TUhgmlouRNf6yuDIIAdbQl0g1VsONgCMsLs7Et64hjj5VLMCA7np+4dMrZvGZ3wRNqzgeyT9oWJsUm49AcwSQ==
@@ -6022,7 +6019,7 @@ react-test-renderer@18.3.1:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.2"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@^18.3.1, "react@>= 17.0.1", "react@>= 18.2.0", react@>=16.2.0, react@>=16.8, react@>=17.0.0, react@18.3.1:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@^18.3.1, "react@>= 17.0.1", "react@>= 18.2.0", react@>=16.2.0, react@>=16.8, react@>=17.0.0, react@>=18.1.0, react@18.3.1:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
@@ -6223,6 +6220,11 @@ rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
+
+rn-swipe-button@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/rn-swipe-button/-/rn-swipe-button-2.0.0.tgz"
+  integrity sha512-RhWsDZPDdhTesU0C622MpvEMJcy3YyUJVVue3g/rBUAumhDQmwgnhQ/H70zOeRGcndVaZJAufgvigNnAeJM3JA==
 
 run-parallel@^1.1.9:
   version "1.2.0"
