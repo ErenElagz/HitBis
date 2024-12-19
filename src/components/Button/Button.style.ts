@@ -11,11 +11,13 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     flexDirection: 'row',
-    gap: 12,
+    gap: 8,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 16,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.borderColor,
   },
 });
 

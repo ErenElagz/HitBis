@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ButtonProps {
   title?: string;
-  onPress: () => void;
+  onPress?: () => void;
   type?: 'primary' | 'secondary' | 'tertiary';
   style?: object;
   icon?: string;

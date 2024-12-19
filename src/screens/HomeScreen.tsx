@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import Colors from '../styles/colors';
 import Fonts from '../styles/fonts';
 // Libraries
@@ -10,12 +10,20 @@ import {TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import StationsList from '../data/stations';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Button from '../components/Button';
 
 export default function HomeScreen() {
   const nav = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={styles.container}>
+      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, paddingTop: 32, backgroundColor: Colors.backgroundColorSecondary}}>
+        <Image style={{width: 60, height: 60, borderRadius: 32}} source={require('../assets/image/avatar.jpg')} />
+        <View style={{flex: 1, marginLeft: 16}}>
+          <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, Eren!</Text>
+          <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular}}>Where do you want to go today?</Text>
+        </View>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16, backgrounColor: Colors.backgroundColor}}>
         <View
           style={{
             borderRadius: 16,
@@ -64,6 +72,17 @@ export default function HomeScreen() {
             }}>
             <Icon name="near-me" size={20} color={Colors.red} />
           </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 8,
+            marginTop: 8,
+          }}>
+          <Button style={{flex: 1}} type="tertiary" icon="plus" title="Create a Event" onPress={() => nav.navigate('RentCycleScreen' as never)} />
+          <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RentCycleScreen' as never)} />
         </View>
         <View
           style={{
@@ -126,17 +145,47 @@ export default function HomeScreen() {
           </View>
           <View style={{marginTop: 24, width: '100%', gap: 8}}>
             <Text style={styles.text}>On the way</Text>
-            <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
+            <View>
+              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../assets/image/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
+                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
+                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 400m</Text>
+                </View>
+                <View>
+                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
+                </View>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../assets/image/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
+                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
+                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}>  1.2km</Text>
+                </View>
+                <View>
+                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
+                </View>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16, marginBottom: 16}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../assets/image/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
+                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
+                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}>  1.4km</Text>
+                </View>
+                <View>
+                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
     flex: 1,
     paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
@@ -148,6 +197,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 400,
+    height: 240,
   },
 });
