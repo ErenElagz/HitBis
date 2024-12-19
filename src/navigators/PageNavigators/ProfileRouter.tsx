@@ -6,20 +6,21 @@ import NotificationsScreen from '../../screens/Profile/NotificationsScreen';
 import SettingsScreen from '../../screens/Profile/SettingsScreen';
 import ProfileScreen from '../../screens/Profile/ProfileScreen';
 import ActivityHistoryScreen from '../../screens/Profile/ActivityHistory';
+
 const Stack = createNativeStackNavigator();
 
 export default function ProfileRouter() {
   return (
     <Stack.Navigator
-      initialRouteName="Profile"
+      initialRouteName="ProfileScreen"
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="MyProfile" component={MyProfileScreen} />
-      <Stack.Screen name="Notifications" component={NotificationsScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name="ActivityHistory" component={ActivityHistoryScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="MyProfileScreen" component={MyProfileScreen} />
+      <Stack.Screen name="NotificationsScreen" component={NotificationsScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="ActivityHistoryScreen" component={ActivityHistoryScreen} />
     </Stack.Navigator>
   );
 }

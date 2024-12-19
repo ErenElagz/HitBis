@@ -1,7 +1,6 @@
 // React
 import {View, Text, StyleSheet, TouchableOpacity,Dimensions,Image} from 'react-native';
 import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 // Styles
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
@@ -12,6 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 
 export default function EnjoyYourRideScreen() {
+  // Variables
   const nav = useNavigation();
   const {width} = Dimensions.get('window');
 

@@ -57,7 +57,7 @@ export default function ProfileScreen() {
             title="Edit Profile"
             style={{flex: 1}}
             onPress={() => {
-              nav.navigate('MyProfile' as never);
+              nav.navigate('MyProfileScreen' as never);
             }}
           />
           <Button
@@ -66,7 +66,7 @@ export default function ProfileScreen() {
             title="Settings"
             style={{flex: 1}}
             onPress={() => {
-              nav.navigate('Settings' as never);
+              nav.navigate('SettingsScreen' as never);
             }}
           />
           <Button
@@ -74,14 +74,14 @@ export default function ProfileScreen() {
             type="secondary"
             style={{flex: 0.4}}
             onPress={() => {
-              nav.navigate('Notifications' as never);
+              nav.navigate('NotificationsScreen' as never);
             }}
           />
         </View>
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <Text style={styles.text}>Last Activities</Text>
-            <TouchableOpacity onPress={() => nav.navigate('ActivityHistory' as never)}>
+            <TouchableOpacity onPress={() => nav.navigate('ActivityHistoryScreen' as never)}>
               <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular, textDecorationLine: 'underline'}}>See all</Text>
             </TouchableOpacity>
           </View>
