@@ -1,10 +1,11 @@
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Colors from '../../styles/colors';
 import Fonts from '../../styles/fonts';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function ProfileScreen() {
   const nav = useNavigation();
@@ -74,7 +75,12 @@ export default function ProfileScreen() {
           />
         </View>
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <Text style={styles.text}>Last Activities</Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+            <Text style={styles.text}>Last Activities</Text>
+            <TouchableOpacity onPress={() => nav.navigate('ActivityHistory' as never)}>
+              <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular, textDecorationLine: 'underline'}}>See all</Text>
+            </TouchableOpacity>
+          </View>
           <View style={{marginTop: 4, height: 200, width: '100%', backgroundColor: Colors.backgroundColorSecondary, borderRadius: 16}} />
         </View>
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
@@ -94,7 +100,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
-    paddingBottom: 20,
     backgroundColor: Colors.backgroundColor,
   },
   text: {

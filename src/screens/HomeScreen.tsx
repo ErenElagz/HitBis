@@ -23,7 +23,7 @@ export default function HomeScreen() {
           <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular}}>Where do you want to go today?</Text>
         </View>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16, backgrounColor: Colors.backgroundColor}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16}}>
         <View
           style={{
             borderRadius: 16,
