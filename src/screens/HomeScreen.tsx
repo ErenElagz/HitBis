@@ -17,7 +17,16 @@ export default function HomeScreen() {
   const nav = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, paddingTop: 32, backgroundColor: Colors.backgroundColorSecondary}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderRadius: 24,
+          padding: 16,
+          paddingTop: 32,
+          backgroundColor: Colors.backgroundColorSecondary,
+        }}>
         <Image style={{width: 60, height: 60, borderRadius: 32}} source={require('../assets/image/avatar.jpg')} />
         <View style={{flex: 1, marginLeft: 16}}>
           <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, Eren!</Text>
@@ -182,7 +191,7 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      <Button style={{position: 'absolute', bottom: 16, width: 180, alignSelf: 'center', height: 60, borderRadius: 999}} title="Start the Ride " type="secondary" icon="bike" />
+      <Button style={{position: 'absolute', bottom: 12, width: 180, alignSelf: 'center', height: 60, borderRadius: 999}} title="Start the Ride " type="secondary" icon="bike" />
     </View>
   );
 }
