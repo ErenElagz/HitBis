@@ -1,6 +1,10 @@
 # Cycle Rental App
 
-In this case we try to coding a mobile app for the bikers and atlets. you can find a events and community posts. Or other case you can ask to Personal AI asisstant for creating best routes.
-You can rent a cycle in the station that you lived.
+This mobile app is designed for bikers and athletes. You can find events and community posts, or ask the Personal AI Assistant to create the best routes for you. Additionally, you can rent a cycle at the station near you.
 
-Thasts all for a now!
+## Features
+- Discover events and community posts
+- Get personalized route suggestions from the AI Assistant
+- Rent cycles from nearby stations
+
+That's all for now!
