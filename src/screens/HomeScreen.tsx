@@ -7,11 +7,14 @@ import Fonts from '../styles/fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../utils/mapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import {TextInput} from 'react-native';
 import Button from '../components/Button';
+
+// Constants
+import StationsList from '../data/stations';
 
 export default function HomeScreen() {
   const nav = useNavigation();
@@ -48,7 +51,8 @@ export default function HomeScreen() {
               longitude: 28.9784,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
-            }}></MapView>
+            }}>
+          </MapView>
           <TouchableOpacity
             onPress={() => {}}
             style={{

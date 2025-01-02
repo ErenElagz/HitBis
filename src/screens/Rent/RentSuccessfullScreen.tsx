@@ -81,7 +81,6 @@ export default function RentSuccessfullScreen({route}: any) {
         <Text style={styles.text2}>Bike Code: {codes}</Text>
       </View>
 
-
       <View style={{position: 'absolute', bottom: 16, alignSelf: 'center', width: '100%'}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', borderRadius: 20, padding: 16, backgroundColor: Colors.backgroundColor, borderColor : Colors.borderColor, borderWidth: 1}}>
           <View>
