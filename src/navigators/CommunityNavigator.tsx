@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 export default function CommunityNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Community" component={CommunityScreen} />
+      <Stack.Screen name="CommunityRouter" component={CommunityScreen} />
     </Stack.Navigator>
   );
 }

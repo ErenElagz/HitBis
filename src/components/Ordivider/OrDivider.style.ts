@@ -12,7 +12,7 @@ export default StyleSheet.create({
   line: {
     flex: 1,
     height: 2,
-    backgroundColor: Colors.backgroundColorsecondary,
+    backgroundColor: Colors.backgroundColorsSecondary,
   },
   text: {
     marginHorizontal: 8,
