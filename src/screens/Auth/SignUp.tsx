@@ -7,6 +7,7 @@ import defaultStyles from '../../styles/defaultStyles';
 import Fonts from '../../styles/fonts';
 import Colors from '../../styles/colors';
 import Button from '../../components/Button';
+import {Alert} from 'react-native';
 // Components
 import InputText from '../../components/InputText';
 import LinkText from '../../components/Linktext';
@@ -18,6 +19,13 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleRegister = () => {
+    if (email === '' || password === '') {
+      Alert.alert('error', 'Email and password cannot be empty');
+      return;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{width: '100%', gap: 8, marginTop: 48, marginBottom: 24}}>
@@ -26,8 +34,8 @@ export default function SignUp() {
       </View>
 
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
-        <InputText placeholder="Email" />
-        <InputText placeholder="Password" />
+        <InputText placeholder="Email" value={email} onChangeText={setEmail} />
+        <InputText placeholder="Password" value={password} onChangeText={setPassword} />
       </View>
 
       <Button

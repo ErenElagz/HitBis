@@ -21,7 +21,6 @@ const showAlert = () => {
   ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
 };
 
-
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   useEffect(() => {

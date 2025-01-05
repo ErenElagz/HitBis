@@ -12,15 +12,20 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import {TextInput} from 'react-native';
 import Button from '../components/Button';
+//Redux
+import {useSelector} from 'react-redux';
+import {selectCurrentUser} from '../redux/selectors/authSelectors';
 
 export default function HomeScreen() {
   const nav = useNavigation();
+  const user = useSelector(selectCurrentUser);
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 16, paddingTop: 32, backgroundColor: Colors.backgroundColorSecondary}}>
         <Image style={{width: 60, height: 60, borderRadius: 32}} source={require('../assets/image/avatar.jpg')} />
         <View style={{flex: 1, marginLeft: 16}}>
-          <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, Eren!</Text>
+          <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, {user?.email}</Text>
           <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular}}>Where do you want to go today?</Text>
         </View>
       </View>

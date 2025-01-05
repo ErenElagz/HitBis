@@ -1,27 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 // Navigators
 import AuthNavigator from './AuthNavigator';
 import AppNavigator from './AppNavigator';
+import {useSelector} from 'react-redux';
+import {selectIsAuthenticated} from '../redux/selectors/authSelectors';
 
 export default function RootNavigator() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Login state
-
-  <NavigationContainer>
-    <AppNavigator />
-  </NavigationContainer>;
-
-  // Simulate login check (replace with your auth logic)
-
-  // useEffect(() => {
-  //   const checkLoginStatus = async () => {
-  //     // Example: Replace with API or AsyncStorage check
-  //     const userLoggedIn = false; // Example login status
-  //     setIsLoggedIn(userLoggedIn);
-  //   };
-
-  //   checkLoginStatus();
-  // }, []);
+  const isLoggedIn = useSelector(selectIsAuthenticated);
 
   return <NavigationContainer>{isLoggedIn ? <AppNavigator /> : <AuthNavigator />}</NavigationContainer>;
 }
