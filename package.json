@@ -11,6 +11,7 @@
     "clean": "cd android && gradlew clean && cd .."
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "react": "18.3.1",
