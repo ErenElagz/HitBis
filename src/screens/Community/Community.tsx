@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text} from 'react-native';
 
 export default function CommunityScreen() {
-    return (
-        <View>
-            <Text>Community Screen</Text>
-        </View>
-    );
+  return (
+    <View>
+      <Text>Community Screen</Text>
+    </View>
+  );
 }
