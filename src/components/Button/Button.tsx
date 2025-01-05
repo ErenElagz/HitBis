@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import styles from './Button.style';
-import Colors from '../../styles/colors';
+import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ButtonProps {

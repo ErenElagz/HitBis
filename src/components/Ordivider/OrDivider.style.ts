@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../styles/colors';
-import Fonts from '../../styles/fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 export default StyleSheet.create({
   container: {
@@ -12,11 +12,11 @@ export default StyleSheet.create({
   line: {
     flex: 1,
     height: 2,
-    backgroundColor: Colors.backgroundColorSecondary,
+    backgroundColor: Colors.backgroundColorsecondary,
   },
   text: {
     marginHorizontal: 8,
-    fontSize: 12,
+    Fontsize: 12,
     color: Colors.light,
     opacity: 0.25,
   },

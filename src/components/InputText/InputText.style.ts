@@ -1,15 +1,15 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../styles/colors';
-import Fonts from '../../styles/fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 export default StyleSheet.create({
   inputText: {
     width: '100%',
     paddingVertical: 20,
     paddingHorizontal: 16,
-    backgroundColor: Colors.backgroundColorSecondary,
+    backgroundColor: Colors.backgroundColorsecondary,
     borderRadius: 16,
     color: Colors.light,
-    fontSize: 14,
+    Fontsize: 14,
   },
 });

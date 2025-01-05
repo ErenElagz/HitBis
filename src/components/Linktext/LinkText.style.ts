@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../styles/colors';
-import Fonts from '../../styles/fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 export default StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   text: {
     color: Colors.gray,
-    fontSize: 14,
+    Fontsize: 14,
     textDecorationLine: 'underline',
   },
 });
