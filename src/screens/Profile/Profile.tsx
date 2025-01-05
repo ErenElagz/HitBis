@@ -6,6 +6,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
@@ -58,7 +59,7 @@ export default function ProfileScreen() {
             title="Edit Profile"
             style={{flex: 1}}
             onPress={() => {
-              nav.navigate('MyProfileScreen' as never);
+              nav.navigate('EditProfile' as never);
             }}
           />
           <Button
@@ -67,7 +68,7 @@ export default function ProfileScreen() {
             title="Settings"
             style={{flex: 1}}
             onPress={() => {
-              nav.navigate('SettingsScreen' as never);
+              nav.navigate('Settings' as never);
             }}
           />
           <Button
@@ -75,14 +76,14 @@ export default function ProfileScreen() {
             type="secondary"
             style={{flex: 0.4}}
             onPress={() => {
-              nav.navigate('NotificationsScreen' as never);
+              nav.navigate('Notifications' as never);
             }}
           />
         </View>
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <Text style={styles.text}>Last Activities</Text>
-            <TouchableOpacity onPress={() => nav.navigate('ActivityHistoryScreen' as never)}>
+            <TouchableOpacity onPress={() => nav.navigate('ActivityHistory' as never)}>
               <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular, textDecorationLine: 'underline'}}>See all</Text>
             </TouchableOpacity>
           </View>
