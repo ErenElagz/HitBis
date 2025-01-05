@@ -15,7 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 // Constants
 const date = new Date();
-const genAI = new GoogleGenerativeAI('');
+const genAI = new GoogleGenerativeAI('AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk');
 
 const showAlert = () => {
   ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
