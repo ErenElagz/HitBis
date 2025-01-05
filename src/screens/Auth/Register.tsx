@@ -1,20 +1,60 @@
-import React from 'react';
+// React
 import {View, Text, StyleSheet} from 'react-native';
-import Colors from '../../styles/Colors';
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+// Styles
+import defaultStyles from '../../styles/DefaultStyles';
 import Fonts from '../../styles/Fonts';
-export default function SignUpScreen() {
+import Colors from '../../styles/Colors';
+import Button from '../../components/Button';
+// Components
+import InputText from '../../components/InputText';
+import LinkText from '../../components/Linktext';
+import OrDivider from '../../components/OrDivider';
+
+export default function RegisterScreen() {
+  const nav = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
-      <Text>SignUp Screen</Text>
+      <View style={{width: '100%', gap: 8, marginTop: 48, marginBottom: 24}}>
+        <Text style={defaultStyles.HeaderText}>Create an Account</Text>
+        <Text style={defaultStyles.HeaderBottomText}>Create your account for save your progress and rent a bike!</Text>
+      </View>
+
+      <View style={{width: '100%', gap: 8, marginBottom: 16}}>
+        <InputText placeholder="Email" />
+        <InputText placeholder="Password" />
+      </View>
+
+      <Button
+        type="secondary"
+        title="Sign Up"
+        onPress={() => {
+          nav.navigate('SignIn' as never);
+        }}
+      />
+
+      <OrDivider />
+
+      <LinkText
+        align="center"
+        title="Already Have an Account? Sign In"
+        onPress={() => {
+          nav.navigate('Login' as never);
+        }}
+      />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundColor,
-
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: Colors.backgroundColor,
+    padding: 16,
   },
 });

@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../styles/colors';
-import Fonts from '../../styles/fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 
 const styles = StyleSheet.create({
   text: {
     color: '#fff',
-    fontSize: 14,
+    Fontsize: 14,
     fontWeight: '700',
   },
   button: {
