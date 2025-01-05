@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
