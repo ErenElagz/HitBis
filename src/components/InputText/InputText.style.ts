@@ -7,7 +7,7 @@ export default StyleSheet.create({
     width: '100%',
     paddingVertical: 20,
     paddingHorizontal: 16,
-    backgroundColor: Colors.backgroundColorsecondary,
+    backgroundColor: Colors.backgroundColorsSecondary,
     borderRadius: 16,
     color: Colors.light,
     Fontsize: 14,

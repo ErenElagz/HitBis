@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import RentScreen from '../screens/Rent/Rent';
 import CameraScreen from '../screens/Rent/Camera';
+import SuccessfullScreen from '../screens/Rent/Successful';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,7 @@ export default function RentNavigator() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Rent" component={RentScreen} />
       <Stack.Screen name="Camera" component={CameraScreen} />
+      <Stack.Screen name="Successful" component={SuccessfullScreen} />
     </Stack.Navigator>
   );
 }

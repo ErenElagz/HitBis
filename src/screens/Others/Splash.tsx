@@ -1,21 +1,28 @@
-import React from 'react';
+// React
 import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+// Styles
 import Colors from '../../styles/Colors';
-import Fonts from '../../styles/Fonts';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import defaultStyles from '../../styles/DefaultStyles';
+// Libraries
+// Components
+
+
 export default function SplashScreen() {
   return (
     <View style={styles.container}>
-      <Text>Splash Screen</Text>
+      <Icon name="bike" size={48} color={Colors.light} />
+      <Text style={defaultStyles.HeaderText}>HitBis</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundColor,
-
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: Colors.secondary,
   },
 });
