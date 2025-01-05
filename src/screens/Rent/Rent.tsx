@@ -5,7 +5,12 @@ import Fonts from '../../styles/Fonts';
 export default function RentScreen() {
   return (
     <View style={styles.container}>
-      <Text>Rent Screen</Text>
+      <Text
+        style={{
+          color: Colors.primary,
+        }}>
+        Rent Screen
+      </Text>
     </View>
   );
 }
