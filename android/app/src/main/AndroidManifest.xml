@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
       android:name=".MainApplication"
@@ -23,9 +22,5 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
-
-    <meta-data
-      android:name="com.google.android.geo.API_KEY"
-      android:value="AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8"/>
     </application>
 </manifest>
