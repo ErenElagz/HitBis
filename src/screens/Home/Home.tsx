@@ -1,6 +1,13 @@
 // React
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -12,9 +19,6 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import {TextInput} from 'react-native';
 import Button from '../../components/Button';
-
-// Constants
-import StationsList from '../../data/stations';
 
 export default function HomeScreen() {
   const nav = useNavigation();
@@ -30,13 +34,28 @@ export default function HomeScreen() {
           paddingTop: 32,
           backgroundColor: Colors.backgroundColorsSecondary,
         }}>
-        <Image style={{width: 60, height: 60, borderRadius: 32}} source={require('../../assets/images/avatar.jpg')} />
+        <Image
+          style={{width: 60, height: 60, borderRadius: 32}}
+          source={require('../../assets/images/avatar.jpg')}
+        />
         <View style={{flex: 1, marginLeft: 16}}>
-          <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, Eren!</Text>
-          <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interRegular}}>Where do you want to go today?</Text>
+          <Text
+            style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>
+            Welcome, Eren!
+          </Text>
+          <Text
+            style={{
+              color: Colors.gray,
+              fontSize: 16,
+              fontFamily: Fonts.interRegular,
+            }}>
+            Where do you want to go today?
+          </Text>
         </View>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16}}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{flex: 1, padding: 16}}>
         <View
           style={{
             borderRadius: 16,
@@ -51,10 +70,11 @@ export default function HomeScreen() {
               longitude: 28.9784,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
-            }}>
-          </MapView>
+            }}></MapView>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {
+              nav.navigate('NearMe' as never);
+            }}
             style={{
               marginTop: 16,
               alignItems: 'center',
@@ -95,8 +115,20 @@ export default function HomeScreen() {
             gap: 8,
             marginTop: 8,
           }}>
-          <Button style={{flex: 1}} type="tertiary" icon="plus" title="Create a Event" onPress={() => nav.navigate('RentCycleScreen' as never)} />
-          <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RentCycleScreen' as never)} />
+          <Button
+            style={{flex: 1}}
+            type="tertiary"
+            icon="plus"
+            title="Create a Event"
+            onPress={() => nav.navigate('RentCycleScreen' as never)}
+          />
+          <Button
+            style={{flex: 1}}
+            type="tertiary"
+            icon="bike"
+            title="Ride Together"
+            onPress={() => nav.navigate('RentCycleScreen' as never)}
+          />
         </View>
         <View
           style={{
@@ -150,41 +182,147 @@ export default function HomeScreen() {
               </Text>
             </View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View style={{width: '100%', gap: 8, flexDirection: 'row', overflow: 'visible'}}>
-                <View style={{height: 200, width: 320, backgroundColor: Colors.tertiary, borderRadius: 16}} />
-                <View style={{height: 200, width: 320, backgroundColor: Colors.secondary, borderRadius: 16}} />
-                <View style={{height: 200, width: 320, backgroundColor: Colors.primary, borderRadius: 16}} />
+              <View
+                style={{
+                  width: '100%',
+                  gap: 8,
+                  flexDirection: 'row',
+                  overflow: 'visible',
+                }}>
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.tertiary,
+                    borderRadius: 16,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.secondary,
+                    borderRadius: 16,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.primary,
+                    borderRadius: 16,
+                  }}
+                />
               </View>
             </ScrollView>
           </View>
           <View style={{marginTop: 24, width: '100%', gap: 8}}>
             <Text style={styles.text}>On the way</Text>
             <View>
-              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16}}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
-                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 400m</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: 8,
+                  gap: 16,
+                }}>
+                <View
+                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image
+                    source={require('../../assets/images/avatar.jpg')}
+                    style={{width: 48, height: 48, borderRadius: 32}}
+                  />
+                  <Text
+                    style={{
+                      color: Colors.light,
+                      fontSize: 20,
+                      fontFamily: Fonts.main,
+                    }}>
+                    Eren
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.gray,
+                      fontSize: 16,
+                      fontFamily: Fonts.interSemiBold,
+                    }}>
+                    {' '}
+                    400m
+                  </Text>
                 </View>
                 <View>
                   <Button style={{width: 72}} type="tertiary" icon="vibrate" />
                 </View>
               </View>
-              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16}}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
-                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 1.2km</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: 8,
+                  gap: 16,
+                }}>
+                <View
+                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image
+                    source={require('../../assets/images/avatar.jpg')}
+                    style={{width: 48, height: 48, borderRadius: 32}}
+                  />
+                  <Text
+                    style={{
+                      color: Colors.light,
+                      fontSize: 20,
+                      fontFamily: Fonts.main,
+                    }}>
+                    Eren
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.gray,
+                      fontSize: 16,
+                      fontFamily: Fonts.interSemiBold,
+                    }}>
+                    {' '}
+                    1.2km
+                  </Text>
                 </View>
                 <View>
                   <Button style={{width: 72}} type="tertiary" icon="vibrate" />
                 </View>
               </View>
-              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 8, gap: 16, marginBottom: 16}}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Eren</Text>
-                  <Text style={{color: Colors.gray, fontSize: 16, fontFamily: Fonts.interSemiBold}}> 1.4km</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: 8,
+                  gap: 16,
+                  marginBottom: 16,
+                }}>
+                <View
+                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image
+                    source={require('../../assets/images/avatar.jpg')}
+                    style={{width: 48, height: 48, borderRadius: 32}}
+                  />
+                  <Text
+                    style={{
+                      color: Colors.light,
+                      fontSize: 20,
+                      fontFamily: Fonts.main,
+                    }}>
+                    Eren
+                  </Text>
+                  <Text
+                    style={{
+                      color: Colors.gray,
+                      fontSize: 16,
+                      fontFamily: Fonts.interSemiBold,
+                    }}>
+                    {' '}
+                    1.4km
+                  </Text>
                 </View>
                 <View>
                   <Button style={{width: 72}} type="tertiary" icon="vibrate" />
@@ -195,7 +333,19 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      <Button style={{position: 'absolute', bottom: 12, width: 180, alignSelf: 'center', height: 60, borderRadius: 999}} title="Start the Ride " type="secondary" icon="bike" />
+      <Button
+        style={{
+          position: 'absolute',
+          bottom: 12,
+          width: 180,
+          alignSelf: 'center',
+          height: 60,
+          borderRadius: 999,
+        }}
+        title="Start the Ride "
+        type="secondary"
+        icon="bike"
+      />
     </View>
   );
 }
