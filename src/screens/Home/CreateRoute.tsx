@@ -85,10 +85,13 @@ export default function CreateRouteScreen() {
             latitudeDelta: 1,
             longitudeDelta: 1,
           }}>
-          {route.map((place, index) => (
+          {PlacesList.locations.map((place, index) => (
             <Marker
               key={index}
-              coordinate={place.coordinates}
+              coordinate={{
+                latitude: place.latitude,
+                longitude: place.longitude,
+              }}
               title={place.name}
               description={place.description}
             />

@@ -36,13 +36,12 @@ export default function NearMeScreen() {
             longitude: 28.9784,
             latitudeDelta: 1,
             longitudeDelta: 1,
-          }}>
-        </MapView>
+          }}></MapView>
         <BottomSheet
-        backgroundStyle={{
-            backgroundColor: Colors.backgroundColor, 
-        }}
-        backdropComponent={null}
+          backgroundStyle={{
+            backgroundColor: Colors.backgroundColor,
+          }}
+          backdropComponent={null}
           ref={bottomSheetRef}
           onChange={handleSheetChanges}
           snapPoints={['25%', '50%', '90%']} // Yükseklik seviyeleri

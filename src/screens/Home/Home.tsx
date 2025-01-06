@@ -127,7 +127,7 @@ export default function HomeScreen() {
             type="tertiary"
             icon="bike"
             title="Ride Together"
-            onPress={() => nav.navigate('RentCycleScreen' as never)}
+            onPress={() => nav.navigate('RideTogether' as never)}
           />
         </View>
         <View
@@ -215,7 +215,7 @@ export default function HomeScreen() {
                 />
               </View>
             </ScrollView>
-          </View>{' '}
+          </View>
           <View style={{marginTop: 32, width: '100%', gap: 8}}>
             <View
               style={{
@@ -394,6 +394,7 @@ export default function HomeScreen() {
         title="Start the Ride "
         type="secondary"
         icon="bike"
+        onPress={() => nav.navigate('Ride' as never)}
       />
     </View>
   );
