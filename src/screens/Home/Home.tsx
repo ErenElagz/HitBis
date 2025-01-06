@@ -119,8 +119,8 @@ export default function HomeScreen() {
             style={{flex: 1}}
             type="tertiary"
             icon="plus"
-            title="Create a Event"
-            onPress={() => nav.navigate('RentCycleScreen' as never)}
+            title="Create a Route"
+            onPress={() => nav.navigate('CreateRoute' as never)}
           />
           <Button
             style={{flex: 1}}
@@ -164,7 +164,59 @@ export default function HomeScreen() {
           style={{
             flexDirection: 'column',
           }}>
-          <View style={{marginTop: 8, width: '100%', gap: 8}}>
+          <View style={{marginTop: 16, width: '100%', gap: 8}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 8,
+              }}>
+              <Icon name="map" size={28} color={Colors.light} />
+              <Text
+                style={{
+                  color: Colors.light,
+                  fontSize: 24,
+                  fontFamily: Fonts.main,
+                }}>
+                Popular Routes
+              </Text>
+            </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View
+                style={{
+                  width: '100%',
+                  gap: 8,
+                  flexDirection: 'row',
+                  overflow: 'visible',
+                }}>
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.backgroundColorsSecondary,
+                    borderRadius: 16,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.backgroundColorsSecondary,
+                    borderRadius: 16,
+                  }}
+                />
+                <View
+                  style={{
+                    height: 200,
+                    width: 320,
+                    backgroundColor: Colors.backgroundColorsSecondary,
+                    borderRadius: 16,
+                  }}
+                />
+              </View>
+            </ScrollView>
+          </View>{' '}
+          <View style={{marginTop: 32, width: '100%', gap: 8}}>
             <View
               style={{
                 flexDirection: 'row',
@@ -193,7 +245,7 @@ export default function HomeScreen() {
                   style={{
                     height: 200,
                     width: 320,
-                    backgroundColor: Colors.tertiary,
+                    backgroundColor: Colors.backgroundColorsSecondary,
                     borderRadius: 16,
                   }}
                 />
@@ -201,7 +253,7 @@ export default function HomeScreen() {
                   style={{
                     height: 200,
                     width: 320,
-                    backgroundColor: Colors.secondary,
+                    backgroundColor: Colors.backgroundColorsSecondary,
                     borderRadius: 16,
                   }}
                 />
@@ -209,7 +261,7 @@ export default function HomeScreen() {
                   style={{
                     height: 200,
                     width: 320,
-                    backgroundColor: Colors.primary,
+                    backgroundColor: Colors.backgroundColorsSecondary,
                     borderRadius: 16,
                   }}
                 />
@@ -247,7 +299,6 @@ export default function HomeScreen() {
                       fontSize: 16,
                       fontFamily: Fonts.interSemiBold,
                     }}>
-                    {' '}
                     400m
                   </Text>
                 </View>
