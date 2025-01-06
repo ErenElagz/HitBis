@@ -36,8 +36,8 @@ export default function RideScreen() {
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingTop: 32,
-            padding: 20,
-            borderRadius: 32,
+            padding: 16,
+            borderRadius: 24,
             zIndex: 1,
             backgroundColor: Colors.backgroundColorsSecondary,
           }}>
@@ -53,7 +53,7 @@ export default function RideScreen() {
                   fontSize: 20,
                   fontFamily: Fonts.main,
                 }}>
-                Start a ride together
+                Be Careful
               </Text>
               <Text
                 style={{
@@ -77,6 +77,7 @@ export default function RideScreen() {
             longitudeDelta: 1,
           }}></MapView>
         <BottomSheet
+          handleComponent={null}
           backgroundStyle={{
             backgroundColor: Colors.backgroundColor,
           }}>
@@ -86,7 +87,6 @@ export default function RideScreen() {
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 alignItems: 'center',
-                marginTop: -16,
                 padding: 12,
                 gap: 8,
               }}>
@@ -179,9 +179,11 @@ export default function RideScreen() {
               style={{
                 padding: 12,
                 alignItems: 'center',
-                justifyContent: 'center',
                 borderRadius: 16,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
               }}>
+              <Icon name="pause" size={36} color={Colors.light} />
               <Text
                 style={{
                   textAlign: 'center',
@@ -191,6 +193,7 @@ export default function RideScreen() {
                 }}>
                 00:00:00
               </Text>
+              <Icon name="play" size={36} color={Colors.light} />
             </View>
           </BottomSheetView>
         </BottomSheet>
