@@ -334,7 +334,6 @@ export default function HomeScreen() {
                       fontSize: 16,
                       fontFamily: Fonts.interSemiBold,
                     }}>
-                    {' '}
                     1.2km
                   </Text>
                 </View>
@@ -371,7 +370,6 @@ export default function HomeScreen() {
                       fontSize: 16,
                       fontFamily: Fonts.interSemiBold,
                     }}>
-                    {' '}
                     1.4km
                   </Text>
                 </View>

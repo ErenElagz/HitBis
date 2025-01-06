@@ -17,12 +17,19 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
-import {TextInput} from 'react-native';
 import Button from '../../components/Button';
 import PlacesList from '../../data/places';
 
 export default function CreateRouteScreen() {
   const nav = useNavigation();
+  const [route, setRoute] = React.useState('');
+  const CreateRoute = (index: number) => {
+    let newRoute = [...route];
+    newRoute.push(PlacesList.locations[index]);
+    setRoute(newRoute);
+    console.log(newRoute);
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -30,52 +37,85 @@ export default function CreateRouteScreen() {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderRadius: 24,
-          padding: 16,
           paddingTop: 32,
+          padding: 16,
+          borderRadius: 16,
+          zIndex: 1,
           backgroundColor: Colors.backgroundColorsSecondary,
         }}>
-        <Image
-          style={{width: 60, height: 60, borderRadius: 32}}
-          source={require('../../assets/images/avatar.jpg')}
-        />
-        <View style={{flex: 1, marginLeft: 16}}>
-          <Text
-            style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>
-            Hmm, Let's Go!!
-          </Text>
-          <Text
-            style={{
-              color: Colors.gray,
-              fontSize: 16,
-              fontFamily: Fonts.interRegular,
-            }}>
-            Choose place to create a route
-          </Text>
+        <View style={{flexDirection: 'row', flex: 1}}>
+          <Image
+            style={{width: 48, height: 48, borderRadius: 32}}
+            source={require('../../assets/images/avatar.jpg')}
+          />
+          <View style={{flex: 1, marginLeft: 16}}>
+            <Text
+              style={{
+                color: Colors.light,
+                fontSize: 20,
+                fontFamily: Fonts.main,
+              }}>
+              Hmm, Let's Go!!
+            </Text>
+            <Text
+              style={{
+                color: Colors.gray,
+                fontSize: 14,
+                fontFamily: Fonts.interRegular,
+              }}>
+              Choose place to create a route
+            </Text>
+          </View>
         </View>
+        <Button
+          type="secondary"
+          title="Go"
+          onPress={() => nav.goBack()}
+          style={{flex: 0.3}}
+        />
       </View>
+      <View>
+        <MapView
+          customMapStyle={CustomMapStyle}
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}
+          initialRegion={{
+            latitude: 41.0082,
+            longitude: 28.9784,
+            latitudeDelta: 1,
+            longitudeDelta: 1,
+          }}>
+          {route.map((place, index) => (
+            <Marker
+              key={index}
+              coordinate={place.coordinates}
+              title={place.name}
+              description={place.description}
+            />
+          ))}
+        </MapView>
+      </View>
+
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{flex: 1, padding: 16}}>
+        style={{flex: 1, padding: 8}}>
         {PlacesList.locations.map((place, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => nav.navigate('NearMe', {place})}>
+          <TouchableOpacity key={index} onPress={() => CreateRoute(index)}>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                borderRadius: 24,
+                borderRadius: 16,
                 padding: 16,
                 backgroundColor: Colors.backgroundColorsSecondary,
-                marginTop: 16,
+                marginTop: 12,
               }}>
               <View style={{flex: 1}}>
                 <Text
                   style={{
                     color: Colors.light,
-                    fontSize: 16,
+                    fontSize: 18,
                     fontFamily: Fonts.main,
                   }}>
                   {place.name}
@@ -110,6 +150,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 240,
+    height: 300,
+    marginTop: -16,
   },
 });
