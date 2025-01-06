@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 export default function RentNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Rent" component={RentScreen} />
+      <Stack.Screen name="RentRouter" component={RentScreen} />
       <Stack.Screen name="Camera" component={CameraScreen} />
       <Stack.Screen name="Successful" component={SuccessfullScreen} />
     </Stack.Navigator>

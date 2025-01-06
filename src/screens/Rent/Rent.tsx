@@ -80,7 +80,6 @@ export default function RentScreen() {
       />
       <View
         style={{
-          padding: 16,
           borderRadius: 16,
         }}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -91,12 +90,11 @@ export default function RentScreen() {
                 padding: 16,
                 borderRadius: 16,
                 backgroundColor: Colors.backgroundColorsSecondary,
-                margin: 8,
+                margin: 12,
                 width: 300,
                 gap: 6,
               }}
               onPress={() => {
-                nav.navigate('Station' as never, {station});
               }}>
               <Text style={styles.text}>{station.id}</Text>
               <Text style={styles.text2}>{station.title}</Text>
