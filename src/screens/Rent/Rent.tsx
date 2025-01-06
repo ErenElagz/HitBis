@@ -1,60 +1,110 @@
 // React
+import React from 'react';
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
-  Image,
   ScrollView,
 } from 'react-native';
-import React, {useCallback, useMemo, useRef} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import {useNavigation} from '@react-navigation/native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import StationsList from '../../data/stations';
+import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
-
-// Constants
-const {width} = Dimensions.get('window');
+import StationsList from '../../data/stations';
 
 export default function RentScreen() {
   const nav = useNavigation();
-
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        customMapStyle={CustomMapStyle}
-        loadingEnabled={true}
-        initialRegion={{
-          latitude: 41.0082,
-          longitude: 28.9784,
-          latitudeDelta: 1,
-          longitudeDelta: 1,
+      <View
+        style={{
+          borderRadius: 32,
+          overflow: 'hidden',
+          gap: 16,
         }}>
-        {StationsList.map(place => (
-          <Marker
-            key={place.id}
-            coordinate={place.coordinate}
-            title={place.title}
-            description={place.description}
-          />
-        ))}
-      </MapView>
+        <MapView
+          customMapStyle={CustomMapStyle}
+          style={styles.map}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: 41.0082,
+            longitude: 28.9784,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}>
+          {StationsList.map((station, index) => (
+            <Marker
+              key={index}
+              coordinate={station.coordinate}
+              title={station.title}
+              description={station.description}>
+              <Image
+                source={require('../../assets/images/bike.png')}
+                style={{width: 48, height: 48}}
+              />
+            </Marker>
+          ))}
+        </MapView>
+        <TouchableOpacity
+          style={{
+            marginTop: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            zIndex: 999,
+            bottom: 16,
+            right: 16,
+            backgroundColor: Colors.dark,
+            width: 48,
+            height: 48,
+            borderRadius: 16,
+          }}>
+          <Icon name="near-me" size={28} color={Colors.red} />
+        </TouchableOpacity>
+      </View>
+
       <Button
-        icon="arrow-left"
+        title="Scan the QR Code"
         type="secondary"
-        style={styles.backButton}
+        icon="qrcode"
+        style={{width: '94%', alignSelf: 'center', marginTop: 16}}
         onPress={() => nav.navigate('Camera' as never)}
       />
+      <View
+        style={{
+          padding: 16,
+          borderRadius: 16,
+        }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {StationsList.map((station, index) => (
+            <TouchableOpacity
+              key={index}
+              style={{
+                padding: 16,
+                borderRadius: 16,
+                backgroundColor: Colors.backgroundColorsSecondary,
+                margin: 8,
+                width: 300,
+                gap: 6,
+              }}
+              onPress={() => {
+                nav.navigate('Station' as never, {station});
+              }}>
+              <Text style={styles.text}>{station.id}</Text>
+              <Text style={styles.text2}>{station.title}</Text>
+              <Text style={styles.text3}>{station.description}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -64,55 +114,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backgroundColor,
   },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-
-  contentContainer: {
-    flex: 1,
-    padding: 36,
-    alignItems: 'center',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 24,
-    left: 16,
-    backgroundColor: Colors.backgroundColor,
-    width: 48,
-    height: 48,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 999,
-  },
-  detailsContainer: {
-    position: 'absolute',
-    bottom: 16,
-    width: '94%',
-    alignSelf: 'center',
-    gap: 8,
-    zIndex: 999,
-  },
-  stationScrollView: {
-    overflow: 'visible',
-  },
-  stationCard: {
-    backgroundColor: Colors.secondary,
-    padding: 16,
-    borderRadius: 16,
-    width: width - 128,
-    height: 160,
-    margin: 4,
-  },
-  stationName: {
-    color: Colors.light,
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  stationText: {
+  text: {
     color: Colors.light,
     fontSize: 16,
-    marginTop: 8,
+    fontFamily: Fonts.main,
+  },
+  text2: {
+    color: Colors.light,
+    fontSize: 24,
+    fontFamily: Fonts.main,
+    opacity: 0.8,
+  },
+  text3: {
+    color: Colors.light,
+    fontSize: 14,
+    opacity: 0.4,
+    fontFamily: Fonts.main,
+  },
+  map: {
+    width: '100%',
+    height: 420,
   },
 });

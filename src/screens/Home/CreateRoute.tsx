@@ -25,8 +25,8 @@ export default function CreateRouteScreen() {
   const [route, setRoute] = React.useState('');
   const CreateRoute = (index: number) => {
     let newRoute = [...route];
-    newRoute.push(PlacesList.locations[index]);
-    setRoute(newRoute);
+    // newRoute.push(PlacesList.locations[index]);
+    // setRoute(newRoute);
     console.log(newRoute);
   };
 
@@ -88,10 +88,7 @@ export default function CreateRouteScreen() {
           {PlacesList.locations.map((place, index) => (
             <Marker
               key={index}
-              coordinate={{
-                latitude: place.latitude,
-                longitude: place.longitude,
-              }}
+              coordinate={place.coordinates}
               title={place.name}
               description={place.description}
             />
