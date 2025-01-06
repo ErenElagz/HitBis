@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 export default function AssistantNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Assistant" component={AssistantScreen} />
+      <Stack.Screen name="AssistantScreen" component={AssistantScreen} />
     </Stack.Navigator>
   );
 }

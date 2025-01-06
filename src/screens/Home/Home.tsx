@@ -33,6 +33,8 @@ export default function HomeScreen() {
           padding: 16,
           paddingTop: 32,
           backgroundColor: Colors.backgroundColorsSecondary,
+          borderColor: Colors.borderColor,
+          borderWidth: 1,
         }}>
         <Image
           style={{width: 60, height: 60, borderRadius: 32}}

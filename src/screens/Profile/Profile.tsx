@@ -55,7 +55,7 @@ export default function ProfileScreen() {
         <View style={{marginTop: 12, width: '100%', gap: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start'}}>
           <Button
             icon="account-outline"
-            type="secondary"
+            type="tertiary"
             title="Edit Profile"
             style={{flex: 1}}
             onPress={() => {
@@ -64,7 +64,7 @@ export default function ProfileScreen() {
           />
           <Button
             icon="asterisk"
-            type="secondary"
+            type="tertiary"
             title="Settings"
             style={{flex: 1}}
             onPress={() => {
@@ -73,7 +73,7 @@ export default function ProfileScreen() {
           />
           <Button
             icon="archive-outline"
-            type="secondary"
+            type="tertiary"
             style={{flex: 0.4}}
             onPress={() => {
               nav.navigate('Notifications' as never);

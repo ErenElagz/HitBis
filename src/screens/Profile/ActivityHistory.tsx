@@ -22,7 +22,7 @@ export default function ActivityHistoryScreen() {
             fontSize: 20,
             fontFamily: Fonts.interBold,
           }}>
-          All ACtivities
+          All Activities
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

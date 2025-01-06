@@ -1,5 +1,5 @@
 // React
-import React, {useRef, useCallback} from 'react';
+import React from 'react';
 import {
   View,
   Text,
@@ -19,18 +19,9 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 import PlacesList from '../../data/places';
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 export default function RideTogetherScreen() {
   const nav = useNavigation();
-
-  // ref
-  const bottomSheetRef = useRef<BottomSheet>(null);
-
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -89,24 +80,6 @@ export default function RideTogetherScreen() {
           />
         ))}
       </MapView>
-      <BottomSheet
-        backgroundStyle={{
-          backgroundColor: Colors.backgroundColor,
-        }}
-        backdropComponent={null}
-        ref={bottomSheetRef}
-        onChange={handleSheetChanges}
-        snapPoints={['25%', '50%', '90%']} // Yükseklik seviyeleri
-      >
-        <BottomSheetView style={styles.contentContainer}>
-          <Text>Near Me</Text>
-          <Button
-            title="Back"
-            onPress={() => nav.goBack()}
-            style={{marginTop: 24}}
-          />
-        </BottomSheetView>
-      </BottomSheet>
     </View>
   );
 }
@@ -124,12 +97,6 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '100%',
-    marginTop: -32,
-  },
-  contentContainer: {
-    flex: 1,
-    padding: 36,
-    alignItems: 'center',
-    backgroundColor: Colors.backgroundColor,
+    marginTop: -16,
   },
 });

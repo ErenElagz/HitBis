@@ -1,5 +1,13 @@
 // React
-import {View, Text, StyleSheet, FlatList, TextInput, TouchableOpacity, ToastAndroid} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TextInput,
+  TouchableOpacity,
+  ToastAndroid,
+} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 // Styles
@@ -21,7 +29,6 @@ const showAlert = () => {
   ToastAndroid.show('Please write your message', ToastAndroid.SHORT);
 };
 
-
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   useEffect(() => {
@@ -37,7 +44,9 @@ function Response(props: any) {
   }, []);
 
   return (
-    <View style={[styles.message, {backgroundColor: '#ffffff50'}]}>
+    <View
+      style={[styles.message, {backgroundColor: '#ffffff50'}]}
+      key={props.prompt}>
       <View
         style={{
           flexDirection: 'row',
@@ -66,7 +75,9 @@ function Response(props: any) {
 
 function Message(props: any) {
   return (
-    <View style={[styles.message, {backgroundColor: '#ffffff25'}]}>
+    <View
+      style={[styles.message, {backgroundColor: '#ffffff25'}]}
+      key={props.message}>
       <View
         style={{
           flexDirection: 'row',
@@ -146,7 +157,12 @@ export default function AssistantScreen() {
       />
 
       <View style={styles.searchBar}>
-        <TextInput placeholder="Ask to Biscuit  : )" style={styles.input} value={inputText} onChangeText={text => setInputText(text)} selectionColor={'#fff'}></TextInput>
+        <TextInput
+          placeholder="Ask to Biscuit  : )"
+          style={styles.input}
+          value={inputText}
+          onChangeText={text => setInputText(text)}
+          selectionColor={'#fff'}></TextInput>
         <TouchableOpacity onPress={SearchInput}>
           <Icon name="send" size={24} color="#fff" />
         </TouchableOpacity>
