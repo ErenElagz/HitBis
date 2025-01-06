@@ -30,7 +30,7 @@ export default function HomeScreen() {
           alignItems: 'center',
           justifyContent: 'space-between',
           borderRadius: 24,
-          padding: 16,
+          padding: 12,
           paddingTop: 32,
           backgroundColor: Colors.backgroundColorsSecondary,
           borderColor: Colors.borderColor,

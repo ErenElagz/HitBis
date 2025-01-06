@@ -1,5 +1,5 @@
 // React
-import React,{useRef,useCallback} from 'react';
+import React, {useRef, useCallback} from 'react';
 import {
   View,
   Text,
@@ -27,10 +27,6 @@ export default function RideScreen() {
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
   return (
     <View style={styles.container}>
       <GestureHandlerRootView>
@@ -40,7 +36,7 @@ export default function RideScreen() {
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingTop: 32,
-            padding: 16,
+            padding: 20,
             borderRadius: 32,
             zIndex: 1,
             backgroundColor: Colors.backgroundColorsSecondary,
@@ -83,19 +79,119 @@ export default function RideScreen() {
         <BottomSheet
           backgroundStyle={{
             backgroundColor: Colors.backgroundColor,
-          }}
-          backdropComponent={null}
-          ref={bottomSheetRef}
-          onChange={handleSheetChanges}
-          snapPoints={['25%', '50%', '90%']} // Yükseklik seviyeleri
-        >
-          <BottomSheetView style={styles.contentContainer}>
-            <Text>Near Me</Text>
-            <Button
-              title="Back"
-              onPress={() => nav.goBack()}
-              style={{marginTop: 24}}
-            />
+          }}>
+          <BottomSheetView>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                marginTop: -16,
+                padding: 12,
+                gap: 8,
+              }}>
+              {/* Yükseklik Sütunu */}
+              <View
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Text
+                  style={{
+                    color: Colors.light,
+                    fontSize: 16,
+                    fontFamily: Fonts.main,
+                  }}>
+                  Height
+                </Text>
+                <Text
+                  style={{
+                    color: Colors.primary,
+                    fontSize: 24,
+                    fontFamily: Fonts.main,
+                    fontWeight: 'bold',
+                    letterSpacing: -1,
+                  }}>
+                  120 m
+                </Text>
+              </View>
+              {/* Hız Sütunu */}
+              <View
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Text
+                  style={{
+                    color: Colors.light,
+                    fontSize: 16,
+                    fontFamily: Fonts.main,
+                  }}>
+                  Speed
+                </Text>
+                <Text
+                  style={{
+                    color: Colors.primary,
+                    fontSize: 24,
+                    fontFamily: Fonts.main,
+                    fontWeight: 'bold',
+                    letterSpacing: -1,
+                  }}>
+                  25 km/h
+                </Text>
+              </View>
+              {/* Yakılan Kalori Sütunu */}
+              <View
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Text
+                  style={{
+                    color: Colors.light,
+                    fontSize: 16,
+                    fontFamily: Fonts.main,
+                  }}>
+                  Calories
+                </Text>
+                <Text
+                  style={{
+                    color: Colors.primary,
+                    fontSize: 24,
+                    fontFamily: Fonts.main,
+                    fontWeight: 'bold',
+                    letterSpacing: -1,
+                  }}>
+                  350 kcal
+                </Text>
+              </View>
+            </View>
+            <View
+              style={{
+                padding: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 16,
+              }}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  color: Colors.light,
+                  fontSize: 54,
+                  fontFamily: Fonts.main,
+                }}>
+                00:00:00
+              </Text>
+            </View>
           </BottomSheetView>
         </BottomSheet>
       </GestureHandlerRootView>
