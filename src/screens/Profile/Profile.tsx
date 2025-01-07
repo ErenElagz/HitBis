@@ -81,7 +81,7 @@ export default function ProfileScreen() {
             <Text
               style={{
                 color: Colors.light,
-                fontSize: 16,
+                fontSize: 14,
                 fontFamily: Fonts.main,
               }}>
               Total Rent
