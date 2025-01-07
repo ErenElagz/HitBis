@@ -59,7 +59,7 @@ export default function CameraScreen() {
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
     onCodeScanned: codes => {
-      nav.navigate('Successful' as never, {codes: codes[0].value});
+      nav.navigate('Details' as never, {codes: codes[0].value});
     },
   });
 

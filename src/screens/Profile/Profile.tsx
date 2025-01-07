@@ -69,44 +69,7 @@ export default function ProfileScreen() {
           </View>
         </View>
         <View
-          style={{
-            marginTop: 12,
-            width: '100%',
-            gap: 8,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-          }}>
-          <Button
-            icon="account-outline"
-            type="tertiary"
-            title="Edit Profile"
-            style={{flex: 1}}
-            onPress={() => {
-              nav.navigate('EditProfile' as never);
-            }}
-          />
-          <Button
-            icon="asterisk"
-            type="tertiary"
-            title="Settings"
-            style={{flex: 1}}
-            onPress={() => {
-              nav.navigate('Settings' as never);
-            }}
-          />
-          <Button
-            icon="archive-outline"
-            type="tertiary"
-            style={{flex: 0.4}}
-            onPress={() => {
-              nav.navigate('Notifications' as never);
-            }}
-          />
-        </View>
-
-        <View
-          style={{marginTop: 24, width: '100%', gap: 8, flexDirection: 'row'}}>
+          style={{marginTop: 8, width: '100%', gap: 8, flexDirection: 'row'}}>
           <View
             style={{
               alignItems: 'center',
@@ -145,7 +108,7 @@ export default function ProfileScreen() {
             <Text
               style={{
                 color: Colors.light,
-                fontSize: 14,
+                fontSize: 12,
                 fontFamily: Fonts.main,
               }}>
               Burned Calories
@@ -188,6 +151,42 @@ export default function ProfileScreen() {
               54 Hours
             </Text>
           </View>
+        </View>
+        <View
+          style={{
+            marginTop: 12,
+            width: '100%',
+            gap: 8,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+          }}>
+          <Button
+            icon="account-outline"
+            type="tertiary"
+            title="Edit Profile"
+            style={{flex: 1}}
+            onPress={() => {
+              nav.navigate('EditProfile' as never);
+            }}
+          />
+          <Button
+            icon="asterisk"
+            type="tertiary"
+            title="Settings"
+            style={{flex: 1}}
+            onPress={() => {
+              nav.navigate('Settings' as never);
+            }}
+          />
+          <Button
+            icon="archive-outline"
+            type="tertiary"
+            style={{flex: 0.4}}
+            onPress={() => {
+              nav.navigate('Notifications' as never);
+            }}
+          />
         </View>
 
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
