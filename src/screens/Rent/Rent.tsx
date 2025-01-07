@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
@@ -29,6 +30,7 @@ export default function RentScreen() {
           borderRadius: 32,
           overflow: 'hidden',
           gap: 16,
+          flex: 1,
         }}>
         <MapView
           customMapStyle={CustomMapStyle}
@@ -48,11 +50,12 @@ export default function RentScreen() {
               description={station.description}>
               <Image
                 source={require('../../assets/images/bike.png')}
-                style={{width: 48, height: 48}}
+                style={{width: 32, height: 32}}
               />
             </Marker>
           ))}
         </MapView>
+
         <TouchableOpacity
           style={{
             marginTop: 16,
@@ -60,7 +63,7 @@ export default function RentScreen() {
             justifyContent: 'center',
             position: 'absolute',
             zIndex: 999,
-            bottom: 16,
+            top: 16,
             right: 16,
             backgroundColor: Colors.dark,
             width: 48,
@@ -69,39 +72,29 @@ export default function RentScreen() {
           }}>
           <Icon name="near-me" size={28} color={Colors.red} />
         </TouchableOpacity>
-      </View>
-
-      <Button
-        title="Scan the QR Code"
-        type="secondary"
-        icon="qrcode"
-        style={{width: '94%', alignSelf: 'center', marginTop: 16}}
-        onPress={() => nav.navigate('Camera' as never)}
-      />
-      <View
-        style={{
-          borderRadius: 16,
-        }}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {StationsList.map((station, index) => (
-            <TouchableOpacity
-              key={index}
-              style={{
-                padding: 16,
-                borderRadius: 16,
-                backgroundColor: Colors.backgroundColorsSecondary,
-                margin: 12,
-                width: 300,
-                gap: 6,
-              }}
-              onPress={() => {
-              }}>
-              <Text style={styles.text}>{station.id}</Text>
-              <Text style={styles.text2}>{station.title}</Text>
-              <Text style={styles.text3}>{station.description}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        <TouchableOpacity
+          style={{
+            marginTop: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            zIndex: 999,
+            top: 16,
+            left: 16,
+            backgroundColor: Colors.dark,
+            width: 48,
+            height: 48,
+            borderRadius: 16,
+          }}>
+          <Icon name="arrow-left" size={28} color={Colors.light} />
+        </TouchableOpacity>
+        <Button
+          title="Scan QR Code"
+          type="tertiary"
+          icon="qrcode"
+          style={{width:"94%",alignSelf: 'center', marginTop: 16,position: 'absolute', bottom: 16}}
+          onPress={() => nav.navigate('Camera' as never)}
+        />
       </View>
     </View>
   );
@@ -131,6 +124,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 420,
+    height: '100%',
   },
 });

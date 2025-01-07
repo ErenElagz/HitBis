@@ -111,7 +111,7 @@ export default function RideScreen() {
                     fontSize: 16,
                     fontFamily: Fonts.main,
                   }}>
-                  Height
+                  Distance
                 </Text>
                 <Text
                   style={{

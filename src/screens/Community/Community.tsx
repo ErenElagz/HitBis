@@ -37,7 +37,9 @@ export default function CommunityScreen() {
             }}>
             Community
           </Text>
-          <Icon name="magnify" size={32} color={Colors.light} />
+          <Icon name="magnify" size={32} color={Colors.light} 
+            onPress={() => nav.navigate('Search' as never)}
+          />
         </View>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
