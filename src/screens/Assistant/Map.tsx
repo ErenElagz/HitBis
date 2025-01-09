@@ -15,49 +15,10 @@ import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 // Libraries
-import {GoogleGenerativeAI} from '@google/generative-ai';
-import Markdown from 'react-native-markdown-display';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default function MapScreen() {
-  const nav = useNavigation();
-  const [inputText, setInputText] = useState('');
-  const [listData, setListData] = useState<string[]>([]);
-  const SearchInput = () => {
-    setListData(prevList => [...prevList, inputText]);
-    setInputText('');
-  };
-
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Icon
-          name="arrow-left"
-          size={24}
-          color="#fff"
-          onPress={() => nav.goBack()}
-        />
-        <Text style={{fontSize: 24, color: '#fff', fontWeight: '600'}}>
-          Biscuit
-        </Text>
-      </View>
-      <FlatList
-        data={listData}
-        keyExtractor={item => item}
-        renderItem={({item}) => <Response prompt={item} />}
-      />
-      <View style={styles.searchBar}>
-        <TextInput
-          style={styles.input}
-          placeholder="Type your message..."
-          placeholderTextColor="#fff"
-          value={inputText}
-          onChangeText={setInputText}
-        />
-        <TouchableOpacity onPress={inputText ? SearchInput : showAlert}>
-          <Icon name="send" size={24} color="#fff" />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

@@ -8,7 +8,7 @@ export default function AssistantNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="AssistantScreen" component={AssistantScreen} />
-      <Stack.Screen name="MapScreen" component={MapScreen} />
+      <Stack.Screen name="Map" component={MapScreen} />
     </Stack.Navigator>
   );
 }
