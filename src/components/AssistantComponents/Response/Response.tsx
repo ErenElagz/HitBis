@@ -52,8 +52,8 @@ function Response(props: any) {
         {generatedText}
       </Markdown>
       <Button
-        type="primary"
-        title="Reply"
+        type="secondary"
+        title="See on the Map"
         onPress={() => {
           nav.navigate('Map' as never);
         }}
