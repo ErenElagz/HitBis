@@ -13,6 +13,9 @@ function Response(props: any) {
   const date = new Date();
   const genAI = new GoogleGenerativeAI('AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk');
   const nav = useNavigation();
+
+  const [places, setPlaces] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const model = genAI.getGenerativeModel({model: 'gemini-pro'});
@@ -20,9 +23,22 @@ function Response(props: any) {
         'Places must be in Turkey no extra information and it must be in json format but dont add first variable places bestplaces like this DONT ADD json must contain name, latitude, longitude, description, and image_url no more. example structure : [{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""}]';
       const prompt = props.prompt + extraPrompt;
       const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = await response.text();
-      setGeneratedText(text);
+      let response = result.response.text();
+
+      // Remove the ```json and ``` parts
+      if (response.startsWith('```json')) {
+        response = response.substring(8); // Remove '```json\n'
+      }
+      if (response.endsWith('```')) {
+        response = response.substring(0, response.length - 4); // Remove '\n```'
+      }
+      response = response.replace(/`/g, ''); // Remove backticks
+      response = response.trim();
+      response = JSON.parse(response);
+      console.log(response);
+
+      setPlaces(response);
+      setGeneratedText(response);
     };
     fetchData();
   }, []);
@@ -43,21 +59,16 @@ function Response(props: any) {
           {date.getHours()}:{date.getMinutes()}
         </Text>
       </View>
-      <Markdown
-        rules={{
-          text: ({content}: any) => {
-            return <Text style={{color: '#fff'}}>{content}</Text>;
-          },
-        }}>
-        {generatedText}
-      </Markdown>
-      <Button
-        type="secondary"
-        title="See on the Map"
-        onPress={() => {
-          nav.navigate('Map' as never);
-        }}
-      />
+      <View>
+        {places &&
+          places.map((place: any, index: number) => (
+            <View key={index} style={styles.placesCard}>
+              <Text style={styles.placesCardTitle}>{place.name}</Text>
+              <Text style={styles.placesCardDescription}>{place.description}</Text>
+            </View>
+          ))}
+      </View>
+      <Button type="secondary" title="See on the Map" onPress={() => nav.navigate('Map' as never, {places})} />
     </View>
   );
 }
