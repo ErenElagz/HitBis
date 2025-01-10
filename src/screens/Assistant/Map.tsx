@@ -20,7 +20,7 @@ export default function Map({route}) {
     console.log('handleSheetChanges', index);
   }, []);
 
-  const openInGoogleMaps = (latitude, longitude) => {
+  const openInGoogleMaps = (latitude: any, longitude: any) => {
     const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
     Linking.openURL(url).catch(err => console.error('Failed to open Google Maps:', err));
   };
@@ -40,7 +40,7 @@ export default function Map({route}) {
             longitudeDelta: 1,
           }}>
           {places.length > 0 &&
-            places.map((place, index) => (
+            places.map((place: any, index: any) => (
               <Marker key={index} coordinate={{latitude: place.latitude, longitude: place.longitude}} title={place.name} description={place.description} />
             ))}
 
@@ -68,7 +68,7 @@ export default function Map({route}) {
             {places.length > 0 &&
               places.map((place: any, index: number) => (
                 <View style={styles.card} key={index}>
-                  <View style={{flex: 1,}}>
+                  <View style={{flex: 1}}>
                     <Text style={styles.cardTitle}>{place.name}</Text>
                     <Text style={styles.cardDescription}>{place.description}</Text>
                   </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height:100
+    height: 100,
   },
   cardTitle: {
     fontSize: 18,

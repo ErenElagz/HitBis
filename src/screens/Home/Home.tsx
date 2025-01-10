@@ -1,13 +1,6 @@
 // React
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -19,9 +12,13 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import {TextInput} from 'react-native';
 import Button from '../../components/Button';
+//Redux
+import {useSelector} from 'react-redux';
+import {selectCurrentUser} from '../../redux/selectors/authSelectors';
 
 export default function HomeScreen() {
   const nav = useNavigation();
+  const user = useSelector(selectCurrentUser);
   return (
     <View style={styles.container}>
       <View
@@ -36,15 +33,9 @@ export default function HomeScreen() {
           borderColor: Colors.borderColor,
           borderWidth: 1,
         }}>
-        <Image
-          style={{width: 60, height: 60, borderRadius: 32}}
-          source={require('../../assets/images/avatar.jpg')}
-        />
+        <Image style={{width: 60, height: 60, borderRadius: 32}} source={require('../../assets/images/avatar.jpg')} />
         <View style={{flex: 1, marginLeft: 16}}>
-          <Text
-            style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>
-            Welcome, Eren!
-          </Text>
+          <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>Welcome, {user.email}</Text>
           <Text
             style={{
               color: Colors.gray,
@@ -55,9 +46,7 @@ export default function HomeScreen() {
           </Text>
         </View>
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{flex: 1, padding: 16}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16}}>
         <View
           style={{
             borderRadius: 16,
@@ -117,20 +106,8 @@ export default function HomeScreen() {
             gap: 8,
             marginTop: 8,
           }}>
-          <Button
-            style={{flex: 1}}
-            type="tertiary"
-            icon="plus"
-            title="Create a Route"
-            onPress={() => nav.navigate('CreateRoute' as never)}
-          />
-          <Button
-            style={{flex: 1}}
-            type="tertiary"
-            icon="bike"
-            title="Ride Together"
-            onPress={() => nav.navigate('RideTogether' as never)}
-          />
+          <Button style={{flex: 1}} type="tertiary" icon="plus" title="Create a Route" onPress={() => nav.navigate('CreateRoute' as never)} />
+          <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
         </View>
         <View
           style={{
@@ -281,12 +258,8 @@ export default function HomeScreen() {
                   padding: 8,
                   gap: 16,
                 }}>
-                <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image
-                    source={require('../../assets/images/avatar.jpg')}
-                    style={{width: 48, height: 48, borderRadius: 32}}
-                  />
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
                   <Text
                     style={{
                       color: Colors.light,
@@ -316,12 +289,8 @@ export default function HomeScreen() {
                   padding: 8,
                   gap: 16,
                 }}>
-                <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image
-                    source={require('../../assets/images/avatar.jpg')}
-                    style={{width: 48, height: 48, borderRadius: 32}}
-                  />
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
                   <Text
                     style={{
                       color: Colors.light,
@@ -352,12 +321,8 @@ export default function HomeScreen() {
                   gap: 16,
                   marginBottom: 16,
                 }}>
-                <View
-                  style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image
-                    source={require('../../assets/images/avatar.jpg')}
-                    style={{width: 48, height: 48, borderRadius: 32}}
-                  />
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
+                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
                   <Text
                     style={{
                       color: Colors.light,
