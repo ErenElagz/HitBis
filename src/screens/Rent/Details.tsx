@@ -11,7 +11,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import SwipeButton from 'rn-swipe-button';
-
+import Header from '../../components/Header';
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
@@ -19,8 +19,10 @@ export default function DetailsScreen({route}: any) {
 
   return (
     <View style={styles.container}>
+      <Header title="Lets Rent" description="Swipe and Unlock your bike" onPress={() => nav.goBack()} />
       <View
         style={{
+          margin: 16,
           borderRadius: 16,
           overflow: 'hidden',
         }}>
@@ -77,19 +79,29 @@ export default function DetailsScreen({route}: any) {
           <Icon name="near-me" size={20} color={Colors.red} />
         </TouchableOpacity>
       </View>
+
       <View style={{padding: 12}}>
         <Text style={styles.text2}>Bike Code: {codes}</Text>
       </View>
 
-      <View style={{position: 'absolute', bottom: 16, alignSelf: 'center', width: '100%'}}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', borderRadius: 20, padding: 16, backgroundColor: Colors.backgroundColor, borderColor : Colors.borderColor, borderWidth: 1}}>
+      <View style={{position: 'absolute', bottom: 16, alignSelf: 'center', width: '100%', paddingHorizontal: 16}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            borderRadius: 20,
+            padding: 16,
+            backgroundColor: Colors.backgroundColor,
+            borderColor: Colors.borderColor,
+            borderWidth: 1,
+          }}>
           <View>
             <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
           </View>
-          <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16,padding:8}}>
+          <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
             <Image style={{width: 120, height: 120}} source={require('../../assets/images/bikeImage.png')} />
           </View>
         </View>
@@ -98,7 +110,7 @@ export default function DetailsScreen({route}: any) {
             nav.navigate('Successful' as never);
           }}
           containerStyles={{borderRadius: 16}}
-          height={60}
+          height={66}
           railBackgroundColor={Colors.backgroundColorsSecondary}
           thumbIconBackgroundColor={Colors.primary}
           thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.secondaryDark}}
@@ -119,7 +131,6 @@ export default function DetailsScreen({route}: any) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
     flex: 1,
     backgroundColor: Colors.backgroundColor,
   },
@@ -130,12 +141,12 @@ const styles = StyleSheet.create({
   },
   text2: {
     color: Colors.gray,
-    fontSize: 20,
+    fontSize: 32,
     fontFamily: Fonts.interMedium,
-    letterSpacing: -1,
+    alignSelf: 'center',
   },
   map: {
     width: '100%',
-    height: 400,
+    height: 300,
   },
 });
