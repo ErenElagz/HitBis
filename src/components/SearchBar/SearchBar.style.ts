@@ -3,21 +3,20 @@ import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 
 export default StyleSheet.create({
-  container: {
+  searchBar: {
+    width: '100%',
     flexDirection: 'row',
+    gap: 8,
     alignItems: 'center',
-    gap: 4,
-    padding: 16,
-  },
-  line: {
-    flex: 1,
-    height: 2,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginVertical: 12,
     backgroundColor: Colors.backgroundColorsSecondary,
+    borderRadius: 16,
   },
-  text: {
-    marginHorizontal: 8,
-    fontSize: 12,
+  inputText: {
+    flex: 1,
     color: Colors.light,
-    opacity: 0.25,
+    fontSize: 16,
   },
 });

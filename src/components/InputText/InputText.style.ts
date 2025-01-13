@@ -10,6 +10,6 @@ export default StyleSheet.create({
     backgroundColor: Colors.backgroundColorsSecondary,
     borderRadius: 16,
     color: Colors.light,
-    Fontsize: 14,
+    fontSize: 14,
   },
 });

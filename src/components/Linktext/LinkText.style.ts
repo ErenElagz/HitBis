@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   text: {
     color: Colors.gray,
-    Fontsize: 14,
+    fontSize: 14,
     textDecorationLine: 'underline',
   },
 });

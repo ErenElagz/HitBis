@@ -5,7 +5,7 @@ import Fonts from '../../styles/Fonts';
 const styles = StyleSheet.create({
   text: {
     color: '#fff',
-    Fontsize: 14,
+    fontSize: 14,
     fontWeight: '700',
   },
   button: {

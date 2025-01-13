@@ -10,6 +10,6 @@ export default StyleSheet.create({
   },
   HeaderBottomText: {
     color: Colors.gray,
-    Fontsize: 14,
+    fontSize: 14,
   },
 });

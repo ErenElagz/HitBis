@@ -7,10 +7,10 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
-import {TextInput} from 'react-native';
+import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 
@@ -82,36 +82,9 @@ export default function HomeScreen() {
           <Button style={{flex: 1}} type="tertiary" icon="plus" title="Create a Route" onPress={() => nav.navigate('CreateRoute' as never)} />
           <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
         </View>
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginVertical: 16,
-            backgroundColor: Colors.backgroundColorsSecondary,
-            paddingHorizontal: 16,
-            paddingVertical: 12,
-            borderRadius: 16,
-            gap: 4,
-          }}>
-          <TouchableOpacity>
-            <Icon name="magnify" size={28} color={Colors.light} />
-          </TouchableOpacity>
-          <TextInput
-            style={{
-              flex: 1,
-              color: Colors.light,
-              fontSize: 16,
-              fontFamily: 'Roboto-Regular',
-            }}
-            placeholderTextColor={Colors.light}
-            placeholder="Search for Bikes and Locations"
-          />
-          <TouchableOpacity>
-            <Icon name="microphone" size={28} color={Colors.light} />
-          </TouchableOpacity>
-        </View>
+
+        <SearchBar placeholder="Search for Bikes and Locations" />
+        
         <View
           style={{
             flexDirection: 'column',

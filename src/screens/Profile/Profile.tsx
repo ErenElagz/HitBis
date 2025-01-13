@@ -1,12 +1,5 @@
 // React
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 // Styles
@@ -41,10 +34,7 @@ export default function ProfileScreen() {
               gap: 8,
               flex: 1,
             }}>
-            <Image
-              source={require('../../assets/images/avatar.jpg')}
-              style={{width: 120, height: 120, borderRadius: 999}}
-            />
+            <Image source={require('../../assets/images/avatar.jpg')} style={{width: 120, height: 120, borderRadius: 999}} />
             <Text style={styles.textUsername}>ErenElagz</Text>
           </View>
           <View
@@ -68,8 +58,7 @@ export default function ProfileScreen() {
             </View>
           </View>
         </View>
-        <View
-          style={{marginTop: 8, width: '100%', gap: 8, flexDirection: 'row'}}>
+        <View style={{marginTop: 8, width: '100%', gap: 8, flexDirection: 'row'}}>
           <View
             style={{
               alignItems: 'center',
@@ -92,7 +81,6 @@ export default function ProfileScreen() {
                 fontSize: 20,
                 fontFamily: Fonts.main,
                 fontWeight: 'bold',
-                letterSpacing: -1,
               }}>
               43
             </Text>
@@ -119,7 +107,6 @@ export default function ProfileScreen() {
                 fontSize: 20,
                 fontFamily: Fonts.main,
                 fontWeight: 'bold',
-                letterSpacing: -1,
               }}>
               2342kcal
             </Text>
@@ -146,7 +133,6 @@ export default function ProfileScreen() {
                 fontSize: 20,
                 fontFamily: Fonts.main,
                 fontWeight: 'bold',
-                letterSpacing: -1,
               }}>
               54 Hours
             </Text>
@@ -197,8 +183,7 @@ export default function ProfileScreen() {
               alignItems: 'center',
             }}>
             <Text style={styles.text}>Last Activities</Text>
-            <TouchableOpacity
-              onPress={() => nav.navigate('ActivityHistory' as never)}>
+            <TouchableOpacity onPress={() => nav.navigate('ActivityHistory' as never)}>
               <Text
                 style={{
                   color: Colors.gray,
