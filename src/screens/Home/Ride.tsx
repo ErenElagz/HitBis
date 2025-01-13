@@ -1,13 +1,6 @@
 // React
 import React, {useRef, useCallback} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
 import Colors from '../../styles/Colors';
@@ -21,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 import PlacesList from '../../data/places';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import Header from '../../components/Header';
 
 export default function RideScreen() {
   const nav = useNavigation();
@@ -30,48 +24,7 @@ export default function RideScreen() {
   return (
     <View style={styles.container}>
       <GestureHandlerRootView>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingTop: 32,
-          padding: 16,
-          borderRadius: 24,
-          zIndex: 1,
-          backgroundColor: Colors.backgroundColorsSecondary,
-        }}>
-        <View style={{flexDirection: 'row', flex: 1}}>
-          <Image
-            style={{width: 48, height: 48, borderRadius: 32}}
-            source={require('../../assets/images/avatar.jpg')}
-          />
-          <View style={{flex: 1, marginLeft: 16}}>
-            <Text
-              style={{
-                color: Colors.light,
-                fontSize: 20,
-                fontFamily: Fonts.main,
-              }}>
-              You are on the way
-            </Text>
-            <Text
-              style={{
-                color: Colors.gray,
-                fontSize: 14,
-                fontFamily: Fonts.interRegular,
-              }}>
-              Enjoy Your Ride
-            </Text>
-          </View>
-        </View>
-        <Button
-          type="secondary"
-          title="End Ride"
-          onPress={() => nav.goBack()}
-          style={{flex: 0.3}}
-        />
-      </View>
+        <Header title="Ride" description="Start your ride now!" button onPress={() => nav.goBack()} />
         <MapView
           customMapStyle={CustomMapStyle}
           provider={PROVIDER_GOOGLE}
