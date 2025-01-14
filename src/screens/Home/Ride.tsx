@@ -74,7 +74,7 @@ export default function RideScreen() {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  120 m
+                  0 m
                 </Text>
               </View>
               {/* Hız Sütunu */}
@@ -102,7 +102,7 @@ export default function RideScreen() {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  25 km/h
+                  0 km/h
                 </Text>
               </View>
               {/* Yakılan Kalori Sütunu */}
@@ -130,7 +130,7 @@ export default function RideScreen() {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  350 kcal
+                  0 kcal
                 </Text>
               </View>
             </View>
