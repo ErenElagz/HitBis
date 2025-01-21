@@ -83,7 +83,7 @@ export default function HomeScreen() {
           <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
         </View>
 
-        <SearchBar placeholder="Search for Bikes and Locations" />
+  <SearchBar onPress={() => nav.navigate('Community' as never, { screen: 'Search' })} placeholder="Search for Bikes and Locations" />
         
         <View
           style={{
