@@ -4,9 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProfileScreen from '../screens/Profile/Profile';
 import EditProfileScreen from '../screens/Profile/EditProfile';
 import SettingsScreen from '../screens/Profile/Settings';
-import ActivityHistoryScreen from '../screens/Profile/ActivityHistory';
 import NotificationsScreen from '../screens/Profile/Notifications';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +14,6 @@ export default function ProfileNavigator() {
       <Stack.Screen name="ProfileRouter" component={ProfileScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name="ActivityHistory" component={ActivityHistoryScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
     </Stack.Navigator>
   );

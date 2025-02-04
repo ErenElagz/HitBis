@@ -12,8 +12,86 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 
+function ActivitiesTab() {
+  return (
+    <View
+      style={{
+        marginTop: 4,
+        height: 200,
+        width: '100%',
+        backgroundColor: Colors.backgroundColorsSecondary,
+        borderRadius: 16,
+      }}>
+      <Text style={styles.tabText}>ActivitiesTab</Text>
+    </View>
+  );
+}
+
+function GroupsTab() {
+  return (
+    <View
+      style={{
+        marginTop: 4,
+        height: 200,
+        width: '100%',
+        backgroundColor: Colors.backgroundColorsSecondary,
+        borderRadius: 16,
+      }}>
+      <Text style={styles.tabText}>GroupsTab</Text>
+    </View>
+  );
+}
+
+function RoutesTab() {
+  return (
+    <View
+      style={{
+        marginTop: 4,
+        height: 200,
+        width: '100%',
+        backgroundColor: Colors.backgroundColorsSecondary,
+        borderRadius: 16,
+      }}>
+      <Text style={styles.tabText}>RoutesTab</Text>
+    </View>
+  );
+}
+
+function StatsTab() {
+  return (
+    <View
+      style={{
+        marginTop: 4,
+        height: '100%',
+        width: '100%',
+        backgroundColor: Colors.backgroundColorsSecondary,
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Text style={styles.tabText}>StatsTab</Text>
+    </View>
+  );
+}
+
 export default function ProfileScreen() {
   const nav = useNavigation();
+
+  const [tab, setTab] = React.useState('activities');
+  function ShowTab(tabName: string) {
+    switch (tabName) {
+      case 'activities':
+        return <ActivitiesTab />;
+      case 'groups':
+        return <GroupsTab />;
+      case 'routes':
+        return <RoutesTab />;
+      case 'stats':
+        return <StatsTab />;
+      default:
+        return <ActivitiesTab />;
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,9 +100,7 @@ export default function ProfileScreen() {
           style={{
             width: '100%',
             borderRadius: 16,
-            padding: 24,
-            backgroundColor: Colors.backgroundColorsSecondary,
-            flexDirection: 'row',
+            paddingVertical: 16,
           }}>
           <View
             style={{
@@ -34,200 +110,72 @@ export default function ProfileScreen() {
               gap: 8,
               flex: 1,
             }}>
-            <Image source={require('../../assets/images/avatar.jpg')} style={{width: 120, height: 120, borderRadius: 999}} />
+            <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
             <Text style={styles.textUsername}>ErenElagz</Text>
           </View>
           <View
             style={{
+              marginTop: 12,
               gap: 8,
-              flex: 1,
-              alignItems: 'flex-start',
-              paddingLeft: 32,
+              flexDirection: 'row',
             }}>
-            <View>
-              <Text style={styles.text}>6.37 K</Text>
-              <Text style={styles.textSoft}>Point</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>217 km</Text>
-              <Text style={styles.textSoft}>On the Way</Text>
-            </View>
-            <View>
-              <Text style={styles.text}>441 Bikers</Text>
-              <Text style={styles.textSoft}>You interracted</Text>
-            </View>
+            <Button
+              icon="account-outline"
+              type="tertiary"
+              title="Edit"
+              style={{flex: 1}}
+              onPress={() => {
+                nav.navigate('EditProfile' as never);
+              }}
+            />
+            <Button
+              icon="cog"
+              type="tertiary"
+              title="Settings"
+              style={{flex: 1}}
+              onPress={() => {
+                nav.navigate('Settings' as never);
+              }}
+            />
+            <Button
+              icon="archive-outline"
+              title="Updates"
+              type="tertiary"
+              style={{flex: 1}}
+              onPress={() => {
+                nav.navigate('Notifications' as never);
+              }}
+            />
           </View>
-        </View>
-        <View style={{marginTop: 8, width: '100%', gap: 8, flexDirection: 'row'}}>
-          <View
-            style={{
-              alignItems: 'center',
-              flex: 1,
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-              padding: 12,
-            }}>
-            <Text
-              style={{
-                color: Colors.light,
-                fontSize: 14,
-                fontFamily: Fonts.main,
-              }}>
-              Total Rent
-            </Text>
-            <Text
-              style={{
-                color: Colors.primary,
-                fontSize: 20,
-                fontFamily: Fonts.main,
-                fontWeight: 'bold',
-              }}>
-              43
-            </Text>
-          </View>
-          <View
-            style={{
-              alignItems: 'center',
-              flex: 1,
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-              padding: 12,
-            }}>
-            <Text
-              style={{
-                color: Colors.light,
-                fontSize: 12,
-                fontFamily: Fonts.main,
-              }}>
-              Burned Calories
-            </Text>
-            <Text
-              style={{
-                color: Colors.primary,
-                fontSize: 20,
-                fontFamily: Fonts.main,
-                fontWeight: 'bold',
-              }}>
-              2342kcal
-            </Text>
-          </View>
-          <View
-            style={{
-              alignItems: 'center',
-              flex: 1,
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-              padding: 12,
-            }}>
-            <Text
-              style={{
-                color: Colors.light,
-                fontSize: 14,
-                fontFamily: Fonts.main,
-              }}>
-              Total Time
-            </Text>
-            <Text
-              style={{
-                color: Colors.primary,
-                fontSize: 20,
-                fontFamily: Fonts.main,
-                fontWeight: 'bold',
-              }}>
-              54 Hours
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            marginTop: 12,
-            width: '100%',
-            gap: 8,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-          }}>
-          <Button
-            icon="account-outline"
-            type="tertiary"
-            title="Edit Profile"
-            style={{flex: 1}}
-            onPress={() => {
-              nav.navigate('EditProfile' as never);
-            }}
-          />
-          <Button
-            icon="asterisk"
-            type="tertiary"
-            title="Settings"
-            style={{flex: 1}}
-            onPress={() => {
-              nav.navigate('Settings' as never);
-            }}
-          />
-          <Button
-            icon="archive-outline"
-            type="tertiary"
-            style={{flex: 0.4}}
-            onPress={() => {
-              nav.navigate('Notifications' as never);
-            }}
-          />
         </View>
 
-        <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
+        <View style={styles.tabGroup}>
+          <TouchableOpacity
+            onPress={() => {
+              setTab('activities');
             }}>
-            <Text style={styles.text}>Last Activities</Text>
-            <TouchableOpacity onPress={() => nav.navigate('ActivityHistory' as never)}>
-              <Text
-                style={{
-                  color: Colors.gray,
-                  fontSize: 16,
-                  fontFamily: Fonts.interRegular,
-                  textDecorationLine: 'underline',
-                }}>
-                See all
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              marginTop: 4,
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}></View>
+            <Icon name="bike" size={28} color={tab === 'activities' ? Colors.primary : Colors.gray} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTab('groups');
+            }}>
+            <Icon name="account-group" size={28} color={tab === 'groups' ? Colors.primary : Colors.gray} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTab('routes');
+            }}>
+            <Icon name="map-marker" size={28} color={tab === 'routes' ? Colors.primary : Colors.gray} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setTab('stats');
+            }}>
+            <Icon name="table" size={28} color={tab === 'stats' ? Colors.primary : Colors.gray} />
+          </TouchableOpacity>
         </View>
-        <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <Text style={styles.text}>My Groups</Text>
-          <View
-            style={{
-              marginTop: 4,
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}
-          />
-        </View>
-        <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <Text style={styles.text}>My Routes</Text>
-          <View
-            style={{
-              marginTop: 4,
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}
-          />
-        </View>
+        <View style={{marginTop: 16}}>{ShowTab(tab)}</View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -241,17 +189,27 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.light,
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: Fonts.main,
   },
   textSoft: {
     color: Colors.gray,
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: Fonts.interRegular,
   },
   textUsername: {
     color: Colors.light,
     fontSize: 28,
     fontFamily: Fonts.main,
+  },
+  tabText: {
+    color: Colors.light,
+    fontSize: 28,
+    fontFamily: Fonts.main,
+  },
+  tabGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 8,
   },
 });
