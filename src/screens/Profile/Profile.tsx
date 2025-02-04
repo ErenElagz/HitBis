@@ -16,11 +16,11 @@ function ActivitiesTab() {
   return (
     <View
       style={{
-        marginTop: 4,
-        height: 200,
-        width: '100%',
+        flex: 1,
         backgroundColor: Colors.backgroundColorsSecondary,
         borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       <Text style={styles.tabText}>ActivitiesTab</Text>
     </View>
@@ -31,11 +31,11 @@ function GroupsTab() {
   return (
     <View
       style={{
-        marginTop: 4,
-        height: 200,
-        width: '100%',
+        flex: 1,
         backgroundColor: Colors.backgroundColorsSecondary,
         borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       <Text style={styles.tabText}>GroupsTab</Text>
     </View>
@@ -46,11 +46,11 @@ function RoutesTab() {
   return (
     <View
       style={{
-        marginTop: 4,
-        height: 200,
-        width: '100%',
+        flex: 1,
         backgroundColor: Colors.backgroundColorsSecondary,
         borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
       <Text style={styles.tabText}>RoutesTab</Text>
     </View>
@@ -61,9 +61,7 @@ function StatsTab() {
   return (
     <View
       style={{
-        marginTop: 4,
-        height: '100%',
-        width: '100%',
+        flex: 1,
         backgroundColor: Colors.backgroundColorsSecondary,
         borderRadius: 16,
         alignItems: 'center',
@@ -76,7 +74,6 @@ function StatsTab() {
 
 export default function ProfileScreen() {
   const nav = useNavigation();
-
   const [tab, setTab] = React.useState('activities');
   function ShowTab(tabName: string) {
     switch (tabName) {
@@ -95,88 +92,80 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <View>
         <View
           style={{
-            width: '100%',
-            borderRadius: 16,
-            paddingVertical: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
           }}>
-          <View
-            style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 20,
-              gap: 8,
-              flex: 1,
-            }}>
-            <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
-            <Text style={styles.textUsername}>ErenElagz</Text>
-          </View>
-          <View
-            style={{
-              marginTop: 12,
-              gap: 8,
-              flexDirection: 'row',
-            }}>
-            <Button
-              icon="account-outline"
-              type="tertiary"
-              title="Edit"
-              style={{flex: 1}}
-              onPress={() => {
-                nav.navigate('EditProfile' as never);
-              }}
-            />
-            <Button
-              icon="cog"
-              type="tertiary"
-              title="Settings"
-              style={{flex: 1}}
-              onPress={() => {
-                nav.navigate('Settings' as never);
-              }}
-            />
-            <Button
-              icon="archive-outline"
-              title="Updates"
-              type="tertiary"
-              style={{flex: 1}}
-              onPress={() => {
-                nav.navigate('Notifications' as never);
-              }}
-            />
-          </View>
+          <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
+          <Text style={styles.textUsername}>ErenElagz</Text>
         </View>
+        <View
+          style={{
+            marginTop: 12,
+            gap: 8,
+            flexDirection: 'row',
+          }}>
+          <Button
+            icon="account-outline"
+            type="tertiary"
+            title="Edit"
+            style={{flex: 1}}
+            onPress={() => {
+              nav.navigate('EditProfile' as never);
+            }}
+          />
+          <Button
+            icon="cog"
+            type="tertiary"
+            title="Settings"
+            style={{flex: 1}}
+            onPress={() => {
+              nav.navigate('Settings' as never);
+            }}
+          />
+          <Button
+            icon="archive-outline"
+            title="Updates"
+            type="tertiary"
+            style={{flex: 1}}
+            onPress={() => {
+              nav.navigate('Notifications' as never);
+            }}
+          />
+        </View>
+      </View>
 
-        <View style={styles.tabGroup}>
-          <TouchableOpacity
-            onPress={() => {
-              setTab('activities');
-            }}>
-            <Icon name="bike" size={28} color={tab === 'activities' ? Colors.primary : Colors.gray} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setTab('groups');
-            }}>
-            <Icon name="account-group" size={28} color={tab === 'groups' ? Colors.primary : Colors.gray} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setTab('routes');
-            }}>
-            <Icon name="map-marker" size={28} color={tab === 'routes' ? Colors.primary : Colors.gray} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              setTab('stats');
-            }}>
-            <Icon name="table" size={28} color={tab === 'stats' ? Colors.primary : Colors.gray} />
-          </TouchableOpacity>
-        </View>
-        <View style={{marginTop: 16}}>{ShowTab(tab)}</View>
-      </ScrollView>
+      <View style={styles.tabGroup}>
+        <TouchableOpacity
+          onPress={() => {
+            setTab('activities');
+          }}>
+          <Icon name="bike" size={28} color={tab === 'activities' ? Colors.primary : Colors.gray} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setTab('groups');
+          }}>
+          <Icon name="account-group" size={28} color={tab === 'groups' ? Colors.primary : Colors.gray} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setTab('routes');
+          }}>
+          <Icon name="map-marker" size={28} color={tab === 'routes' ? Colors.primary : Colors.gray} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setTab('stats');
+          }}>
+          <Icon name="table" size={28} color={tab === 'stats' ? Colors.primary : Colors.gray} />
+        </TouchableOpacity>
+      </View>
+      
+      <View style={{flex: 1, height: '100%'}}>{ShowTab(tab)}</View>
     </SafeAreaView>
   );
 }
@@ -185,6 +174,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 16,
+    paddingTop: 16,
     backgroundColor: Colors.backgroundColor,
   },
   text: {
@@ -210,6 +200,6 @@ const styles = StyleSheet.create({
   tabGroup: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 8,
+    marginVertical: 24,
   },
 });

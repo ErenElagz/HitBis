@@ -12,6 +12,8 @@ import LinearGradient from 'react-native-linear-gradient';
 // Components
 import Message from '../../components/AssistantComponents/Message';
 import Response from '../../components/AssistantComponents/Response';
+import InputText from '../../components/InputText';
+import {opacity} from 'react-native-reanimated/lib/typescript/Colors';
 
 export default function AssistantScreen() {
   const nav = useNavigation();
@@ -66,9 +68,10 @@ export default function AssistantScreen() {
           </ScrollView>
         </View>
       </View>
+
       <FlatList
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 100}} // Search bar kadar boşluk bırakır
+        contentContainerStyle={{paddingBottom: 100}}
         style={{padding: 16}}
         data={listData}
         keyExtractor={(item, index) => `${item}-${index}`} // Generate unique key

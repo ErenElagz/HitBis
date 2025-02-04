@@ -11,7 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   const date = new Date();
-  const genAI = new GoogleGenerativeAI('AIzaSyAowSxY3IYw4DimgOFWXxqqVnfbqcTwoHk');
+  const genAI = new GoogleGenerativeAI('AIzaSyDM1CVLLnxjv2ntZU6KU1T7QCj6HONPFhE');
   const nav = useNavigation();
 
   const [places, setPlaces] = useState(null);
@@ -35,7 +35,6 @@ function Response(props: any) {
       response = response.replace(/`/g, ''); // Remove backticks
       response = response.trim();
       response = JSON.parse(response);
-      console.log(response);
 
       setPlaces(response);
       setGeneratedText(response);

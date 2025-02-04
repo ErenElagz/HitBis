@@ -5,16 +5,11 @@ import Colors from '../../styles/Colors';
 
 interface InputTextProps {
   placeholder: string;
+  style?: object;
 }
 
-const InputText: React.FC<InputTextProps> = ({placeholder}) => {
-  return (
-    <TextInput
-      style={styles.inputText}
-      placeholder={placeholder}
-      selectionColor={Colors.light}
-    />
-  );
+const InputText: React.FC<InputTextProps> = ({placeholder, style}) => {
+  return <TextInput style={{...styles.inputText, ...style}} placeholder={placeholder} selectionColor={Colors.light} />;
 };
 
 export default InputText;
