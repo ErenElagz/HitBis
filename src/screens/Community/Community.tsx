@@ -1,12 +1,6 @@
 // React
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 // Styles
 import Colors from '../../styles/Colors';
@@ -15,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
+import Button from '../../components/Button';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
@@ -30,16 +25,13 @@ export default function CommunityScreen() {
           }}>
           <Text
             style={{
-              fontSize: 36,
+              fontSize: 32,
               fontFamily: Fonts.interBold,
               color: Colors.light,
-              letterSpacing: -1,
             }}>
             Community
           </Text>
-          <Icon name="magnify" size={32} color={Colors.light} 
-            onPress={() => nav.navigate('Search' as never)}
-          />
+          <Icon name="magnify" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
         </View>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -144,6 +136,15 @@ export default function CommunityScreen() {
           />
         </View>
       </ScrollView>
+      <View
+        style={{
+          marginTop: 12,
+          gap: 8,
+          flexDirection: 'row',
+        }}>
+        <Button title="Create a Event" type="tertiary" icon="plus" onPress={() => nav.navigate('CreateEvent' as never)} style={{flex: 1}} />
+        <Button title="Create a Group" type="tertiary" icon="account-group" onPress={() => nav.navigate('CreateGroup' as never)} style={{flex: 1}} />
+      </View>
     </SafeAreaView>
   );
 }
