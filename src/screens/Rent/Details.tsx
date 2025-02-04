@@ -106,9 +106,11 @@ export default function DetailsScreen({route}: any) {
           </View>
         </View>
         <SwipeButton
-          onSwipeSuccess={() => {
-            nav.navigate('Successful' as never);
-          }}
+          onSwipeSuccess={() =>
+            nav.navigate('Home', {
+              screen: 'Ride',
+            })
+          }
           containerStyles={{borderRadius: 16}}
           height={66}
           railBackgroundColor={Colors.backgroundColorsSecondary}
