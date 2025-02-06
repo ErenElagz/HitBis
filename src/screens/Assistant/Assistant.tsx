@@ -43,7 +43,7 @@ export default function AssistantScreen() {
           style={{
             marginTop: 32,
             marginLeft: 16,
-            fontSize: 60,
+            fontSize: 58,
             fontFamily: Fonts.main,
             letterSpacing: -1,
             fontWeight: 'bold',
@@ -52,7 +52,7 @@ export default function AssistantScreen() {
           HitBis Assistant
         </Text>
         <View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flexDirection: 'row', marginHorizontal: 8, marginLeft: 16, overflow: 'visible'}}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{flexDirection: 'row', marginHorizontal: 12, marginLeft: 16, overflow: 'visible'}}>
             <TouchableOpacity style={styles.recommondation}>
               <Text style={styles.recommondationText}>Chat with Biscuit 🍪</Text>
             </TouchableOpacity>
@@ -72,7 +72,7 @@ export default function AssistantScreen() {
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingBottom: 100}}
-        style={{padding: 16}}
+        style={{padding: 12}}
         data={listData}
         keyExtractor={(item, index) => `${item}-${index}`} // Generate unique key
         renderItem={({item, index}) => (

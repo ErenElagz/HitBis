@@ -9,7 +9,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
-import Button from '../../components/Button';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
@@ -22,16 +21,24 @@ export default function CommunityScreen() {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginHorizontal: 8,
+            marginTop: 12,
           }}>
           <Text
             style={{
-              fontSize: 32,
+              fontSize: 24,
               fontFamily: Fonts.interBold,
               color: Colors.light,
             }}>
-            Community
+            HitBis Community
           </Text>
-          <Icon name="magnify" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 16,
+            }}>
+            <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
+            <Icon name="magnify" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
+          </View>
         </View>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -123,28 +130,7 @@ export default function CommunityScreen() {
             }}
           />
         </View>
-
-        <View style={{marginTop: 24, gap: 8}}>
-          <Text style={styles.text}>On the way</Text>
-          <View
-            style={{
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}
-          />
-        </View>
       </ScrollView>
-      <View
-        style={{
-          marginTop: 12,
-          gap: 8,
-          flexDirection: 'row',
-        }}>
-        <Button title="Create a Event" type="tertiary" icon="plus" onPress={() => nav.navigate('CreateEvent' as never)} style={{flex: 1}} />
-        <Button title="Create a Group" type="tertiary" icon="account-group" onPress={() => nav.navigate('CreateGroup' as never)} style={{flex: 1}} />
-      </View>
     </SafeAreaView>
   );
 }
@@ -152,7 +138,7 @@ export default function CommunityScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     backgroundColor: Colors.backgroundColor,
   },
   text: {
