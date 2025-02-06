@@ -96,15 +96,16 @@ export default function ProfileScreen() {
         <View
           style={{
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 8,
+            flexDirection: 'row',
+            gap: 16,
+            paddingHorizontal: 16,
           }}>
-          <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
+          <Image source={require('../../assets/images/avatar.jpg')} style={{width: 60, height: 60, borderRadius: 999}} />
           <Text style={styles.textUsername}>ErenElagz</Text>
         </View>
         <View
           style={{
-            marginTop: 12,
+            marginTop: 24,
             gap: 8,
             flexDirection: 'row',
           }}>
@@ -140,31 +141,39 @@ export default function ProfileScreen() {
 
       <View style={styles.tabGroup}>
         <TouchableOpacity
+          style={styles.tabItem}
           onPress={() => {
             setTab('activities');
           }}>
           <Icon name="bike" size={28} color={tab === 'activities' ? Colors.primary : Colors.gray} />
+          <Text style={styles.tabText}>Activites</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={styles.tabItem}
           onPress={() => {
             setTab('groups');
           }}>
           <Icon name="account-group" size={28} color={tab === 'groups' ? Colors.primary : Colors.gray} />
+          <Text style={styles.tabText}>Groups</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={styles.tabItem}
           onPress={() => {
             setTab('routes');
           }}>
           <Icon name="map-marker" size={28} color={tab === 'routes' ? Colors.primary : Colors.gray} />
+          <Text style={styles.tabText}>Routes</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={styles.tabItem}
           onPress={() => {
             setTab('stats');
           }}>
           <Icon name="table" size={28} color={tab === 'stats' ? Colors.primary : Colors.gray} />
+          <Text style={styles.tabText}>Stats</Text>
         </TouchableOpacity>
       </View>
-      
+
       <View style={{flex: 1, height: '100%'}}>{ShowTab(tab)}</View>
     </SafeAreaView>
   );
@@ -193,13 +202,20 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.main,
   },
   tabText: {
-    color: Colors.light,
-    fontSize: 28,
+    color: Colors.gray,
+    fontSize: 12,
     fontFamily: Fonts.main,
   },
   tabGroup: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 24,
+    marginVertical: 12,
+  },
+  tabItem: {
+    flex: 1,
+    gap: 2,
+    borderRadius: 16,
+    padding: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
