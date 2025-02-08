@@ -84,8 +84,8 @@ export default function HomeScreen() {
             gap: 8,
             marginTop: 8,
           }}>
-          <Button style={{flex: 1}} type="tertiary" icon="plus" title="Create a Route" onPress={() => nav.navigate('CreateRoute' as never)} />
-          <Button style={{flex: 1}} type="tertiary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
+          <Button style={{flex: 1}} type="secondary" icon="plus" title="Create a Route" onPress={() => nav.navigate('CreateRoute' as never)} />
+          <Button style={{flex: 1}} type="secondary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
         </View>
 
         <SearchBar onPress={() => nav.navigate('Community' as never, {screen: 'Search'})} placeholder="Search for Bikes and Locations" />
@@ -142,10 +142,6 @@ export default function HomeScreen() {
             </ScrollView>
           </View>
         </View>
-
-
-
-
       </ScrollView>
 
       <Button
@@ -178,6 +174,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 240,
+    height: 300,
   },
 });

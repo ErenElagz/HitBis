@@ -68,9 +68,14 @@ export default function RentScreen() {
           longitudeDelta: 0.0421,
         }}>
         {StationsList.map((station, index) => (
-          <Marker key={index} coordinate={station.coordinate} title={station.title} description={station.description}>
-            <Image source={require('../../assets/images/bike.png')} style={{width: 32, height: 32}} />
-          </Marker>
+          <Marker
+            key={index}
+            coordinate={{
+              latitude: station.coordinate.latitude,
+              longitude: station.coordinate.longitude,
+            }}
+            title={station.title}
+          />
         ))}
       </MapView>
     </View>

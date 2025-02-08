@@ -9,6 +9,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
+import RouteCard from '../../components/RouteCard/RouteCard';
+import {popularRoutes} from '../../data/routes';
+import EventCard from '../../components/EventCard/EventCard';
+import {events} from '../../data/events';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
@@ -41,33 +45,10 @@ export default function CommunityScreen() {
           </View>
         </View>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View style={{marginTop: 16, gap: 8, flexDirection: 'row'}}>
-            <View
-              style={{
-                height: 200,
-                width: 320,
-                backgroundColor: Colors.backgroundColorsSecondary,
-                borderRadius: 16,
-              }}
-            />
-            <View
-              style={{
-                height: 200,
-                width: 320,
-                backgroundColor: Colors.backgroundColorsSecondary,
-                borderRadius: 16,
-              }}
-            />
-            <View
-              style={{
-                height: 200,
-                width: 320,
-                backgroundColor: Colors.backgroundColorsSecondary,
-                borderRadius: 16,
-              }}
-            />
-          </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8}}>
+          {popularRoutes.map(route => (
+            <RouteCard key={route.id} {...route} />
+          ))}
         </ScrollView>
 
         <View style={{marginTop: 24, width: '100%', gap: 8}}>
@@ -90,46 +71,12 @@ export default function CommunityScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              marginTop: 4,
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}
-          />
         </View>
-        <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.text}>Popular Groups</Text>
-            <TouchableOpacity onPress={() => nav.navigate('Groups' as never)}>
-              <Text
-                style={{
-                  color: Colors.gray,
-                  fontSize: 16,
-                  fontFamily: Fonts.interRegular,
-                  textDecorationLine: 'underline',
-                }}>
-                See all
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              marginTop: 4,
-              height: 200,
-              width: '100%',
-              backgroundColor: Colors.backgroundColorsSecondary,
-              borderRadius: 16,
-            }}
-          />
-        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
+          {events.map(event => (
+            <EventCard key={event.id} {...event} />
+          ))}
+        </ScrollView>
       </ScrollView>
     </SafeAreaView>
   );
