@@ -15,6 +15,10 @@ import Button from '../../components/Button';
 import Header from '../../components/Header';
 import EventCard from '../../components/EventCard/EventCard';
 import {events} from '../../data/events';
+
+import RouteCard from '../../components/RouteCard/RouteCard';
+import {popularRoutes} from '../../data/routes';
+
 export default function HomeScreen() {
   const nav = useNavigation();
   return (
@@ -86,54 +90,62 @@ export default function HomeScreen() {
 
         <SearchBar onPress={() => nav.navigate('Community' as never, {screen: 'Search'})} placeholder="Search for Bikes and Locations" />
 
-        <View
-          style={{
-            flexDirection: 'column',
-          }}>
-          <View style={{marginTop: 16, width: '100%', gap: 8}}>
-            <View
+        <View style={{marginTop: 16, width: '100%', gap: 8}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+            }}>
+            <Icon name="map" size={28} color={Colors.light} />
+            <Text
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
+                color: Colors.light,
+                fontSize: 24,
+                fontFamily: Fonts.main,
                 gap: 8,
               }}>
-              <Icon name="map" size={28} color={Colors.light} />
-              <Text
-                style={{
-                  color: Colors.light,
-                  fontSize: 24,
-                  fontFamily: Fonts.main,
-                }}>
-                Popular Routes
-              </Text>
-            </View>
+              Popular Routes
+            </Text>
           </View>
-          <View style={{marginTop: 32, width: '100%', gap: 8}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 8,
-              }}>
-              <Icon name="ticket" size={28} color={Colors.light} />
-              <Text
-                style={{
-                  color: Colors.light,
-                  fontSize: 24,
-                  fontFamily: Fonts.main,
-                }}>
-                Upcoming Events
-              </Text>
-            </View>
-            <View>
-              <ScrollView style={{gap: 8, paddingBottom: 120}} horizontal showsHorizontalScrollIndicator={false}>
-                {events.map(event => (
-                  <EventCard key={event.id} {...event} />
-                ))}
-              </ScrollView>
-            </View>
+          <View>
+            <ScrollView style={{gap: 24}} horizontal showsHorizontalScrollIndicator={false}>
+              {popularRoutes.map(route => (
+                <RouteCard key={route.id} {...route} />
+              ))}
+            </ScrollView>
           </View>
         </View>
+
+        <View style={{marginTop: 24, width: '100%', gap: 8}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+            }}>
+            <Icon name="ticket" size={28} color={Colors.light} />
+            <Text
+              style={{
+                color: Colors.light,
+                fontSize: 24,
+                fontFamily: Fonts.main,
+              }}>
+              Upcoming Events
+            </Text>
+          </View>
+          <View>
+            <ScrollView style={{gap: 24, paddingBottom: 120}} horizontal showsHorizontalScrollIndicator={false}>
+              {events.map(event => (
+                <EventCard key={event.id} {...event} />
+              ))}
+            </ScrollView>
+          </View>
+        </View>
+
+
+
+
       </ScrollView>
 
       <Button
