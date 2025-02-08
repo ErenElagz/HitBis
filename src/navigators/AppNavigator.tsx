@@ -26,6 +26,7 @@ export default function AppNavigator() {
           justifyContent: 'center',
           borderColor: Colors.borderColor,
           backgroundColor: Colors.backgroundColor,
+          display: route.name === 'Ride' ? 'none' : 'flex',
         },
         headerShown: false,
         tabBarIcon(props) {

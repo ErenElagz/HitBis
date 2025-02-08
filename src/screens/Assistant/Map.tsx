@@ -88,7 +88,6 @@ export default function Map({route}) {
               strokeWidth={3}
               waypoints={places.slice(1, -1)}
               strokeColor="darkgreen"
-              mode="DRIVING"
             />
           )}
         </MapView>

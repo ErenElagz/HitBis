@@ -1,6 +1,6 @@
 // React
-import React, {useRef, useCallback} from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useRef} from 'react';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
 import Colors from '../../styles/Colors';
@@ -8,23 +8,18 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
-import Button from '../../components/Button';
-import PlacesList from '../../data/places';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import Header from '../../components/Header';
 
 export default function RideScreen() {
   const nav = useNavigation();
-  // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
     <View style={styles.container}>
       <GestureHandlerRootView>
-        <Header title="Ride" description="Start your ride now!" button onPress={() => nav.goBack()} />
         <MapView
           customMapStyle={CustomMapStyle}
           provider={PROVIDER_GOOGLE}
@@ -41,6 +36,59 @@ export default function RideScreen() {
             backgroundColor: Colors.backgroundColor,
           }}>
           <BottomSheetView>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                padding: 12,
+                paddingBottom: 0,
+                gap: 8,
+              }}>
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  flexDirection: 'row',
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}
+                onPress={() => nav.goBack()}>
+                <Icon name="close" size={24} color={Colors.light} />
+                <Text style={{color: Colors.light, fontSize: 16, fontFamily: Fonts.main, marginLeft: 2}}>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Icon name="map" size={24} color={Colors.light} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Icon name="near-me" size={24} color={Colors.light} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Icon name="arrow-up" size={24} color={Colors.light} />
+              </TouchableOpacity>
+            </View>
             <View
               style={{
                 flexDirection: 'row',
