@@ -9,9 +9,11 @@ import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Button from '../../components/Button';
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export default function Map({route}) {
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
   const {places} = route.params;
+  const nav = useNavigation();
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -28,6 +30,40 @@ export default function Map({route}) {
   return (
     <>
       <GestureHandlerRootView>
+        <TouchableOpacity
+          style={{
+            marginTop: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            zIndex: 999,
+            top: 16,
+            left: 16,
+            backgroundColor: Colors.dark,
+            width: 48,
+            height: 48,
+            borderRadius: 16,
+          }}
+          onPress={() => nav.goBack()}>
+          <Icon name="arrow-left" size={28} color={Colors.light} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            marginTop: 16,
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            zIndex: 999,
+            top: 16,
+            left: 16,
+            backgroundColor: Colors.dark,
+            width: 48,
+            height: 48,
+            borderRadius: 16,
+          }}
+          onPress={() => nav.goBack()}>
+          <Icon name="arrow-left" size={28} color={Colors.light} />
+        </TouchableOpacity>
         <MapView
           style={{width: '100%', height: '100%'}}
           customMapStyle={CustomMapStyle}
@@ -60,15 +96,14 @@ export default function Map({route}) {
           backgroundStyle={{
             backgroundColor: Colors.backgroundColor,
           }}
-          backdropComponent={null}
           ref={bottomSheetRef}
           onChange={handleSheetChanges}
           snapPoints={['25%', '50%']}>
           <BottomSheetView style={styles.contentContainer}>
             {places.length > 0 &&
-              places.map((place: any, index: number) => (
-                <View style={styles.card} key={index}>
-                  <View style={{flex: 1,}}>
+              places.map((place, index) => (
+                <View style={styles.card} key={`place-${index}`}>
+                  <View style={{flex: 1}}>
                     <Text style={styles.cardTitle}>{place.name}</Text>
                     <Text style={styles.cardDescription}>{place.description}</Text>
                   </View>
@@ -98,7 +133,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height:100
+    height: 100,
   },
   cardTitle: {
     fontSize: 18,

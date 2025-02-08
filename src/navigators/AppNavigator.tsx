@@ -46,8 +46,30 @@ export default function AppNavigator() {
       })}>
       <Tab.Screen name="Home" component={HomeNavigator} />
       <Tab.Screen name="Community" component={CommunityNavigator} />
-      <Tab.Screen name="Rent" component={RentNavigator} />
-      <Tab.Screen name="Assistant" component={AssistantNavigator} />
+      <Tab.Screen
+        name="Rent"
+        component={RentNavigator}
+        options={{
+          tabBarStyle: {display: 'none'},
+        }}
+        listeners={({navigation}) => ({
+          tabPress: e => {
+            e.preventDefault();
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Rent'}],
+            });
+          },
+        })}
+      />
+
+      <Tab.Screen
+        name="Assistant"
+        component={AssistantNavigator}
+        options={{
+          tabBarStyle: {display: 'none'},
+        }}
+      />
       <Tab.Screen name="Profile" component={ProfileNavigator} />
     </Tab.Navigator>
   );
