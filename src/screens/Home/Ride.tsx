@@ -10,12 +10,29 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
+
 // Components
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import StopwatchTimer, {StopwatchTimerMethods} from 'react-native-animated-stopwatch-timer';
 
 export default function RideScreen() {
   const nav = useNavigation();
   const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const stopwatchTimerRef = useRef<StopwatchTimerMethods>(null);
+
+  // Methods to control the stopwatch
+  function play() {
+    stopwatchTimerRef.current?.play();
+  }
+
+  function pause() {
+    stopwatchTimerRef.current?.pause();
+  }
+
+  function reset() {
+    stopwatchTimerRef.current?.reset();
+  }
 
   return (
     <View style={styles.container}>
@@ -49,14 +66,12 @@ export default function RideScreen() {
                 style={{
                   alignItems: 'center',
                   flex: 1,
-                  flexDirection: 'row',
                   backgroundColor: Colors.backgroundColorsSecondary,
                   borderRadius: 16,
                   padding: 12,
                 }}
                 onPress={() => nav.goBack()}>
                 <Icon name="close" size={24} color={Colors.light} />
-                <Text style={{color: Colors.light, fontSize: 16, fontFamily: Fonts.main, marginLeft: 2}}>Close</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -91,10 +106,33 @@ export default function RideScreen() {
             </View>
             <View
               style={{
+                padding: 12,
+                alignItems: 'center',
+                borderRadius: 16,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}>
+              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={pause}>
+                <Icon name="pause" size={48} color={Colors.light} />
+              </TouchableOpacity>
+              <StopwatchTimer
+                ref={stopwatchTimerRef}
+                decimalSeparator="."
+                enterAnimationType="slide-in-down"
+                containerStyle={{flex: 1, alignItems: `center`, justifyContent: `center`}}
+                textCharStyle={{color: Colors.light, fontSize: 54, fontFamily: Fonts.main, fontWeight: 'bold', letterSpacing: -2}}
+              />
+              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={play}>
+                <Icon name="play" size={48} color={Colors.light} />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 alignItems: 'center',
                 padding: 12,
+                paddingTop: 0,
                 gap: 8,
               }}>
               {/* Yükseklik Sütunu */}
@@ -181,26 +219,6 @@ export default function RideScreen() {
                   0 kcal
                 </Text>
               </View>
-            </View>
-            <View
-              style={{
-                padding: 12,
-                alignItems: 'center',
-                borderRadius: 16,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-              }}>
-              <Icon name="pause" size={36} color={Colors.light} />
-              <Text
-                style={{
-                  textAlign: 'center',
-                  color: Colors.light,
-                  fontSize: 54,
-                  fontFamily: Fonts.main,
-                }}>
-                00:00:00
-              </Text>
-              <Icon name="play" size={36} color={Colors.light} />
             </View>
           </BottomSheetView>
         </BottomSheet>
