@@ -13,13 +13,14 @@ import {useNavigation} from '@react-navigation/native';
 import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-
+import EventCard from '../../components/EventCard/EventCard';
+import {events} from '../../data/events';
 export default function HomeScreen() {
   const nav = useNavigation();
   return (
     <View style={styles.container}>
       <Header title="Welcome Eren" description="Let's find a bike for you" />
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16, paddingBottom: 80}}>
         <View
           style={{
             borderRadius: 16,
@@ -106,40 +107,6 @@ export default function HomeScreen() {
                 Popular Routes
               </Text>
             </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View
-                style={{
-                  width: '100%',
-                  gap: 8,
-                  flexDirection: 'row',
-                  overflow: 'visible',
-                }}>
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-              </View>
-            </ScrollView>
           </View>
           <View style={{marginTop: 32, width: '100%', gap: 8}}>
             <View
@@ -158,138 +125,12 @@ export default function HomeScreen() {
                 Upcoming Events
               </Text>
             </View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View
-                style={{
-                  width: '100%',
-                  gap: 8,
-                  flexDirection: 'row',
-                  overflow: 'visible',
-                }}>
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-                <View
-                  style={{
-                    height: 200,
-                    width: 320,
-                    backgroundColor: Colors.backgroundColorsSecondary,
-                    borderRadius: 16,
-                  }}
-                />
-              </View>
-            </ScrollView>
-          </View>
-          <View style={{marginTop: 24, width: '100%', gap: 8}}>
-            <Text style={styles.text}>On the way</Text>
             <View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: 8,
-                  gap: 16,
-                }}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text
-                    style={{
-                      color: Colors.light,
-                      fontSize: 20,
-                      fontFamily: Fonts.main,
-                    }}>
-                    Eren
-                  </Text>
-                  <Text
-                    style={{
-                      color: Colors.gray,
-                      fontSize: 16,
-                      fontFamily: Fonts.interSemiBold,
-                    }}>
-                    400m
-                  </Text>
-                </View>
-                <View>
-                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
-                </View>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: 8,
-                  gap: 16,
-                }}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text
-                    style={{
-                      color: Colors.light,
-                      fontSize: 20,
-                      fontFamily: Fonts.main,
-                    }}>
-                    Eren
-                  </Text>
-                  <Text
-                    style={{
-                      color: Colors.gray,
-                      fontSize: 16,
-                      fontFamily: Fonts.interSemiBold,
-                    }}>
-                    1.2km
-                  </Text>
-                </View>
-                <View>
-                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
-                </View>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: 8,
-                  gap: 16,
-                  marginBottom: 16,
-                }}>
-                <View style={{flexDirection: 'row', alignItems: 'center', gap: 8}}>
-                  <Image source={require('../../assets/images/avatar.jpg')} style={{width: 48, height: 48, borderRadius: 32}} />
-                  <Text
-                    style={{
-                      color: Colors.light,
-                      fontSize: 20,
-                      fontFamily: Fonts.main,
-                    }}>
-                    Eren
-                  </Text>
-                  <Text
-                    style={{
-                      color: Colors.gray,
-                      fontSize: 16,
-                      fontFamily: Fonts.interSemiBold,
-                    }}>
-                    1.4km
-                  </Text>
-                </View>
-                <View>
-                  <Button style={{width: 72}} type="tertiary" icon="vibrate" />
-                </View>
-              </View>
+              <ScrollView style={{gap: 8, paddingBottom: 120}} horizontal showsHorizontalScrollIndicator={false}>
+                {events.map(event => (
+                  <EventCard key={event.id} {...event} />
+                ))}
+              </ScrollView>
             </View>
           </View>
         </View>

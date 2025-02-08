@@ -46,7 +46,8 @@ export default function RideScreen() {
             longitude: 28.9784,
             latitudeDelta: 1,
             longitudeDelta: 1,
-          }}></MapView>
+          }}
+        />
         <BottomSheet
           handleComponent={null}
           backgroundStyle={{
