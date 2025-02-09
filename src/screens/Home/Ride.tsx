@@ -8,16 +8,21 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 
 // Components
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import StopwatchTimer, {StopwatchTimerMethods} from 'react-native-animated-stopwatch-timer';
+import MapView from 'react-native-map-clustering';
+import MapViewDirections from 'react-native-maps-directions';
 
-export default function RideScreen() {
+export default function RideScreen({route}) {
   const nav = useNavigation();
   const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const {places} = route.params || {places: []};
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
 
   const stopwatchTimerRef = useRef<StopwatchTimerMethods>(null);
 
@@ -38,16 +43,50 @@ export default function RideScreen() {
     <View style={styles.container}>
       <GestureHandlerRootView>
         <MapView
+          clusteringEnabled={false}
+          clusterColor="#000"
+          style={{width: '100%', height: '100%'}}
           customMapStyle={CustomMapStyle}
           provider={PROVIDER_GOOGLE}
-          style={styles.map}
+          loadingEnabled={true}
           initialRegion={{
-            latitude: 41.0082,
-            longitude: 28.9784,
-            latitudeDelta: 1,
-            longitudeDelta: 1,
-          }}
-        />
+            latitude: places.length > 0 ? places[0].latitude : 41.0082,
+            longitude: places.length > 0 ? places[0].longitude : 28.9784,
+            latitudeDelta: 0.043,
+            longitudeDelta: 0.043,
+          }}>
+          {places.length > 0 &&
+            places.map((place: any, index: number) => (
+              <Marker key={index} coordinate={{latitude: place.latitude, longitude: place.longitude}} title={place.name} description={place.description} tracksViewChanges={false}>
+                <View
+                  style={{
+                    backgroundColor: Colors.backgroundColorsSecondary,
+                    padding: 8,
+                    borderRadius: 999,
+                    borderColor: Colors.light,
+                    borderWidth: 1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 4,
+                  }}>
+                  <Icon name="near-me" size={12} color={Colors.light} />
+                  <Text style={{color: Colors.light, fontFamily: Fonts.main, fontSize: 10}}>{index + 1}</Text>
+                </View>
+              </Marker>
+            ))}
+
+          {places.length > 0 && (
+            <MapViewDirections
+              origin={places[0]}
+              destination={places[places.length - 1]}
+              apikey={GOOGLE_MAPS_APIKEY}
+              strokeWidth={3}
+              waypoints={places.slice(1, -1)}
+              strokeColor="darkgreen"
+            />
+          )}
+        </MapView>
         <BottomSheet
           handleComponent={null}
           backgroundStyle={{
@@ -60,7 +99,6 @@ export default function RideScreen() {
                 justifyContent: 'space-around',
                 alignItems: 'center',
                 padding: 12,
-                paddingBottom: 0,
                 gap: 8,
               }}>
               <TouchableOpacity
@@ -105,35 +143,14 @@ export default function RideScreen() {
                 <Icon name="arrow-up" size={24} color={Colors.light} />
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                padding: 12,
-                alignItems: 'center',
-                borderRadius: 16,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-              }}>
-              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={pause}>
-                <Icon name="pause" size={48} color={Colors.light} />
-              </TouchableOpacity>
-              <StopwatchTimer
-                ref={stopwatchTimerRef}
-                decimalSeparator="."
-                enterAnimationType="slide-in-down"
-                containerStyle={{flex: 1, alignItems: `center`, justifyContent: `center`}}
-                textCharStyle={{color: Colors.light, fontSize: 54, fontFamily: Fonts.main, fontWeight: 'bold', letterSpacing: -2}}
-              />
-              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={play}>
-                <Icon name="play" size={48} color={Colors.light} />
-              </TouchableOpacity>
-            </View>
+
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
                 alignItems: 'center',
                 padding: 12,
-                paddingTop: 0,
+                paddingVertical: 0,
                 gap: 8,
               }}>
               {/* Yükseklik Sütunu */}
@@ -220,6 +237,28 @@ export default function RideScreen() {
                   0 kcal
                 </Text>
               </View>
+            </View>
+            <View
+              style={{
+                padding: 12,
+                alignItems: 'center',
+                borderRadius: 16,
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}>
+              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={pause}>
+                <Icon name="pause" size={48} color={Colors.light} />
+              </TouchableOpacity>
+              <StopwatchTimer
+                ref={stopwatchTimerRef}
+                decimalSeparator="."
+                enterAnimationType="slide-in-down"
+                containerStyle={{flex: 1, alignItems: `center`, justifyContent: `center`}}
+                textCharStyle={{color: Colors.light, fontSize: 54, fontFamily: Fonts.main, fontWeight: 'bold', letterSpacing: -2}}
+              />
+              <TouchableOpacity style={{backgroundColor: Colors.backgroundColorsSecondary, padding: 12, borderRadius: 16}} onPress={play}>
+                <Icon name="play" size={48} color={Colors.light} />
+              </TouchableOpacity>
             </View>
           </BottomSheetView>
         </BottomSheet>

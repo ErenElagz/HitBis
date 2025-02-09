@@ -12,8 +12,6 @@ import LinearGradient from 'react-native-linear-gradient';
 // Components
 import Message from '../../components/AssistantComponents/Message';
 import Response from '../../components/AssistantComponents/Response';
-import InputText from '../../components/InputText';
-import {opacity} from 'react-native-reanimated/lib/typescript/Colors';
 
 export default function AssistantScreen() {
   const nav = useNavigation();
