@@ -90,7 +90,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
+            storeFile file('release.keystore')
             storePassword 'hitbis'
             keyAlias 'hitbis-alias'
             keyPassword 'hitbis'

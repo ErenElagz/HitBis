@@ -7,12 +7,12 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 import StationsList from '../../data/stations';
-
+import MapView from 'react-native-map-clustering';
+import {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 export default function RentScreen() {
   const nav = useNavigation();
   return (
@@ -58,6 +58,7 @@ export default function RentScreen() {
         <Icon name="near-me" size={28} color={Colors.red} />
       </TouchableOpacity>
       <MapView
+        clusterColor="#000"
         customMapStyle={CustomMapStyle}
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -75,7 +76,23 @@ export default function RentScreen() {
               longitude: station.coordinate.longitude,
             }}
             title={station.title}
-          />
+            tracksViewChanges={false}>
+            <View
+              style={{
+                backgroundColor: Colors.backgroundColorsSecondary,
+                padding: 8,
+                borderRadius: 999,
+                borderColor: Colors.light,
+                borderWidth: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 4,
+              }}>
+              <Icon name="bike" size={12} color={Colors.light} />
+              <Text style={{color: Colors.light, fontFamily: Fonts.main, fontSize: 10}}>{station.id}</Text>
+            </View>
+          </Marker>
         ))}
       </MapView>
     </View>
@@ -85,6 +102,8 @@ export default function RentScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: '100%',
+    height: '100%',
     backgroundColor: Colors.backgroundColor,
   },
   text: {
