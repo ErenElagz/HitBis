@@ -2,8 +2,10 @@ import {StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../styles/Colors';
-import MapView, {Polyline, Marker} from 'react-native-maps';
+import MapView, {Polyline, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Button from '../../components/Button';
+import {CustomMapStyle} from '../../styles/MapStyle';
+
 export default function RouteScreen(route: any) {
   const {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates} = route.route.params;
 
@@ -15,6 +17,21 @@ export default function RouteScreen(route: any) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.mapContainer}>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            initialRegion={{
+              latitude: coordinates.latitude,
+              longitude: coordinates.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+            customMapStyle={CustomMapStyle}>
+            <Marker coordinate={coordinates} title={name} />
+          </MapView>
+        </View>
+
         <Text style={styles.routeTitle}>{name}</Text>
 
         <View style={styles.detailCard}>
@@ -56,9 +73,10 @@ const styles = StyleSheet.create({
     paddingBottom: 80,
   },
   mapContainer: {
-    height: 300,
-    margin: 15,
-    borderRadius: 15,
+    width: '100%',
+    height: 320,
+    overflow: 'hidden',
+    borderRadius: 32,
   },
   map: {
     ...StyleSheet.absoluteFillObject,
@@ -68,8 +86,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.light,
     marginHorizontal: 20,
-    marginTop: 64,
-    textAlign: 'left',
+    marginTop: 16,
+    textAlign: 'center',
   },
   detailCard: {
     backgroundColor: Colors.backgroundColorsSecondary,
