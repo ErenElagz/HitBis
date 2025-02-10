@@ -67,7 +67,7 @@ function Response(props: any) {
             </View>
           ))}
       </View>
-      <Button type="secondary" title="See on the Map" onPress={() => nav.navigate('Map' as never, {places})} />
+      <Button type="tertiary" title="See on the Map" onPress={() => nav.navigate('Map' as never, {places})} />
     </View>
   );
 }

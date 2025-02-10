@@ -98,7 +98,7 @@ export default function RentScreen() {
         ref={bottomSheetRef}
         handleIndicatorStyle={{backgroundColor: Colors.light}}
         onChange={handleSheetChanges}
-        snapPoints={['15%', '50%']}>
+        snapPoints={['15%', '45%']}>
         <BottomSheetView style={styles.contentContainer}>
           <View
             style={{
@@ -118,7 +118,7 @@ export default function RentScreen() {
                 />
               </View>
               <View style={{flex: 1, gap: 4}}>
-                <Text style={{color: Colors.light, fontSize: 24, fontFamily: Fonts.main}}>{currentStation !== null ? StationsList[currentStation].title : 'Station'}</Text>
+                <Text style={{color: Colors.light, fontSize: 20, fontFamily: Fonts.main}}>{currentStation !== null ? StationsList[currentStation].title : 'Station'}</Text>
                 <Text style={{color: Colors.gray, fontSize: 14, fontFamily: Fonts.main}}>
                   {currentStation !== null ? StationsList[currentStation].description : 'Choose any Station to the see details'}
                 </Text>

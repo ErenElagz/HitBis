@@ -16,6 +16,10 @@ export default function Map({route}) {
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
   const {places} = route.params;
   const nav = useNavigation();
+
+  const [duration, setDuration] = React.useState(0);
+  const [distance, setDistance] = React.useState(0);
+
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -32,7 +36,6 @@ export default function Map({route}) {
   return (
     <>
       <GestureHandlerRootView>
-
         <TouchableOpacity
           style={{
             marginTop: 16,
@@ -99,7 +102,7 @@ export default function Map({route}) {
           }}>
           {places.length > 0 &&
             places.map((place: any, index: number) => (
-              <Marker key={index} coordinate={{latitude: place.latitude, longitude: place.longitude}} title={place.name} description={place.description} tracksViewChanges={false}>
+              <Marker key={index} coordinate={{latitude: place.latitude, longitude: place.longitude}} title={place.name} tracksViewChanges={false}>
                 <View
                   style={{
                     backgroundColor: Colors.backgroundColorsSecondary,
@@ -113,7 +116,9 @@ export default function Map({route}) {
                     gap: 4,
                   }}>
                   <Icon name="near-me" size={12} color={Colors.light} />
-                  <Text style={{color: Colors.light, fontFamily: Fonts.main, fontSize: 10}}>{index + 1}</Text>
+                  <Text style={{color: Colors.light, fontFamily: Fonts.main, fontSize: 10}}>
+                    {index + 1} {place.name}
+                  </Text>
                 </View>
               </Marker>
             ))}
@@ -125,7 +130,12 @@ export default function Map({route}) {
               apikey={GOOGLE_MAPS_APIKEY}
               strokeWidth={3}
               waypoints={places.slice(1, -1)}
-              strokeColor="darkgreen"
+              strokeColor="darkblue"
+              optimizeWaypoints={true}
+              onReady={result => {
+                setDuration(parseFloat(result.duration.toFixed(2)));
+                setDistance(parseFloat(result.distance.toFixed(2)));
+              }}
             />
           )}
         </MapView>
@@ -139,6 +149,22 @@ export default function Map({route}) {
           onChange={handleSheetChanges}
           snapPoints={['25%', '50%']}>
           <BottomSheetView style={styles.contentContainer}>
+            <View
+              style={{
+                flexDirection: 'row',
+                gap: 8,
+                marginBottom: 8,
+              }}>
+              <View style={{flex: 1, backgroundColor: Colors.backgroundColorsSecondary, padding: 16, borderRadius: 24}}>
+                <Text style={{color: Colors.gray, textAlign: 'center', fontFamily: Fonts.main, fontSize: 14, fontWeight: 'bold'}}>Duration (Min)</Text>
+                <Text style={{color: Colors.light, textAlign: 'center', fontFamily: Fonts.main, fontSize: 20, fontWeight: 'bold'}}>{duration} min</Text>
+              </View>
+              <View style={{flex: 1, backgroundColor: Colors.backgroundColorsSecondary, padding: 16, borderRadius: 24}}>
+                <Text style={{color: Colors.gray, textAlign: 'center', fontFamily: Fonts.main, fontSize: 14, fontWeight: 'bold'}}>Distance (Km)</Text>
+                <Text style={{color: Colors.light, textAlign: 'center', fontFamily: Fonts.main, fontSize: 20, fontWeight: 'bold'}}>{distance} km</Text>
+              </View>
+            </View>
+
             {places.length > 0 &&
               places.map((place, index) => (
                 <TouchableOpacity style={styles.card} key={`place-${index}`} onPress={() => openInGoogleMaps(place.latitude, place.longitude)}>
@@ -155,7 +181,6 @@ export default function Map({route}) {
               ))}
           </BottomSheetView>
         </BottomSheet>
-        
       </GestureHandlerRootView>
     </>
   );
