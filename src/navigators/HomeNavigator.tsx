@@ -3,8 +3,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/Home/Home';
 import NearMeScreen from '../screens/Home/NearMe';
 import CreateRouteScreen from '../screens/Home/CreateRoute';
-import RideTogetherScreen from '../screens/Home/RideTogether';
 import RideScreen from '../screens/Home/Ride';
+import EventScreen from '../screens/Home/Event';
+import RouteScreen from '../screens/Home/Route';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +15,9 @@ export default function HomeNavigator() {
       <Stack.Screen name="HomeRouter" component={HomeScreen} />
       <Stack.Screen name="NearMe" component={NearMeScreen} />
       <Stack.Screen name="CreateRoute" component={CreateRouteScreen} />
-      <Stack.Screen name="RideTogether" component={RideTogetherScreen} />
       <Stack.Screen name="Ride" component={RideScreen} />
+      <Stack.Screen name="Event" component={EventScreen} />
+      <Stack.Screen name="Route" component={RouteScreen} />
     </Stack.Navigator>
   );
 }

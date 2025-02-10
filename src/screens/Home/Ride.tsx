@@ -49,6 +49,8 @@ export default function RideScreen({route}) {
           customMapStyle={CustomMapStyle}
           provider={PROVIDER_GOOGLE}
           loadingEnabled={true}
+          showsUserLocation={true}
+          followsUserLocation={true}
           initialRegion={{
             latitude: places.length > 0 ? places[0].latitude : 41.0082,
             longitude: places.length > 0 ? places[0].longitude : 28.9784,

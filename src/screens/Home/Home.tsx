@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -24,7 +24,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Header title="Welcome Eren" description="Let's find a bike for you" />
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 16, paddingBottom: 80}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 12, paddingBottom: 80}}>
         <View
           style={{
             borderRadius: 16,
@@ -33,48 +33,16 @@ export default function HomeScreen() {
           <MapView
             customMapStyle={CustomMapStyle}
             style={styles.map}
+            showsUserLocation={true}
+            followsUserLocation={true}
             provider={PROVIDER_GOOGLE}
             initialRegion={{
               latitude: 41.0082,
               longitude: 28.9784,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
-            }}></MapView>
-          <TouchableOpacity
-            onPress={() => {
-              nav.navigate('NearMe' as never);
             }}
-            style={{
-              marginTop: 16,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'absolute',
-              zIndex: 999,
-              bottom: 16,
-              right: 16,
-              backgroundColor: Colors.dark,
-              width: 48,
-              height: 48,
-              borderRadius: 16,
-            }}>
-            <Icon name="crop-free" size={28} color={Colors.light} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: 16,
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'absolute',
-              zIndex: 999,
-              bottom: 72,
-              right: 20,
-              backgroundColor: Colors.secondaryDark,
-              width: 36,
-              height: 36,
-              borderRadius: 20,
-            }}>
-            <Icon name="near-me" size={20} color={Colors.red} />
-          </TouchableOpacity>
+          />
         </View>
         <View
           style={{
@@ -85,12 +53,9 @@ export default function HomeScreen() {
             marginTop: 8,
           }}>
           <Button style={{flex: 1}} type="secondary" icon="plus" title="Create a Route" onPress={() => nav.navigate('CreateRoute' as never)} />
-          <Button style={{flex: 1}} type="secondary" icon="bike" title="Ride Together" onPress={() => nav.navigate('RideTogether' as never)} />
         </View>
 
-        <SearchBar onPress={() => nav.navigate('Community' as never, {screen: 'Search'})} placeholder="Search for Bikes and Locations" />
-
-        <View style={{marginTop: 16, width: '100%', gap: 8}}>
+        <View style={{marginTop: 32, width: '100%', gap: 8}}>
           <View
             style={{
               flexDirection: 'row',
