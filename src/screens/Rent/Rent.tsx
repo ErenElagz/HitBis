@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -13,8 +13,10 @@ import Button from '../../components/Button';
 import StationsList from '../../data/stations';
 import MapView from 'react-native-map-clustering';
 import {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+
 export default function RentScreen() {
   const nav = useNavigation();
+
   return (
     <View style={styles.container}>
       <Button
@@ -41,30 +43,15 @@ export default function RentScreen() {
         onPress={() => nav.goBack()}>
         <Icon name="arrow-left" size={28} color={Colors.light} />
       </TouchableOpacity>
-      <TouchableOpacity
-        style={{
-          marginTop: 16,
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'absolute',
-          zIndex: 999,
-          top: 16,
-          right: 16,
-          backgroundColor: Colors.dark,
-          width: 48,
-          height: 48,
-          borderRadius: 16,
-        }}>
-        <Icon name="near-me" size={28} color={Colors.red} />
-      </TouchableOpacity>
       <MapView
         clusterColor="#000"
         customMapStyle={CustomMapStyle}
         style={styles.map}
         provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
         initialRegion={{
-          latitude: 41.0082,
           longitude: 28.9784,
+          latitude: 41.0082,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}>
@@ -101,27 +88,7 @@ export default function RentScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
     backgroundColor: Colors.backgroundColor,
-  },
-  text: {
-    color: Colors.light,
-    fontSize: 16,
-    fontFamily: Fonts.main,
-  },
-  text2: {
-    color: Colors.light,
-    fontSize: 24,
-    fontFamily: Fonts.main,
-    opacity: 0.8,
-  },
-  text3: {
-    color: Colors.light,
-    fontSize: 14,
-    opacity: 0.4,
-    fontFamily: Fonts.main,
   },
   map: {
     width: '100%',

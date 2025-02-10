@@ -17,11 +17,12 @@ interface RouteCardProps {
     latitude: number;
     longitude: number;
   };
+  style?: object;
 }
 
-const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates}) => {
+const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates, style}) => {
   return (
-    <TouchableOpacity style={[styles.card]}>
+    <TouchableOpacity style={[styles.card, style]}>
       <View style={styles.mapContainer}>
         <MapView
           provider={PROVIDER_GOOGLE}

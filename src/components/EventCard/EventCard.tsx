@@ -13,11 +13,12 @@ interface EventCardProps {
   difficulty: 'Kolay' | 'Orta' | 'Zor';
   organizer: string;
   image: string;
+  style?: object;
 }
 
-const EventCard: React.FC<EventCardProps> = ({name, description, date, time, location, participants, difficulty, organizer, image}) => {
+const EventCard: React.FC<EventCardProps> = ({name, description, date, time, location, participants, difficulty, organizer, image, style}) => {
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={[styles.card, style]}>
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.organizer}>{organizer}</Text>

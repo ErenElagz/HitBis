@@ -6,11 +6,16 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
+// Datas
+import {events} from '../../data/events.ts';
+import popularRoutes, {routes} from '../../data/routes.ts';
+// Component
+import EventCard from '../../components/EventCard/EventCard';
+import RouteCard from '../../components/RouteCard/RouteCard';
 
 function ActivitiesTab() {
   return (
@@ -46,13 +51,14 @@ function RoutesTab() {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: Colors.backgroundColorsSecondary,
-        borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text style={styles.tabText}>RoutesTab</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {popularRoutes.map(route => (
+          <RouteCard key={route.id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
