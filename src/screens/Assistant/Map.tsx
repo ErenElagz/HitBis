@@ -32,6 +32,7 @@ export default function Map({route}) {
   return (
     <>
       <GestureHandlerRootView>
+
         <TouchableOpacity
           style={{
             marginTop: 16,
@@ -82,6 +83,7 @@ export default function Map({route}) {
           onPress={() => nav.goBack()}>
           <Icon name="arrow-left" size={28} color={Colors.light} />
         </TouchableOpacity>
+
         <MapView
           clusteringEnabled={false}
           clusterColor="#000"
@@ -127,6 +129,7 @@ export default function Map({route}) {
             />
           )}
         </MapView>
+
         <BottomSheet
           backgroundStyle={{
             backgroundColor: Colors.backgroundColor,
@@ -152,6 +155,7 @@ export default function Map({route}) {
               ))}
           </BottomSheetView>
         </BottomSheet>
+        
       </GestureHandlerRootView>
     </>
   );

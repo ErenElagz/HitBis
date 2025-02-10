@@ -12,6 +12,8 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import SwipeButton from 'rn-swipe-button';
 import Header from '../../components/Header';
+
+
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
