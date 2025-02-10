@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Colors from '../../styles/Colors';
-
+import {useNavigation} from '@react-navigation/native';
 interface EventCardProps {
   id: string;
   name: string;
@@ -17,8 +17,13 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({name, description, date, time, location, participants, difficulty, organizer, image, style}) => {
+  const nav = useNavigation();
   return (
-    <TouchableOpacity style={[styles.card, style]}>
+    <TouchableOpacity
+      style={[styles.card, style]}
+      onPress={() => {
+        nav.navigate('Event' as never, {name, description, date, time, location, participants, difficulty, organizer, image});
+      }}>
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.organizer}>{organizer}</Text>

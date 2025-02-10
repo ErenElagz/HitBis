@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, useColorScheme, TouchableOpacity} from 'react-na
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Colors from '../../styles/Colors';
 import {CustomMapStyle} from '../../styles/MapStyle';
+import {useNavigation} from '@react-navigation/native';
 
 interface RouteCardProps {
   id: string;
@@ -21,8 +22,14 @@ interface RouteCardProps {
 }
 
 const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates, style}) => {
+  const nav = useNavigation();
+
   return (
-    <TouchableOpacity style={[styles.card, style]}>
+    <TouchableOpacity
+      style={[styles.card, style]}
+      onPress={() => {
+        nav.navigate('Route' as never, {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates});
+      }}>
       <View style={styles.mapContainer}>
         <MapView
           provider={PROVIDER_GOOGLE}
