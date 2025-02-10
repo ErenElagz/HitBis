@@ -4,6 +4,7 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Colors from '../../styles/Colors';
 import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
+import {screensEnabled} from 'react-native-screens';
 
 interface RouteCardProps {
   id: string;
@@ -28,7 +29,11 @@ const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estim
     <TouchableOpacity
       style={[styles.card, style]}
       onPress={() => {
-        nav.navigate('Route' as never, {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates});
+        try {
+          nav.navigate('Route', {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates});
+        } catch (e) {
+          console.error('Failed to navigate to Route:', e);
+        }
       }}>
       <View style={styles.mapContainer}>
         <MapView

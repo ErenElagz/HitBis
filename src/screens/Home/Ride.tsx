@@ -1,5 +1,5 @@
 // React
-import React, {useRef} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
@@ -16,28 +16,42 @@ import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import StopwatchTimer, {StopwatchTimerMethods} from 'react-native-animated-stopwatch-timer';
 import MapView from 'react-native-map-clustering';
 import MapViewDirections from 'react-native-maps-directions';
+import GetLocation from 'react-native-get-location';
 
 export default function RideScreen({route}) {
   const nav = useNavigation();
-  const bottomSheetRef = useRef<BottomSheet>(null);
-
   const {places} = route.params || {places: []};
+
+  const bottomSheetRef = useRef<BottomSheet>(null);
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
 
   const stopwatchTimerRef = useRef<StopwatchTimerMethods>(null);
-
-  // Methods to control the stopwatch
   function play() {
     stopwatchTimerRef.current?.play();
+    GetLocation.getCurrentPosition({
+      enableHighAccuracy: true,
+      timeout: 20000,
+    })
+      .then(location => {
+        console.log(location);
+        setSpeed((location.speed * 3.6).toFixed(1));
+      })
+      .catch(error => {
+        const {code, message} = error;
+        console.warn(code, message);
+      });
   }
-
   function pause() {
     stopwatchTimerRef.current?.pause();
+    setSpeed(0);
   }
-
   function reset() {
     stopwatchTimerRef.current?.reset();
   }
+
+  const [speed, setSpeed] = useState(0);
+  const [calories, setCalories] = useState(0);
+  const [distance, setDistance] = useState(0);
 
   return (
     <View style={styles.container}>
@@ -115,6 +129,17 @@ export default function RideScreen({route}) {
                 <Icon name="close" size={24} color={Colors.light} />
               </TouchableOpacity>
               <TouchableOpacity
+                onPress={reset}
+                style={{
+                  alignItems: 'center',
+                  flex: 1,
+                  backgroundColor: Colors.backgroundColorsSecondary,
+                  borderRadius: 16,
+                  padding: 12,
+                }}>
+                <Icon name="reload" size={24} color={Colors.light} />
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={{
                   alignItems: 'center',
                   flex: 1,
@@ -133,16 +158,6 @@ export default function RideScreen({route}) {
                   padding: 12,
                 }}>
                 <Icon name="near-me" size={24} color={Colors.light} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  alignItems: 'center',
-                  flex: 1,
-                  backgroundColor: Colors.backgroundColorsSecondary,
-                  borderRadius: 16,
-                  padding: 12,
-                }}>
-                <Icon name="arrow-up" size={24} color={Colors.light} />
               </TouchableOpacity>
             </View>
 
@@ -208,7 +223,7 @@ export default function RideScreen({route}) {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  0 km/h
+                  {speed} km/h
                 </Text>
               </View>
               {/* Yakılan Kalori Sütunu */}

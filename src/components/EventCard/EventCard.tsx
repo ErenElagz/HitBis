@@ -22,7 +22,11 @@ const EventCard: React.FC<EventCardProps> = ({name, description, date, time, loc
     <TouchableOpacity
       style={[styles.card, style]}
       onPress={() => {
-        nav.navigate('Event' as never, {name, description, date, time, location, participants, difficulty, organizer, image});
+        try {
+          nav.navigate('Event', {name, description, date, time, location, participants, difficulty, organizer, image});
+        } catch (e) {
+          console.error('Failed to navigate to Event:', e);
+        }
       }}>
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.content}>

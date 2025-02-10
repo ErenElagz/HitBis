@@ -16,7 +16,7 @@ export default function RouteScreen(route: any) {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mapContainer}>
           <MapView
             provider={PROVIDER_GOOGLE}
@@ -49,7 +49,7 @@ export default function RouteScreen(route: any) {
         </View>
       </ScrollView>
 
-      <Button onPress={handleSaveRoute} title="Save Route" style={{width: '90%', marginHorizontal: 'auto'}} />
+      <Button onPress={handleSaveRoute} title="Save Route" style={{width: '60%', marginHorizontal: 'auto'}} />
     </View>
   );
 }
