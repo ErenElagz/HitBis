@@ -8,7 +8,6 @@ import defaultStyles from '../../styles/DefaultStyles';
 // Libraries
 // Components
 
-
 export default function SplashScreen() {
   return (
     <View style={styles.container}>

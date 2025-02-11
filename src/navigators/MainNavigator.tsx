@@ -10,11 +10,7 @@ export default function MainNavigator() {
 
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      {userIsAuthenticated ? (
-        <Stack.Screen name="App" component={AppNavigator} />
-      ) : (
-        <Stack.Screen name="Auth" component={AuthNavigator} />
-      )}
+      {userIsAuthenticated ? <Stack.Screen name="App" component={AppNavigator} /> : <Stack.Screen name="Auth" component={AuthNavigator} />}
     </Stack.Navigator>
   );
 }

@@ -16,7 +16,7 @@ const Colors = {
   red: '#FF8C8C',
   orange: '#',
   yellow: '#',
-  green: "#007000",
+  green: '#007000',
   cyan: '#',
   blue: '#',
   pink: '#',

@@ -24,10 +24,7 @@ export default function WelcomeScreen() {
         }}></View>
       <View style={{gap: 12, padding: 8}}>
         <Text style={defaultStyles.HeaderText}>Welcome to HitBis </Text>
-        <Text style={defaultStyles.HeaderBottomText}>
-          Rent a Bike. Drive with Others. Create a Route and Events. Share with
-          Others. Enjoy Your Ride
-        </Text>
+        <Text style={defaultStyles.HeaderBottomText}>Rent a Bike. Drive with Others. Create a Route and Events. Share with Others. Enjoy Your Ride</Text>
       </View>
       <View
         style={{

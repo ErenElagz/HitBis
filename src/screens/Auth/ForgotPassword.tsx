@@ -27,19 +27,14 @@ export default function ForgotPasswordScreen() {
         }}>
         <Icon name="password" size={54} color={Colors.light} />
         <Text style={defaultStyles.HeaderText}>Forgot Password</Text>
-        <Text style={defaultStyles.HeaderBottomText}>
-          Enter your email to get your verification link to reset password
-        </Text>
+        <Text style={defaultStyles.HeaderBottomText}>Enter your email to get your verification link to reset password</Text>
       </View>
 
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>
         <InputText placeholder="E-mail" />
       </View>
 
-      <Button
-        type="secondary"
-        title="Send Verification Link"
-      />
+      <Button type="secondary" title="Send Verification Link" />
       <LinkText
         align="center"
         title="Go Back!"

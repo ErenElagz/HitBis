@@ -61,6 +61,7 @@ export default function HomeScreen() {
             customMapStyle={CustomMapStyle}
             style={styles.map}
             showsUserLocation={true}
+            showsTraffic={true}
             followsUserLocation={true}
             provider={PROVIDER_GOOGLE}
             initialRegion={{

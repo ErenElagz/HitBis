@@ -2,8 +2,7 @@ const PlacesList = {
   locations: [
     {
       name: 'Kadıköy Sahil',
-      description:
-        'Deniz kenarında bisiklet sürmek için ideal bir rota. Kafe ve dinlenme alanları mevcut.',
+      description: 'Deniz kenarında bisiklet sürmek için ideal bir rota. Kafe ve dinlenme alanları mevcut.',
       coordinates: {
         latitude: 40.98184,
         longitude: 29.064544,
@@ -12,8 +11,7 @@ const PlacesList = {
     },
     {
       name: 'Belgrad Ormanı',
-      description:
-        'Doğal güzelliklerin içinde bisiklet parkurları. Doğa yürüyüşü ve piknik alanları da mevcut.',
+      description: 'Doğal güzelliklerin içinde bisiklet parkurları. Doğa yürüyüşü ve piknik alanları da mevcut.',
       coordinates: {
         latitude: 41.20163,
         longitude: 28.919511,
@@ -22,8 +20,7 @@ const PlacesList = {
     },
     {
       name: 'Moda Sahil Parkı',
-      description:
-        'Rahat bir bisiklet sürüşü için güzel bir ortam. Sahil boyunca kafe ve restoranlar mevcut.',
+      description: 'Rahat bir bisiklet sürüşü için güzel bir ortam. Sahil boyunca kafe ve restoranlar mevcut.',
       coordinates: {
         latitude: 40.983894,
         longitude: 29.023517,
@@ -32,8 +29,7 @@ const PlacesList = {
     },
     {
       name: 'Emirgan Korusu',
-      description:
-        'Renkli çiçeklerle dolu doğanın içinde bisiklet sürme deneyimi. Özellikle bahar aylarında harika bir rota.',
+      description: 'Renkli çiçeklerle dolu doğanın içinde bisiklet sürme deneyimi. Özellikle bahar aylarında harika bir rota.',
       coordinates: {
         latitude: 41.105889,
         longitude: 29.053205,
@@ -42,8 +38,7 @@ const PlacesList = {
     },
     {
       name: 'Büyükada',
-      description:
-        'Adada motorlu araçlar yok, bisikletle gezmek için ideal. Doğal ve tarihi mekanlar bir arada.',
+      description: 'Adada motorlu araçlar yok, bisikletle gezmek için ideal. Doğal ve tarihi mekanlar bir arada.',
       coordinates: {
         latitude: 40.868091,
         longitude: 29.126128,
@@ -52,8 +47,7 @@ const PlacesList = {
     },
     {
       name: 'Florya Atatürk Ormanı',
-      description:
-        'Hem dinlenme hem de bisiklet sürmek için sessiz ve huzurlu bir alan.',
+      description: 'Hem dinlenme hem de bisiklet sürmek için sessiz ve huzurlu bir alan.',
       coordinates: {
         latitude: 40.97749,
         longitude: 28.794384,
@@ -62,8 +56,7 @@ const PlacesList = {
     },
     {
       name: 'Tuzla Sahil Parkı',
-      description:
-        'Deniz manzarası eşliğinde bisiklet sürüşü için sakin bir nokta.',
+      description: 'Deniz manzarası eşliğinde bisiklet sürüşü için sakin bir nokta.',
       coordinates: {
         latitude: 40.81752,
         longitude: 29.300235,
@@ -72,8 +65,7 @@ const PlacesList = {
     },
     {
       name: 'Maçka Parkı',
-      description:
-        'Şehir merkezinde doğanın içinde bisiklet sürmek isteyenler için uygun.',
+      description: 'Şehir merkezinde doğanın içinde bisiklet sürmek isteyenler için uygun.',
       coordinates: {
         latitude: 41.04676,
         longitude: 28.988351,
@@ -91,8 +83,7 @@ const PlacesList = {
     },
     {
       name: 'Aydos Ormanı',
-      description:
-        'Şehrin içinde orman havası alarak bisiklet sürmek isteyenler için ideal.',
+      description: 'Şehrin içinde orman havası alarak bisiklet sürmek isteyenler için ideal.',
       coordinates: {
         latitude: 40.948017,
         longitude: 29.214144,
@@ -110,8 +101,7 @@ const PlacesList = {
     },
     {
       name: 'Bakırköy Sahil Yolu',
-      description:
-        'Uzun mesafelerde bisiklet sürmek için tercih edilen bir bölge.',
+      description: 'Uzun mesafelerde bisiklet sürmek için tercih edilen bir bölge.',
       coordinates: {
         latitude: 40.975168,
         longitude: 28.869629,
@@ -120,8 +110,7 @@ const PlacesList = {
     },
     {
       name: 'Göztepe 60. Yıl Parkı',
-      description:
-        'Küçük ama keyifli bir park içinde bisiklet sürüşü yapabilirsiniz.',
+      description: 'Küçük ama keyifli bir park içinde bisiklet sürüşü yapabilirsiniz.',
       coordinates: {
         latitude: 40.9732,
         longitude: 29.049162,
@@ -130,8 +119,7 @@ const PlacesList = {
     },
     {
       name: 'Kemerburgaz Kent Ormanı',
-      description:
-        'Doğanın içinde geniş bisiklet yolları ve piknik alanları mevcut.',
+      description: 'Doğanın içinde geniş bisiklet yolları ve piknik alanları mevcut.',
       coordinates: {
         latitude: 41.199178,
         longitude: 28.9358,
@@ -149,8 +137,7 @@ const PlacesList = {
     },
     {
       name: 'İstanbul Üniversitesi Ormanı',
-      description:
-        'Huzurlu bir ortamda bisiklet sürmek için tercih edilen bir yer.',
+      description: 'Huzurlu bir ortamda bisiklet sürmek için tercih edilen bir yer.',
       coordinates: {
         latitude: 41.182834,
         longitude: 28.803593,
@@ -177,8 +164,7 @@ const PlacesList = {
     },
     {
       name: 'Şile Sahil Yolu',
-      description:
-        'Geniş bir sahil hattında bisiklet sürmek için tercih edilen bir bölge.',
+      description: 'Geniş bir sahil hattında bisiklet sürmek için tercih edilen bir bölge.',
       coordinates: {
         latitude: 41.174349,
         longitude: 29.615456,
@@ -187,8 +173,7 @@ const PlacesList = {
     },
     {
       name: 'Atatürk Arboretumu',
-      description:
-        'Bitki çeşitliliğiyle ünlü, huzurlu bir ortamda bisiklet sürüşü.',
+      description: 'Bitki çeşitliliğiyle ünlü, huzurlu bir ortamda bisiklet sürüşü.',
       coordinates: {
         latitude: 41.177336,
         longitude: 28.979378,

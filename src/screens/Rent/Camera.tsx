@@ -1,12 +1,5 @@
 // React
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Platform,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, Platform} from 'react-native';
 import React, {useEffect} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
@@ -14,36 +7,22 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import Fonts from '../../styles/Fonts';
 // Libraries
-import {
-  Camera,
-  useCameraDevice,
-  useCodeScanner,
-} from 'react-native-vision-camera';
+import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 // Components
 
 export default function CameraScreen() {
   const checkCameraPermission = async () => {
-    const result = await request(
-      Platform.OS === 'ios'
-        ? PERMISSIONS.IOS.CAMERA
-        : PERMISSIONS.ANDROID.CAMERA,
-    );
+    const result = await request(Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA);
 
     switch (result) {
       case RESULTS.GRANTED:
         break;
       case RESULTS.DENIED:
-        Alert.alert(
-          'İzin Reddedildi',
-          'Kamera kullanımı için izin reddedildi.',
-        );
+        Alert.alert('İzin Reddedildi', 'Kamera kullanımı için izin reddedildi.');
         break;
       case RESULTS.BLOCKED:
-        Alert.alert(
-          'İzin Engellendi',
-          'Kamera izinleri ayarlardan etkinleştirilmelidir.',
-        );
+        Alert.alert('İzin Engellendi', 'Kamera izinleri ayarlardan etkinleştirilmelidir.');
         break;
       default:
         Alert.alert('Bilinmeyen Durum', 'Kamera izin durumu bilinmiyor.');
@@ -65,14 +44,7 @@ export default function CameraScreen() {
 
   return (
     <View style={styles.container}>
-      {devices && (
-        <Camera
-          style={styles.camera}
-          device={devices}
-          isActive={true}
-          codeScanner={codeScanner}
-        />
-      )}
+      {devices && <Camera style={styles.camera} device={devices} isActive={true} codeScanner={codeScanner} />}
       <TouchableOpacity
         style={{
           marginTop: 16,

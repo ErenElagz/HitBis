@@ -27,9 +27,7 @@ export default function ResetPasswordScreen() {
         }}>
         <Icon name="lock-reset" size={54} color={Colors.light} />
         <Text style={defaultStyles.HeaderText}>Reset Password</Text>
-        <Text style={defaultStyles.HeaderBottomText}>
-          Enter Your New Password.
-        </Text>
+        <Text style={defaultStyles.HeaderBottomText}>Enter Your New Password.</Text>
       </View>
 
       <View style={{width: '100%', gap: 8, marginBottom: 16}}>

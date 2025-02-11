@@ -1,6 +1,6 @@
 // React
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -13,24 +13,27 @@ import {useNavigation} from '@react-navigation/native';
 import SwipeButton from 'rn-swipe-button';
 import Header from '../../components/Header';
 
-
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
   const {codes} = route.params;
+  const swipeButtonRef = useRef<SwipeButton>(null);
 
   return (
     <View style={styles.container}>
       <Header title="Lets Rent" description="Swipe and Unlock your bike" onPress={() => nav.goBack()} />
       <View
         style={{
-          margin: 16,
+          margin: 12,
           borderRadius: 16,
           overflow: 'hidden',
+          flex: 1,
         }}>
         <MapView
           customMapStyle={CustomMapStyle}
           style={styles.map}
+          showsTraffic={true}
+          showsUserLocation={true}
           provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: 41.0082,
@@ -47,46 +50,9 @@ export default function DetailsScreen({route}: any) {
             description="This is the location of your bike"
           />
         </MapView>
-        <TouchableOpacity
-          onPress={() => {}}
-          style={{
-            marginTop: 16,
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'absolute',
-            zIndex: 999,
-            bottom: 16,
-            right: 16,
-            backgroundColor: Colors.dark,
-            width: 48,
-            height: 48,
-            borderRadius: 16,
-          }}>
-          <Icon name="crop-free" size={28} color={Colors.light} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: 16,
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'absolute',
-            zIndex: 999,
-            bottom: 72,
-            right: 20,
-            backgroundColor: Colors.secondaryDark,
-            width: 36,
-            height: 36,
-            borderRadius: 20,
-          }}>
-          <Icon name="near-me" size={20} color={Colors.red} />
-        </TouchableOpacity>
       </View>
 
       <View style={{padding: 12}}>
-        <Text style={styles.text2}>Bike Code: {codes}</Text>
-      </View>
-
-      <View style={{position: 'absolute', bottom: 16, alignSelf: 'center', width: '100%', paddingHorizontal: 16}}>
         <View
           style={{
             flexDirection: 'row',
@@ -99,6 +65,7 @@ export default function DetailsScreen({route}: any) {
           }}>
           <View>
             <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
+            <Text style={{color: Colors.gray, fontSize: 16}}>- Bike Code:{codes}</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
             <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
@@ -108,22 +75,26 @@ export default function DetailsScreen({route}: any) {
           </View>
         </View>
         <SwipeButton
-          onSwipeSuccess={() =>
-            nav.navigate('Home', {
-              screen: 'Ride',
-            })
-          }
+          ref={swipeButtonRef}
+          onSwipeSuccess={() => {
+            nav.navigate('Home' as never, {screen: 'Ride'});
+            setTimeout(() => {
+              swipeButtonRef.current?.reset();
+            }, 1000);
+          }}
           containerStyles={{borderRadius: 16}}
           height={66}
           railBackgroundColor={Colors.backgroundColorsSecondary}
           thumbIconBackgroundColor={Colors.primary}
           thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.secondaryDark}}
           thumbIconWidth={60}
+          swipeSuccessThreshold={90}
           railBorderColor={Colors.borderColor}
           railStyles={{borderRadius: 16}}
           thumbIconBorderColor="transparent"
           thumbIconComponent={() => <Icon name="lock-open" size={32} color={Colors.light} />}
-          railFillBackgroundColor={Colors.secondaryDark}
+          railFillBackgroundColor="#45BD8950"
+          railFillBorderColor={Colors.primary}
           titleColor="#fff"
           titleFontSize={18}
           title="Slide and Unlock"
@@ -150,7 +121,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   map: {
+    height: '100%',
     width: '100%',
-    height: 300,
   },
 });

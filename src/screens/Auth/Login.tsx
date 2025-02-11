@@ -19,9 +19,7 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <View style={{width: '100%', gap: 8, marginTop: 48, marginBottom: 24}}>
         <Text style={defaultStyles.HeaderText}>Login in the HitBis</Text>
-        <Text style={defaultStyles.HeaderBottomText}>
-          Login to your account to see your progress and routes
-        </Text>
+        <Text style={defaultStyles.HeaderBottomText}>Login to your account to see your progress and routes</Text>
       </View>
 
       <View style={{width: '100%', gap: 8}}>
@@ -37,10 +35,7 @@ export default function LoginScreen() {
         }}
       />
 
-      <Button
-        type="secondary"
-        title="Sign In"
-      />
+      <Button type="secondary" title="Sign In" />
 
       <OrDivider />
 

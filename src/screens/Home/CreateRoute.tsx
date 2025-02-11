@@ -1,13 +1,6 @@
 // React
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -44,10 +37,7 @@ export default function CreateRouteScreen() {
           backgroundColor: Colors.backgroundColorsSecondary,
         }}>
         <View style={{flexDirection: 'row', flex: 1}}>
-          <Image
-            style={{width: 48, height: 48, borderRadius: 32}}
-            source={require('../../assets/images/avatar.jpg')}
-          />
+          <Image style={{width: 48, height: 48, borderRadius: 32}} source={require('../../assets/images/avatar.jpg')} />
           <View style={{flex: 1, marginLeft: 16}}>
             <Text
               style={{
@@ -67,12 +57,7 @@ export default function CreateRouteScreen() {
             </Text>
           </View>
         </View>
-        <Button
-          type="secondary"
-          title="Go"
-          onPress={() => nav.goBack()}
-          style={{flex: 0.3}}
-        />
+        <Button type="secondary" title="Go" onPress={() => nav.goBack()} style={{flex: 0.3}} />
       </View>
       <View>
         <MapView
@@ -86,19 +71,12 @@ export default function CreateRouteScreen() {
             longitudeDelta: 1,
           }}>
           {PlacesList.locations.map((place, index) => (
-            <Marker
-              key={index}
-              coordinate={place.coordinates}
-              title={place.name}
-              description={place.description}
-            />
+            <Marker key={index} coordinate={place.coordinates} title={place.name} description={place.description} />
           ))}
         </MapView>
       </View>
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{flex: 1, padding: 8}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 8}}>
         {PlacesList.locations.map((place, index) => (
           <TouchableOpacity key={index} onPress={() => CreateRoute(index)}>
             <View

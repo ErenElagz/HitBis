@@ -14,13 +14,7 @@ const LinkText: React.FC<LinkTextProps> = ({title, onPress, align}) => {
       <Text
         style={[
           styles.text,
-          align === 'center'
-            ? {textAlign: 'center'}
-            : align === 'left'
-            ? {textAlign: 'left'}
-            : align === 'right'
-            ? {textAlign: 'right'}
-            : {textAlign: 'center'},
+          align === 'center' ? {textAlign: 'center'} : align === 'left' ? {textAlign: 'left'} : align === 'right' ? {textAlign: 'right'} : {textAlign: 'center'},
         ]}>
         {title}
       </Text>
