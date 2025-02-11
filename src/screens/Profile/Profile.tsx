@@ -20,6 +20,8 @@ import GroupsList from '../../data/groups.ts';
 import GroupCard from '../../components/GroupCard/GroupCard';
 import MyLastActivities from '../../data/activites.ts';
 import MyLastActivitiesCard from '../../components/ActivityCard/ActivityCard.tsx';
+import StatsCard from '../../components/StatsCard/StatsCard.tsx';
+
 function ActivitiesTab() {
   return (
     <View
@@ -73,12 +75,11 @@ function StatsTab() {
     <View
       style={{
         flex: 1,
-        backgroundColor: Colors.backgroundColorsSecondary,
         borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text style={styles.tabText}>StatsTab</Text>
+      <StatsCard totalBikeTime="3 saat 15 dakika" totalRentals={5} totalCaloriesBurned={350} totalActivities={8} />
     </View>
   );
 }
@@ -131,7 +132,7 @@ export default function ProfileScreen() {
           />
           <Button
             icon="archive-outline"
-            title="Updates"
+            title="Notfications"
             type="tertiary"
             style={{flex: 1}}
             onPress={() => {

@@ -74,10 +74,9 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
     overflow: 'hidden',
-    marginBottom: 16,
+    marginRight: 16,
     width: 300,
-    elevation: 3,
-    backgroundColor: Colors.backgroundColorsSecondary, // Renk ekledik
+    backgroundColor: Colors.backgroundColorsSecondary,
   },
   image: {
     width: '100%',
