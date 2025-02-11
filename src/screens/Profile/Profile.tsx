@@ -12,22 +12,26 @@ import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 // Datas
 import {events} from '../../data/events.ts';
-import popularRoutes, {routes} from '../../data/routes.ts';
+import popularRoutes from '../../data/routes.ts';
 // Component
 import EventCard from '../../components/EventCard/EventCard';
 import RouteCard from '../../components/RouteCard/RouteCard';
-
+import GroupsList from '../../data/groups.ts';
+import GroupCard from '../../components/GroupCard/GroupCard';
+import MyLastActivities from '../../data/activites.ts';
+import MyLastActivitiesCard from '../../components/ActivityCard/ActivityCard.tsx';
 function ActivitiesTab() {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: Colors.backgroundColorsSecondary,
-        borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text style={styles.tabText}>ActivitiesTab</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {MyLastActivities.map(route => (
+          <MyLastActivitiesCard key={route.id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -36,13 +40,14 @@ function GroupsTab() {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: Colors.backgroundColorsSecondary,
-        borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Text style={styles.tabText}>GroupsTab</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {GroupsList.map(route => (
+          <GroupCard key={route.id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
+        ))}
+      </ScrollView>
     </View>
   );
 }

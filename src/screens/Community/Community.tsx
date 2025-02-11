@@ -14,7 +14,7 @@ import {popularRoutes} from '../../data/routes';
 import EventCard from '../../components/EventCard/EventCard';
 import {events} from '../../data/events';
 import GroupCard from '../../components/GroupCard/GroupCard';
-import GroupsList, {groups} from '../../data/groups';
+import GroupsList from '../../data/groups';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
