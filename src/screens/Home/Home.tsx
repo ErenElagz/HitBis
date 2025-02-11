@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 // Styles
 import Colors from '../../styles/Colors';
@@ -10,17 +10,43 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
-import SearchBar from '../../components/SearchBar';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import EventCard from '../../components/EventCard/EventCard';
 import {events} from '../../data/events';
-
+import GetLocation from 'react-native-get-location';
 import RouteCard from '../../components/RouteCard/RouteCard';
 import {popularRoutes} from '../../data/routes';
 
 export default function HomeScreen() {
   const nav = useNavigation();
+
+  const mapRef = useRef(null);
+  useEffect(() => {
+    if (mapRef.current) {
+      const timer = setTimeout(() => {
+        if (mapRef.current) {
+          GetLocation.getCurrentPosition({
+            enableHighAccuracy: false,
+            timeout: 15000,
+          })
+            .then(location => {
+              mapRef.current.animateToRegion({
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              });
+            })
+            .catch(error => {
+              console.warn(error);
+            });
+        }
+      }, 1000);
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header title="Welcome Eren" description="Let's find a bike for you" />
@@ -31,14 +57,15 @@ export default function HomeScreen() {
             overflow: 'hidden',
           }}>
           <MapView
+            ref={mapRef}
             customMapStyle={CustomMapStyle}
             style={styles.map}
             showsUserLocation={true}
             followsUserLocation={true}
             provider={PROVIDER_GOOGLE}
             initialRegion={{
-              latitude: 41.0082,
-              longitude: 28.9784,
+              latitude: 41.0369,
+              longitude: 28.9855,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}

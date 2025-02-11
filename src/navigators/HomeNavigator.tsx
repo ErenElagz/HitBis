@@ -1,7 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/Home/Home';
-import NearMeScreen from '../screens/Home/NearMe';
 import CreateRouteScreen from '../screens/Home/CreateRoute';
 import RideScreen from '../screens/Home/Ride';
 import EventScreen from '../screens/Home/Event';
@@ -13,7 +12,6 @@ export default function HomeNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeRouter" component={HomeScreen} />
-      <Stack.Screen name="NearMe" component={NearMeScreen} />
       <Stack.Screen name="CreateRoute" component={CreateRouteScreen} />
       <Stack.Screen name="Ride" component={RideScreen} />
       <Stack.Screen name="Event" component={EventScreen} />

@@ -10,7 +10,6 @@ export default function RouteScreen(route: any) {
   const {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates} = route.route.params;
 
   const handleSaveRoute = () => {
-    // Add your save route logic here
     console.log('Route saved!');
   };
 

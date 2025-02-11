@@ -22,6 +22,10 @@ export default function RideScreen({route}) {
   const nav = useNavigation();
   const {places} = route.params || {places: []};
 
+  const [speed, setSpeed] = useState(0);
+  const [calories, setCalories] = useState(0);
+  const [distance, setDistance] = useState(0);
+
   const bottomSheetRef = useRef<BottomSheet>(null);
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
 
@@ -30,11 +34,13 @@ export default function RideScreen({route}) {
     stopwatchTimerRef.current?.play();
     GetLocation.getCurrentPosition({
       enableHighAccuracy: true,
-      timeout: 20000,
+      timeout: 5000,
     })
       .then(location => {
         console.log(location);
-        setSpeed((location.speed * 3.6).toFixed(1));
+        setSpeed(parseFloat((location.speed * 3.6).toFixed(1)));
+        setCalories(prevCalories => parseFloat((prevCalories + location.speed * 3.6 * 2).toFixed(1)));
+        setDistance(prevDistance => parseFloat((prevDistance + location.speed * 3.6).toFixed(1)));
       })
       .catch(error => {
         const {code, message} = error;
@@ -47,16 +53,40 @@ export default function RideScreen({route}) {
   }
   function reset() {
     stopwatchTimerRef.current?.reset();
+    setSpeed(0);
   }
 
-  const [speed, setSpeed] = useState(0);
-  const [calories, setCalories] = useState(0);
-  const [distance, setDistance] = useState(0);
+  const mapRef = useRef(null);
+  useEffect(() => {
+    if (mapRef.current) {
+      const timer = setTimeout(() => {
+        if (mapRef.current) {
+          GetLocation.getCurrentPosition({
+            enableHighAccuracy: false,
+            timeout: 15000,
+          })
+            .then(location => {
+              mapRef.current.animateToRegion({
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              });
+            })
+            .catch(error => {
+              console.warn(error);
+            });
+        }
+      }, 1000);
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
       <GestureHandlerRootView>
         <MapView
+          ref={mapRef}
           clusteringEnabled={false}
           clusterColor="#000"
           style={{width: '100%', height: '100%'}}
@@ -195,7 +225,7 @@ export default function RideScreen({route}) {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  0 m
+                  {distance} m
                 </Text>
               </View>
               {/* Hız Sütunu */}
@@ -251,7 +281,7 @@ export default function RideScreen({route}) {
                     fontWeight: 'bold',
                     letterSpacing: -1,
                   }}>
-                  0 kcal
+                  {calories} kcal
                 </Text>
               </View>
             </View>
