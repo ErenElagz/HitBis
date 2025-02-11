@@ -116,15 +116,6 @@ export default function ProfileScreen() {
             flexDirection: 'row',
           }}>
           <Button
-            icon="account-outline"
-            type="tertiary"
-            title="Edit"
-            style={{flex: 1}}
-            onPress={() => {
-              nav.navigate('EditProfile' as never);
-            }}
-          />
-          <Button
             icon="cog"
             type="tertiary"
             title="Settings"

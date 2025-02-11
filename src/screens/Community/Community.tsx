@@ -13,6 +13,8 @@ import RouteCard from '../../components/RouteCard/RouteCard';
 import {popularRoutes} from '../../data/routes';
 import EventCard from '../../components/EventCard/EventCard';
 import {events} from '../../data/events';
+import GroupCard from '../../components/GroupCard/GroupCard';
+import GroupsList, {groups} from '../../data/groups';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
@@ -58,23 +60,28 @@ export default function CommunityScreen() {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
+            <Text style={styles.text}>Groups</Text>
+          </View>
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
+          {GroupsList.map(event => (
+            <GroupCard key={event.id} {...event} />
+          ))}
+        </ScrollView>
+
+        <View style={{marginTop: 24, width: '100%', gap: 8}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <Text style={styles.text}>Last Events</Text>
-            <TouchableOpacity onPress={() => nav.navigate('Events' as never)}>
-              <Text
-                style={{
-                  color: Colors.gray,
-                  fontSize: 16,
-                  fontFamily: Fonts.interRegular,
-                  textDecorationLine: 'underline',
-                }}>
-                See all
-              </Text>
-            </TouchableOpacity>
           </View>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
           {events.map(event => (
-            <EventCard key={event.id} {...event} />
+            <EventCard key={event.id} {...event} style={{marginRight: 16}} />
           ))}
         </ScrollView>
       </ScrollView>
