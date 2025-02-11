@@ -1,5 +1,5 @@
 // React
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Modal} from 'react-native';
 import React, {useRef} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
@@ -12,12 +12,38 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import SwipeButton from 'rn-swipe-button';
 import Header from '../../components/Header';
+import Button from '../../components/Button';
 
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
   const {codes} = route.params;
   const swipeButtonRef = useRef<SwipeButton>(null);
+
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const ModalComponent = () => {
+    return (
+      <Modal visible={modalVisible} transparent={false} animationType="slide">
+        <View style={{flex: 1, backgroundColor: Colors.backgroundColor, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, borderColor: Colors.borderColor, borderWidth: 1}}>
+            <Text style={{color: Colors.light, fontSize: 24, marginBottom: 12}}>Renting Succesfull</Text>
+            <Text style={{color: Colors.gray, fontSize: 16}}>You have succesfully rented the bike</Text>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                marginTop: 24,
+                gap: 8,
+              }}>
+              <Button type='secondary' icon='bike' title="Start the Ride" onPress={() => nav.navigate('Home' as never, {screen: 'Ride'})} />
+              <Button type='tertiary' icon='home' title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  // JSX
 
   return (
     <View style={styles.container}>
@@ -51,7 +77,7 @@ export default function DetailsScreen({route}: any) {
           />
         </MapView>
       </View>
-
+      <ModalComponent />
       <View style={{padding: 12}}>
         <View
           style={{
@@ -77,7 +103,7 @@ export default function DetailsScreen({route}: any) {
         <SwipeButton
           ref={swipeButtonRef}
           onSwipeSuccess={() => {
-            nav.navigate('Home' as never, {screen: 'Ride'});
+            setModalVisible(true);
             setTimeout(() => {
               swipeButtonRef.current?.reset();
             }, 1000);
