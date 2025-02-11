@@ -42,7 +42,7 @@ export default function CommunityScreen() {
               flexDirection: 'row',
               gap: 16,
             }}>
-            <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
+            <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never)} />
             <Icon name="magnify" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
           </View>
         </View>
