@@ -16,20 +16,20 @@ const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalRentals, total
       <Text style={styles.title}>İstatistiklerim</Text>
       <View style={styles.statsContainer}>
         <View style={styles.statItem}>
-          <Icon name="clock-outline" size={24} color={Colors.light} />
-          <Text style={styles.statText}>⏳ {totalBikeTime}</Text>
+          <Icon name="clock-outline" size={24} color={Colors.tertiary} />
+          <Text style={styles.statText}>{totalBikeTime}</Text>
         </View>
         <View style={styles.statItem}>
-          <Icon name="bike" size={24} color={Colors.light} />
-          <Text style={styles.statText}>🚲 {totalRentals} Kiralama</Text>
+          <Icon name="bike" size={24} color={Colors.tertiary} />
+          <Text style={styles.statText}>{totalRentals} Kiralama</Text>
         </View>
         <View style={styles.statItem}>
-          <Icon name="fire" size={24} color={Colors.light} />
-          <Text style={styles.statText}>🔥 {totalCaloriesBurned} kcal</Text>
+          <Icon name="fire" size={24} color={Colors.tertiary} />
+          <Text style={styles.statText}>{totalCaloriesBurned} kcal</Text>
         </View>
         <View style={styles.statItem}>
-          <Icon name="trophy" size={24} color={Colors.light} />
-          <Text style={styles.statText}>🏆 {totalActivities} Aktivite</Text>
+          <Icon name="trophy" size={24} color={Colors.tertiary} />
+          <Text style={styles.statText}>{totalActivities} Aktivite</Text>
         </View>
       </View>
     </View>
