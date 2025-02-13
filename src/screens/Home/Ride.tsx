@@ -60,12 +60,13 @@ export default function RideScreen({route}) {
     try {
       const location = await GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
-        timeout: 5000,
+        timeout: 15000,
+        
       });
       const currentSpeed = parseFloat((location.speed * 3.6).toFixed(1));
       setSpeed(currentSpeed);
       setCalories(prev => parseFloat((prev + currentSpeed * 2).toFixed(1)));
-      setDistance(prev => parseFloat((prev + currentSpeed).toFixed(1)));
+      setDistance
     } catch (error) {
       console.warn('Hız bilgisi alınamadı:', error);
     }
