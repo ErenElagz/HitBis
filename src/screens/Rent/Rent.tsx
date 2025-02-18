@@ -92,7 +92,6 @@ export default function RentScreen() {
         }}
         ref={bottomSheetRef}
         handleIndicatorStyle={{backgroundColor: Colors.light}}
-        onChange={handleSheetChanges}
         snapPoints={['15%', '45%']}>
         <BottomSheetView style={styles.contentContainer}>
           <View

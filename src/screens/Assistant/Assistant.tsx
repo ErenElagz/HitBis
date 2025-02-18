@@ -8,7 +8,7 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 // Components
-import Message from '../../components/AssistantComponents/Message/Message';
+import Message from '../../components/AssistantComponents/Message';
 import Response from '../../components/AssistantComponents/Response';
 
 export default function AssistantScreen() {

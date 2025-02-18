@@ -1,77 +1,44 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// Navigators
-import HomeNavigator from './HomeNavigator';
-import CommunityNavigator from './CommunityNavigator';
-import RentNavigator from './RentNavigator';
-import AssistantNavigator from './AssistantNavigator';
-import ProfileNavigator from './ProfileNavigator';
-// Styles
-import Colors from '../styles/Colors';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// Screens
+import HomeScreen from '../screens/Home/Home';
+import CreateRouteScreen from '../screens/Home/CreateRoute';
+import RideScreen from '../screens/Home/Ride';
+import EventScreen from '../screens/Home/Event';
+import RouteScreen from '../screens/Home/Route';
+import ProfileScreen from '../screens/Profile/Profile';
+import SettingsScreen from '../screens/Profile/Settings';
+import NotificationsScreen from '../screens/Profile/Notifications';
+import RentScreen from '../screens/Rent/Rent';
+import CameraScreen from '../screens/Rent/Camera';
+import DetailsScreen from '../screens/Rent/Details';
+import CommunityScreen from '../screens/Community/Community';
+import SearchScreen from '../screens/Community/Search';
+import CreateEvent from '../screens/Community/CreateEvent';
+import AssistantScreen from '../screens/Assistant/Assistant';
+import MapScreen from '../screens/Assistant/Map';
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
   return (
-    <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.light,
-        tabBarHoverColor: 'transparent',
-        tabBarStyle: {
-          height: 66,
-          paddingTop: 8,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderColor: Colors.borderColor,
-          backgroundColor: Colors.backgroundColor,
-          display: route.name === 'Ride' ? 'none' : 'flex',
-        },
-        headerShown: false,
-        tabBarIcon(props) {
-          let iconName = '';
-          if (route.name === 'Home') {
-            iconName = 'home';
-          } else if (route.name === 'Community') {
-            iconName = 'account-group';
-          } else if (route.name === 'Rent') {
-            iconName = 'bike';
-          } else if (route.name === 'Assistant') {
-            iconName = 'assistant';
-          } else if (route.name === 'Profile') {
-            iconName = 'account';
-          }
-          return <Icon name={iconName} size={props.size} color={props.color} />;
-        },
-      })}>
-      <Tab.Screen name="Home" component={HomeNavigator} />
-      <Tab.Screen name="Community" component={CommunityNavigator} />
-      <Tab.Screen
-        name="Rent"
-        component={RentNavigator}
-        options={{
-          tabBarStyle: {display: 'none'},
-        }}
-        listeners={({navigation}) => ({
-          tabPress: e => {
-            e.preventDefault();
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'Rent'}],
-            });
-          },
-        })}
-      />
-
-      <Tab.Screen
-        name="Assistant"
-        component={AssistantNavigator}
-        options={{
-          tabBarStyle: {display: 'none'},
-        }}
-      />
-      <Tab.Screen name="Profile" component={ProfileNavigator} />
-    </Tab.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="HomeRouter" component={HomeScreen} />
+      <Stack.Screen name="CreateRoute" component={CreateRouteScreen} />
+      <Stack.Screen name="Ride" component={RideScreen} />
+      <Stack.Screen name="Event" component={EventScreen} />
+      <Stack.Screen name="Route" component={RouteScreen} />
+      <Stack.Screen name="ProfileRouter" component={ProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
+      <Stack.Screen name="RentRouter" component={RentScreen} />
+      <Stack.Screen name="Camera" component={CameraScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="CommunityRouter" component={CommunityScreen} />
+      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="CreateEvent" component={CreateEvent} />
+      <Stack.Screen name="AssistantScreen" component={AssistantScreen} />
+      <Stack.Screen name="Map" component={MapScreen} />
+    </Stack.Navigator>
   );
 }
