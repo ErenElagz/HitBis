@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 // Components
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
-import LinkText from '../../components/Linktext';
+import LinkText from '../../components/LinkText';
 
 export default function ResetPasswordScreen() {
   const nav = useNavigation();

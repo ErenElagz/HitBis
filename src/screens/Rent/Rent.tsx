@@ -22,11 +22,6 @@ export default function RentScreen() {
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
@@ -139,7 +134,7 @@ export default function RentScreen() {
                   <View
                     key={index}
                     style={{
-                      backgroundColor: slot === 1 ? Colors.green : Colors.secondaryDark,
+                      backgroundColor: slot === 1 ? Colors.green : Colors.dark,
                       padding: 14,
                       borderRadius: 8,
                       borderColor: Colors.borderColor,

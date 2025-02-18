@@ -112,7 +112,7 @@ export default function DetailsScreen({route}: any) {
           height={66}
           railBackgroundColor={Colors.backgroundColorsSecondary}
           thumbIconBackgroundColor={Colors.primary}
-          thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.secondaryDark}}
+          thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.dark}}
           thumbIconWidth={60}
           swipeSuccessThreshold={90}
           railBorderColor={Colors.borderColor}
