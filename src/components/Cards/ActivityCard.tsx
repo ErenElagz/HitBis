@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Colors from '../../styles/Colors';
 import {useNavigation} from '@react-navigation/native';
@@ -21,7 +21,7 @@ interface ActivityCardProps {
   style?: object;
 }
 
-const MyLastActivitiesCard: React.FC<ActivityCardProps> = ({name, description, date, duration, distance, caloriesBurned, category, location, coordinates, style}) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({name, description, date, duration, distance, caloriesBurned, category, location, coordinates, style}) => {
   const nav = useNavigation();
 
   return (
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyLastActivitiesCard;
+export default ActivityCard;

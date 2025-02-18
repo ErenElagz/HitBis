@@ -1,10 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, useColorScheme, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Colors from '../../styles/Colors';
 import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
-import {screensEnabled} from 'react-native-screens';
 
 interface RouteCardProps {
   id: string;

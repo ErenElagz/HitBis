@@ -9,11 +9,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
-import RouteCard from '../../components/RouteCard/RouteCard';
+import RouteCard from '../../components/Cards/RouteCard';
 import {popularRoutes} from '../../data/routes';
-import EventCard from '../../components/EventCard/EventCard';
+import EventCard from '../../components/Cards/EventCard';
 import {events} from '../../data/events';
-import GroupCard from '../../components/GroupCard/GroupCard';
+import GroupCard from '../../components/Cards/GroupCard';
 import GroupsList from '../../data/groups';
 
 export default function CommunityScreen() {

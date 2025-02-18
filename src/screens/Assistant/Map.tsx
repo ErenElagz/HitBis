@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View, Text, TouchableOpacity, Linking} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Linking} from 'react-native';
 import React, {useRef, useCallback} from 'react';
 import {PROVIDER_GOOGLE, Marker} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
@@ -6,7 +6,7 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import Button from '../../components/Button';
+import Button from '../../components/Button/Button';
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
@@ -28,7 +28,7 @@ export default function Map({route}) {
     console.log('handleSheetChanges', index);
   }, []);
 
-  const openInGoogleMaps = (latitude, longitude) => {
+  const openInGoogleMaps = (latitude: number, longitude: number) => {
     const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
     Linking.openURL(url).catch(err => console.error('Failed to open Google Maps:', err));
   };
@@ -166,7 +166,7 @@ export default function Map({route}) {
             </View>
 
             {places.length > 0 &&
-              places.map((place, index) => (
+              places.map((place: any, index: number) => (
                 <TouchableOpacity style={styles.card} key={`place-${index}`} onPress={() => openInGoogleMaps(place.latitude, place.longitude)}>
                   <View style={styles.mapIconContainer}>
                     <Icon name="map-marker-outline" size={48} color="#fff" />

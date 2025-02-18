@@ -1,20 +1,17 @@
 // React
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, ToastAndroid, FlatList} from 'react-native';
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 // Libraries
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
-
 // Components
 import Message from '../../components/AssistantComponents/Message';
 import Response from '../../components/AssistantComponents/Response';
 
 export default function AssistantScreen() {
-  const nav = useNavigation();
   const alert = () => {
     ToastAndroid.show('Please enter a message', ToastAndroid.SHORT);
   };

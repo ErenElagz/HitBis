@@ -12,10 +12,10 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-import EventCard from '../../components/EventCard/EventCard';
+import EventCard from '../../components/Cards/EventCard';
 import {events} from '../../data/events';
 import GetLocation from 'react-native-get-location';
-import RouteCard from '../../components/RouteCard/RouteCard';
+import RouteCard from '../../components/Cards/RouteCard';
 import {popularRoutes} from '../../data/routes';
 
 export default function HomeScreen() {

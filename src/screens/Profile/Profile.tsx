@@ -14,13 +14,13 @@ import Button from '../../components/Button';
 import {events} from '../../data/events.ts';
 import popularRoutes from '../../data/routes.ts';
 // Component
-import EventCard from '../../components/EventCard/EventCard';
-import RouteCard from '../../components/RouteCard/RouteCard';
+import EventCard from '../../components/Cards/EventCard.tsx';
+import RouteCard from '../../components/Cards/RouteCard.tsx';
 import GroupsList from '../../data/groups.ts';
-import GroupCard from '../../components/GroupCard/GroupCard';
+import GroupCard from '../../components/Cards/GroupCard.tsx';
 import MyLastActivities from '../../data/activites.ts';
-import MyLastActivitiesCard from '../../components/ActivityCard/ActivityCard.tsx';
-import StatsCard from '../../components/StatsCard/StatsCard.tsx';
+import MyLastActivitiesCard from '../../components/Cards/ActivityCard.tsx';
+import StatsCard from '../../components/Cards/StatsCard.tsx';
 
 function ActivitiesTab() {
   return (

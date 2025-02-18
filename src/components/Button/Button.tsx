@@ -1,6 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
-import styles from './Button.style';
+import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -32,5 +31,24 @@ const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style,
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  button: {
+    width: '100%',
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.borderColor,
+  },
+});
 
 export default Button;
