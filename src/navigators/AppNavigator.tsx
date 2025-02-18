@@ -23,18 +23,18 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="HomeRouter" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="CreateRoute" component={CreateRouteScreen} />
       <Stack.Screen name="Ride" component={RideScreen} />
       <Stack.Screen name="Event" component={EventScreen} />
       <Stack.Screen name="Route" component={RouteScreen} />
-      <Stack.Screen name="ProfileRouter" component={ProfileScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
-      <Stack.Screen name="RentRouter" component={RentScreen} />
+      <Stack.Screen name="Rent" component={RentScreen} />
       <Stack.Screen name="Camera" component={CameraScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="CommunityRouter" component={CommunityScreen} />
+      <Stack.Screen name="Community" component={CommunityScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="CreateEvent" component={CreateEvent} />
       <Stack.Screen name="AssistantScreen" component={AssistantScreen} />

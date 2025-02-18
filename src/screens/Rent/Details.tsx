@@ -1,5 +1,5 @@
 // React
-import {View, Text, StyleSheet, TouchableOpacity, Image, Modal} from 'react-native';
+import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 import React, {useRef} from 'react';
 // Styles
 import Colors from '../../styles/Colors';

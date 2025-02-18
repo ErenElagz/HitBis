@@ -1,14 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// Navigators
-import AppNavigator from './AppNavigator';
 // Styles
 import Colors from '../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Profile from '../screens/Profile/Profile';
+// Navigators
+import HomeScreen from '../screens/Home/Home';
 import CommunityScreen from '../screens/Community/Community';
 import RentScreen from '../screens/Rent/Rent';
 import AssistantScreen from '../screens/Assistant/Assistant';
+import Profile from '../screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +45,7 @@ export default function TabNavigator() {
           return <Icon name={iconName} size={props.size} color={props.color} />;
         },
       })}>
-      <Tab.Screen name="Home" component={AppNavigator} />
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Community" component={CommunityScreen} />
       <Tab.Screen
         name="Rent"

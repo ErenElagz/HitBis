@@ -148,7 +148,7 @@ export default function RentScreen() {
                 ))}
             </View>
           </View>
-          <Button title="Scan QR Code" type="secondary" icon="qrcode" onPress={() => nav.navigate('Camera' as never)} />
+          <Button title="Scan QR Code" type="secondary" icon="qrcode" onPress={() => nav.navigate('Camera')} />
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>
