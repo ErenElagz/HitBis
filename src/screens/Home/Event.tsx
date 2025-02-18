@@ -34,7 +34,7 @@ export default function EventScreen(route: any) {
         </View>
       </ScrollView>
 
-      <Button style={styles.saveButton} onPress={handleSaveEvent} title="Save Event" style={{width: '60%', marginHorizontal: 'auto'}} />
+      <Button onPress={handleSaveEvent} title="Save Event" style={{width: '60%', marginHorizontal: 'auto'}} />
     </View>
   );
 }

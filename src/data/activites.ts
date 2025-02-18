@@ -3,9 +3,9 @@ export type ActivityType = {
   name: string;
   description: string;
   date: string;
-  duration: string; // Süre (örneğin: "1 saat 20 dk")
-  distance: string; // Mesafe (örneğin: "15 km")
-  caloriesBurned: number; // Yakılan kalori miktarı
+  duration: string;
+  distance: string;
+  caloriesBurned: number;
   category: 'Bisiklet' | 'Koşu' | 'Yoga' | 'Doğa Yürüyüşü' | 'Fitness';
   location: string;
   coordinates: {

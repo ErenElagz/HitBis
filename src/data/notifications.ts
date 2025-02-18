@@ -1,4 +1,12 @@
-const NotificationsList = [
+export type NotificationType = {
+  id: number;
+  type: 'rental' | 'social' | 'event' | 'reminder' | 'achievement' | 'promotion' | 'system';
+  title: string;
+  message: string;
+  timestamp: string;
+};
+
+const NotificationsList: NotificationType[] = [
   {
     id: 1,
     type: 'rental',

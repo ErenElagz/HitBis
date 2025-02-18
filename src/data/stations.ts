@@ -1,4 +1,17 @@
-const StationsList = [
+export interface StationType {
+  id: string;
+  coordinate: {
+    latitude: number;
+    longitude: number;
+  };
+  title: string;
+  description: string;
+  image_url: string;
+  slots: number[];
+  isActive: boolean;
+}
+
+const StationsList: StationType[] = [
   {
     id: 'IST001',
     coordinate: {

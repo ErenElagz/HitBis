@@ -17,7 +17,6 @@ import SearchScreen from '../screens/Community/Search';
 import CreateEvent from '../screens/Community/CreateEvent';
 import AssistantScreen from '../screens/Assistant/Assistant';
 import MapScreen from '../screens/Assistant/Map';
-
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -32,7 +31,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} />
       <Stack.Screen name="Rent" component={RentScreen} />
-      <Stack.Screen name="Camera" component={CameraScreen} />
+      <Stack.Screen name="CameraScreen" component={CameraScreen} />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Community" component={CommunityScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />

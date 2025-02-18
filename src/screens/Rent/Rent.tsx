@@ -133,7 +133,7 @@ export default function RentScreen() {
                   <View
                     key={index}
                     style={{
-                      backgroundColor: slot === 1 ? Colors.green : Colors.dark,
+                      backgroundColor: slot === 1 ? Colors.primary : Colors.backgroundColorsSecondary,
                       padding: 14,
                       borderRadius: 8,
                       borderColor: Colors.borderColor,

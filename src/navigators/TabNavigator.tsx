@@ -8,7 +8,7 @@ import HomeScreen from '../screens/Home/Home';
 import CommunityScreen from '../screens/Community/Community';
 import RentScreen from '../screens/Rent/Rent';
 import AssistantScreen from '../screens/Assistant/Assistant';
-import Profile from '../screens/Profile/Profile';
+import ProfileScreen from '../screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,7 +71,7 @@ export default function TabNavigator() {
           tabBarStyle: {display: 'none'},
         }}
       />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
