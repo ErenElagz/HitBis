@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 
-const CreateEvent: React.FC = () => {
+const CreateEventScreen: React.FC = () => {
   const nav = useNavigation();
   const [eventName, setEventName] = useState('');
   const [description, setDescription] = useState('');
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateEvent;
+export default CreateEventScreen;

@@ -2,9 +2,9 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 // Styles
-import Colors from '../../styles/Colors';
+import Colors from '../../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import defaultStyles from '../../styles/DefaultStyles';
+import defaultStyles from '../../../styles/DefaultStyles';
 // Libraries
 // Components
 

@@ -1,22 +1,22 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // Screens
-import HomeScreen from '../screens/Home/Home';
-import CreateRouteScreen from '../screens/Home/CreateRoute';
-import RideScreen from '../screens/Home/Ride';
-import EventScreen from '../screens/Home/Event';
-import RouteScreen from '../screens/Home/Route';
-import ProfileScreen from '../screens/Profile/Profile';
-import SettingsScreen from '../screens/Profile/Settings';
-import NotificationsScreen from '../screens/Profile/Notifications';
-import RentScreen from '../screens/Rent/Rent';
-import CameraScreen from '../screens/Rent/Camera';
-import DetailsScreen from '../screens/Rent/Details';
-import CommunityScreen from '../screens/Community/Community';
-import SearchScreen from '../screens/Community/Search';
-import CreateEvent from '../screens/Community/CreateEvent';
-import AssistantScreen from '../screens/Assistant/Assistant';
-import MapScreen from '../screens/Assistant/Map';
+import HomeScreen from '../screens/App/Home/Home';
+import CreateRouteScreen from '../screens/App/Home/CreateRoute';
+import RideScreen from '../screens/App/Home/Ride';
+import EventScreen from '../screens/App/Home/Event';
+import RouteScreen from '../screens/App/Home/Route';
+import ProfileScreen from '../screens/App/Profile/Profile';
+import SettingsScreen from '../screens/App/Profile/Settings';
+import NotificationsScreen from '../screens/App/Profile/Notifications';
+import RentScreen from '../screens/App/Rent/Rent';
+import CameraScreen from '../screens/App/Rent/Camera';
+import DetailsScreen from '../screens/App/Rent/Details';
+import CommunityScreen from '../screens/App/Community/Community';
+import SearchScreen from '../screens/App/Community/Search';
+import CreateEventScreen from '../screens/App/Community/CreateEvent';
+import AssistantScreen from '../screens/App/Assistant/Assistant';
+import MapScreen from '../screens/App/Assistant/Map';
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
@@ -35,7 +35,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="Community" component={CommunityScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="CreateEvent" component={CreateEvent} />
+      <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
       <Stack.Screen name="AssistantScreen" component={AssistantScreen} />
       <Stack.Screen name="Map" component={MapScreen} />
     </Stack.Navigator>

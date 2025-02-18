@@ -2,7 +2,7 @@
 import {View, StyleSheet, TouchableOpacity, Alert, Platform} from 'react-native';
 import React, {useEffect} from 'react';
 // Styles
-import Colors from '../../styles/Colors';
+import Colors from '../../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 // Libraries

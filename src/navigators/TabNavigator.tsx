@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Navigators
 import HomeScreen from '../screens/Home/Home';
 import CommunityScreen from '../screens/Community/Community';
-import RentScreen from '../screens/Rent/Rent';
-import AssistantScreen from '../screens/Assistant/Assistant';
+import RentScreen from '../screens/App/Rent/Rent';
+import AssistantScreen from '../screens/App/Assistant/Assistant';
 import ProfileScreen from '../screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
