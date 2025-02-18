@@ -7,6 +7,7 @@ import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
+
 const CreateEvent: React.FC = () => {
   const nav = useNavigation();
   const [eventName, setEventName] = useState('');

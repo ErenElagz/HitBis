@@ -4,13 +4,13 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 // Styles
 import defaultStyles from '../../styles/DefaultStyles';
-import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
-import Button from '../../components/Button';
-// Components
-import InputText from '../../components/InputText';
-import LinkText from '../../components/Linktext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Fonts from '../../styles/Fonts';
+// Components
+import Button from '../../components/Button';
+import InputText from '../../components/InputText';
+import LinkText from '../../components/LinkText';
 
 export default function ForgotPasswordScreen() {
   const nav = useNavigation();

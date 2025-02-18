@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/SearchBar';
 import GroupsList from '../../data/groups'; // Grupların olduğu fake data
 import PopularRoutes from '../../data/routes'; // Rotaların olduğu fake data
 

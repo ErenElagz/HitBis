@@ -1,10 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import Markdown from 'react-native-markdown-display';
+import {View, Text, StyleSheet} from 'react-native';
 import {GoogleGenerativeAI} from '@google/generative-ai';
 import {useState, useEffect} from 'react';
 import Button from '../../Button';
-import styles from './Response.style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 
@@ -71,5 +69,31 @@ function Response(props: any) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  message: {
+    flexDirection: 'column',
+    gap: 8,
+    padding: 16,
+    marginBottom: 8,
+    borderRadius: 16,
+  },
+  placesCard: {
+    backgroundColor: '#ffffff20',
+    padding: 12,
+    borderRadius: 16,
+    marginBottom: 8,
+  },
+  placesCardTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  placesCardDescription: {
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#ffffffaa',
+  },
+});
 
 export default Response;

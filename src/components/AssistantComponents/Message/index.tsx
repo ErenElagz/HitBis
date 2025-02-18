@@ -1,8 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import styles from './Message.style';
+import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Button from '../../Button';
 
 function Message(props: any) {
   const date = new Date();
@@ -35,5 +33,15 @@ function Message(props: any) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  message: {
+    flexDirection: 'column',
+    gap: 8,
+    padding: 16,
+    marginBottom: 8,
+    borderRadius: 16,
+  },
+});
 
 export default Message;

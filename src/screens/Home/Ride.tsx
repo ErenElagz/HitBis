@@ -23,7 +23,7 @@ export default function RideScreen({route}) {
   const [userLocation, setUserLocation] = useState(null);
 
   const bottomSheetRef = useRef(null);
-  const stopwatchTimerRef = useRef(null);
+  const stopwatchTimerRef = useRef<StopwatchTimerMethods>(null);
   const mapRef = useRef(null);
 
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
@@ -61,12 +61,11 @@ export default function RideScreen({route}) {
       const location = await GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
         timeout: 15000,
-        
       });
       const currentSpeed = parseFloat((location.speed * 3.6).toFixed(1));
       setSpeed(currentSpeed);
       setCalories(prev => parseFloat((prev + currentSpeed * 2).toFixed(1)));
-      setDistance
+      setDistance;
     } catch (error) {
       console.warn('Hız bilgisi alınamadı:', error);
     }

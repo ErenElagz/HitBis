@@ -1,8 +1,7 @@
-import {TextInput, View, TouchableOpacity} from 'react-native';
+import {TextInput, View, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
-import styles from './SearchBar.style';
-import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Colors from '../../styles/Colors';
 
 interface SearchBarProps {
   placeholder: string;
@@ -20,5 +19,24 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, onPress, onChangeText
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  searchBar: {
+    width: '100%',
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginVertical: 12,
+    backgroundColor: Colors.backgroundColorsSecondary,
+    borderRadius: 16,
+  },
+  inputText: {
+    flex: 1,
+    color: Colors.light,
+    fontSize: 16,
+  },
+});
 
 export default SearchBar;

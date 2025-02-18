@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
-import Button from '../Button/Button';
+import Button from '../Button';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 

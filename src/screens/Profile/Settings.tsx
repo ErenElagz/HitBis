@@ -8,8 +8,8 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
-import Button from '../../components/Button';
 // Components
+import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 
 export default function SettingsScreen() {

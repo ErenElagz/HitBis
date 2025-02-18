@@ -1,8 +1,6 @@
-import {StyleSheet, Text, Image, View, ScrollView, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, Image, View, ScrollView} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import Colors from '../../styles/Colors';
-import {events} from '../../data/events';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Button from '../../components/Button';
 

@@ -6,10 +6,10 @@ import {useNavigation} from '@react-navigation/native';
 import defaultStyles from '../../styles/DefaultStyles';
 import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
-import Button from '../../components/Button';
 // Components
+import Button from '../../components/Button';
 import InputText from '../../components/InputText';
-import LinkText from '../../components/Linktext';
+import LinkText from '../../components/LinkText';
 import OrDivider from '../../components/OrDivider';
 
 export default function LoginScreen() {

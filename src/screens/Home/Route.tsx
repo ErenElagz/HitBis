@@ -1,8 +1,8 @@
-import {StyleSheet, Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../styles/Colors';
-import MapView, {Polyline, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Button from '../../components/Button';
 import {CustomMapStyle} from '../../styles/MapStyle';
 

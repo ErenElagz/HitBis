@@ -11,7 +11,6 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 // Datas
-import {events} from '../../data/events.ts';
 import popularRoutes from '../../data/routes.ts';
 // Component
 import EventCard from '../../components/Cards/EventCard.tsx';

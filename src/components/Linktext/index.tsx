@@ -1,6 +1,6 @@
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
-import styles from './LinkText.style';
+import Colors from '../../styles/Colors';
 
 interface LinkTextProps {
   title: string;
@@ -21,5 +21,17 @@ const LinkText: React.FC<LinkTextProps> = ({title, onPress, align}) => {
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 16,
+    marginHorizontal: 16,
+  },
+  text: {
+    color: Colors.gray,
+    fontSize: 14,
+    textDecorationLine: 'underline',
+  },
+});
 
 export default LinkText;

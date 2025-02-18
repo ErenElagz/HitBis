@@ -10,8 +10,8 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
-import Button from '../../components/Button';
 import Header from '../../components/Header';
+import Button from '../../components/Button';
 import EventCard from '../../components/Cards/EventCard';
 import {events} from '../../data/events';
 import GetLocation from 'react-native-get-location';

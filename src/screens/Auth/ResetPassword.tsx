@@ -6,11 +6,11 @@ import {useNavigation} from '@react-navigation/native';
 import defaultStyles from '../../styles/DefaultStyles';
 import Fonts from '../../styles/Fonts';
 import Colors from '../../styles/Colors';
-import Button from '../../components/Button';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 // Components
 import InputText from '../../components/InputText';
+import Button from '../../components/Button';
 import LinkText from '../../components/Linktext';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function ResetPasswordScreen() {
   const nav = useNavigation();

@@ -1,11 +1,10 @@
 // React
-import {View, Text, StyleSheet, TouchableOpacity, Alert, Platform} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Alert, Platform} from 'react-native';
 import React, {useEffect} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
-import Fonts from '../../styles/Fonts';
 // Libraries
 import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
