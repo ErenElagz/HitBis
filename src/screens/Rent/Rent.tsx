@@ -3,15 +3,17 @@ import React, {useRef, useCallback, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
-import Colors from '../../../styles/Colors';
-import Fonts from '../../../styles/Fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CustomMapStyle} from '../../../styles/MapStyle';
+import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 // Components
-import Button from '../../../components/Button';
-import StationsList from '../../../data/stations';
+import Button from '../../components/Button';
+// Data
+import StationsList from '../../data/stations';
+// Map
 import MapView from 'react-native-map-clustering';
 import {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';

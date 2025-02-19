@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 
-const CreateEventScreen: React.FC = () => {
+export default function CreateEventScreen() {
   const nav = useNavigation();
   const [eventName, setEventName] = useState('');
   const [description, setDescription] = useState('');
@@ -102,7 +102,7 @@ const CreateEventScreen: React.FC = () => {
       <Button title="Etkinlik Oluştur" icon="plus" onPress={handleCreateEvent} />
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -179,5 +179,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default CreateEventScreen;

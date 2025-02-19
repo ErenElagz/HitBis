@@ -2,14 +2,14 @@
 import {View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, ToastAndroid, FlatList} from 'react-native';
 import React, {useState} from 'react';
 // Styles
-import Colors from '../../../styles/Colors';
-import Fonts from '../../../styles/Fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 // Libraries
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LinearGradient from 'react-native-linear-gradient';
 // Components
-import Message from '../../../components/AssistantComponents/Message';
-import Response from '../../../components/AssistantComponents/Response';
+import Message from '../../components/AssistantComponents/Message';
+import Response from '../../components/AssistantComponents/Response';
 
 export default function AssistantScreen() {
   const alert = () => {

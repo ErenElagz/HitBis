@@ -2,17 +2,17 @@
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 import React, {useRef} from 'react';
 // Styles
-import Colors from '../../../styles/Colors';
-import Fonts from '../../../styles/Fonts';
+import Colors from '../../styles/Colors';
+import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CustomMapStyle} from '../../../styles/MapStyle';
+import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import SwipeButton from 'rn-swipe-button';
-import Header from '../../../components/Header';
-import Button from '../../../components/Button';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
 
 export default function DetailsScreen({route}: any) {
   // Variables

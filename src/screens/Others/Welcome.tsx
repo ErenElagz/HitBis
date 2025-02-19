@@ -2,10 +2,10 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 // Styles
-import Colors from '../../../styles/Colors';
-import defaultStyles from '../../../styles/DefaultStyles';
+import Colors from '../../styles/Colors';
+import defaultStyles from '../../styles/DefaultStyles';
 // Components
-import Button from '../../../components/Button';
+import Button from '../../components/Button';
 // Libraries
 import {useNavigation} from '@react-navigation/native';
 

@@ -2,14 +2,14 @@ import {StyleSheet, View, Text, TouchableOpacity, Linking} from 'react-native';
 import React, {useRef, useCallback} from 'react';
 import {PROVIDER_GOOGLE, Marker} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
-import {CustomMapStyle} from '../../../styles/MapStyle';
+import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import Button from '../../../components/Button';
-import Colors from '../../../styles/Colors';
+import Button from '../../components/Button';
+import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Fonts from '../../../styles/Fonts';
+import Fonts from '../../styles/Fonts';
 import MapView from 'react-native-map-clustering';
 
 export default function Map({route}) {
