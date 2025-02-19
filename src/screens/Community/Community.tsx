@@ -18,6 +18,7 @@ import GroupsList from '../../data/groups';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
+  
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -4,11 +4,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Colors from '../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // Navigators
-import HomeScreen from '../screens/Home/Home';
-import CommunityScreen from '../screens/Community/Community';
-import RentScreen from '../screens/Rent/Rent';
-import AssistantScreen from '../screens/Assistant/Assistant';
-import ProfileScreen from '../screens/Profile/Profile';
+import HomeNavigator from './HomeNavigator';
+import CommunityNavigator from './CommunityNavigator';
+import RentNavigator from './RentNavigator';
+import AssistantNavigator from './AssistantNavigator';
+import ProfileNavigator from './ProfileNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,11 +45,11 @@ export default function TabNavigator() {
           return <Icon name={iconName} size={props.size} color={props.color} />;
         },
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Community" component={CommunityScreen} />
+      <Tab.Screen name="Home" component={HomeNavigator} />
+      <Tab.Screen name="Community" component={CommunityNavigator} />
       <Tab.Screen
         name="Rent"
-        component={RentScreen}
+        component={RentNavigator}
         options={{
           tabBarStyle: {display: 'none'},
         }}
@@ -66,12 +66,12 @@ export default function TabNavigator() {
 
       <Tab.Screen
         name="Assistant"
-        component={AssistantScreen}
+        component={AssistantNavigator}
         options={{
           tabBarStyle: {display: 'none'},
         }}
       />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Profile" component={ProfileNavigator} />
     </Tab.Navigator>
   );
 }

@@ -10,7 +10,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
-import PlacesList from '../../data/places';
+import PlacesList, { PlaceType } from '../../data/places';
 import MapViewDirections from 'react-native-maps-directions';
 
 export default function CreateRouteScreen() {
@@ -63,7 +63,7 @@ export default function CreateRouteScreen() {
       {selectedTab === 'places' ? (
         // 📍 Yerler Sekmesi
         <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, padding: 8}}>
-          {PlacesList.locations.map((place, index) => (
+          {PlacesList.map((place: PlaceType, index: number) => (
             <TouchableOpacity key={index} onPress={() => togglePlaceSelection(index)}>
               <View style={[styles.placeCard, selectedPlaces.includes(index) && styles.selectedCard]}>
                 <View style={{flex: 1}}>

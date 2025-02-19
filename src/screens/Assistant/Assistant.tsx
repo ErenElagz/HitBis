@@ -69,7 +69,7 @@ export default function AssistantScreen() {
         contentContainerStyle={{paddingBottom: 100}}
         style={{padding: 12}}
         data={listData}
-        keyExtractor={(item, index) => `${item}-${index}`} // Generate unique key
+        keyExtractor={(item, index) => `${item}-${index}`} 
         renderItem={({item, index}) => (
           <View key={`${item}-${index}`}>
             <Message message={item} />

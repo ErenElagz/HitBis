@@ -23,11 +23,6 @@ export default function Map({route}) {
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
   const openInGoogleMaps = (latitude: number, longitude: number) => {
     const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
     Linking.openURL(url).catch(err => console.error('Failed to open Google Maps:', err));
@@ -146,7 +141,6 @@ export default function Map({route}) {
           }}
           ref={bottomSheetRef}
           handleIndicatorStyle={{backgroundColor: Colors.light}}
-          onChange={handleSheetChanges}
           snapPoints={['25%', '50%']}>
           <BottomSheetView style={styles.contentContainer}>
             <View
