@@ -10,13 +10,13 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
-import PlacesList, { PlaceType } from '../../data/places';
+import PlacesList, {PlaceType} from '../../data/places';
 import MapViewDirections from 'react-native-maps-directions';
 
 export default function CreateRouteScreen() {
   const nav = useNavigation();
   const [selectedTab, setSelectedTab] = useState('places'); // Aktif sekme (places / map)
-  const [selectedPlaces, setSelectedPlaces] = useState([]); // Seçilen yerler
+  const [selectedPlaces, setSelectedPlaces] = useState<number[]>([]); // Seçilen yerler
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
 
   const [duration, setDuration] = React.useState(0);
@@ -45,7 +45,7 @@ export default function CreateRouteScreen() {
             <Text style={styles.headerSubtitle}>Choose places to create a route</Text>
           </View>
         </View>
-        <Button type="secondary" title="Go" onPress={() => nav.navigate('Ride', {places: selectedPlaces})} style={{flex: 0.3}} />
+        <Button type="secondary" title="Go" onPress={() => nav.navigate('Ride' as never, {places: selectedPlaces})} style={{flex: 0.3}} />
       </View>
 
       {/* Sekmeler */}
@@ -106,7 +106,7 @@ export default function CreateRouteScreen() {
             }}>
             {selectedPlaces.length > 0 &&
               selectedPlaces.map(index => {
-                const place = PlacesList.locations[index];
+                const place = PlacesList[index];
                 return (
                   <Marker key={index} coordinate={place.coordinates} title={place.name} description={place.description} tracksViewChanges={false}>
                     <View
@@ -132,9 +132,9 @@ export default function CreateRouteScreen() {
 
             {selectedPlaces.length > 0 && (
               <MapViewDirections
-                origin={PlacesList.locations[selectedPlaces[0]].coordinates}
-                destination={PlacesList.locations[selectedPlaces[selectedPlaces.length - 1]].coordinates}
-                waypoints={selectedPlaces.slice(1, -1).map(index => PlacesList.locations[index].coordinates)}
+                origin={PlacesList[selectedPlaces[0]].coordinates}
+                destination={PlacesList[selectedPlaces[selectedPlaces.length - 1]].coordinates}
+                waypoints={selectedPlaces.slice(1, -1).map(index => PlacesList[index].coordinates)}
                 apikey={GOOGLE_MAPS_APIKEY}
                 strokeWidth={3}
                 mode="DRIVING"

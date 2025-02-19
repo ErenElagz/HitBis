@@ -53,7 +53,12 @@ export default function RouteScreen(route: any) {
   );
 }
 
-const DetailRow = ({icon, title, value}) => (
+interface DetailRowProps {
+  icon: string;
+  title: string;
+  value: string;
+}
+const DetailRow: React.FC<DetailRowProps> = ({icon, title, value}) => (
   <View style={styles.detailRow}>
     <Icon name={icon} size={20} color={Colors.primary} />
     <View style={styles.detailTextContainer}>

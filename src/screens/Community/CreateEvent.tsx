@@ -10,22 +10,23 @@ import Fonts from '../../styles/Fonts';
 
 export default function CreateEventScreen() {
   const nav = useNavigation();
+  
   const [eventName, setEventName] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [participants, setParticipants] = useState('');
-  const [difficulty, setDifficulty] = useState<'Kolay' | 'Orta' | 'Zor'>('Kolay');
+  const [difficulty, setDifficulty] = useState<'Easy' | 'Medium' | 'Hard'>('Medium');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   const handleCreateEvent = () => {
     if (!eventName || !description || !location || !participants) {
-      Alert.alert('Hata', 'Lütfen tüm alanları doldurun!');
+      Alert.alert('Eror', 'Please Fill All Fields!');
       return;
     }
 
-    Alert.alert('Başarılı', 'Etkinlik başarıyla oluşturuldu!');
-    nav.goBack(); // Kullanıcıyı önceki sayfaya yönlendir
+    Alert.alert('Success', 'Event Created!');
+    nav.goBack();
   };
 
   return (
@@ -49,12 +50,12 @@ export default function CreateEventScreen() {
       </TouchableOpacity>
 
       {/* Etkinlik Adı */}
-      <InputText placeholder="Etkinlik Adı" value={eventName} onChangeText={setEventName} />
+      <InputText placeholder="Event Name" value={eventName} onChangeText={setEventName} />
 
       {/* Açıklama */}
       <TextInput
         style={[styles.input, styles.textArea]}
-        placeholder="Açıklama"
+        placeholder="Description"
         placeholderTextColor="#aaa"
         multiline
         numberOfLines={6}
@@ -63,10 +64,10 @@ export default function CreateEventScreen() {
       />
 
       {/* Konum */}
-      <InputText placeholder="Konum" value={location} onChangeText={setLocation} />
+      <InputText placeholder="Location" value={location} onChangeText={setLocation} />
 
       {/* Katılımcı Sayısı */}
-      <InputText placeholder="Katılımcı Sayısı" value={participants} onChangeText={setParticipants} />
+      <InputText placeholder="Participants" value={participants} onChangeText={setParticipants} />
 
       {/* Tarih Seçici (React Native Date Picker) */}
       <TouchableOpacity onPress={() => setOpen(true)} style={styles.datePicker}>
@@ -88,18 +89,18 @@ export default function CreateEventScreen() {
       {/* Zorluk Seçici */}
       <View style={styles.difficultyContainer}>
         <Text style={styles.difficultyText}>Zorluk:</Text>
-        {['Kolay', 'Orta', 'Zor'].map(level => (
+        {['Easy', 'Medium', 'Hard'].map(level => (
           <TouchableOpacity
             key={level}
             style={[styles.difficultyButton, difficulty === level && styles.difficultySelected]}
-            onPress={() => setDifficulty(level as 'Kolay' | 'Orta' | 'Zor')}>
+            onPress={() => setDifficulty(level as 'Easy' | 'Medium' | 'Hard')}>
             <Text style={styles.difficultyLabel}>{level}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {/* Etkinlik Oluştur Butonu */}
-      <Button title="Etkinlik Oluştur" icon="plus" onPress={handleCreateEvent} />
+      <Button title="Create an Event" icon="plus" onPress={handleCreateEvent} />
     </ScrollView>
   );
 }

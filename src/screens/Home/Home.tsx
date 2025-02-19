@@ -31,7 +31,7 @@ export default function HomeScreen() {
             timeout: 15000,
           })
             .then(location => {
-              mapRef.current.animateToRegion({
+              mapRef.current?.animateToRegion({
                 latitude: location.latitude,
                 longitude: location.longitude,
                 latitudeDelta: 0.0922,

@@ -20,7 +20,7 @@ import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 export default function RentScreen() {
   const nav = useNavigation();
-  const [currentStation, setCurrentStation] = useState(null);
+  const [currentStation, setCurrentStation] = useState<number | null>(null);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -150,7 +150,7 @@ export default function RentScreen() {
                 ))}
             </View>
           </View>
-          <Button title="Scan QR Code" type="secondary" icon="qrcode" onPress={() => nav.navigate('Camera')} />
+          <Button title="Scan QR Code" type="secondary" icon="qrcode" onPress={() => nav.navigate('Camera' as never)} />
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>

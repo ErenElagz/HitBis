@@ -5,10 +5,21 @@ import Colors from '../../styles/Colors';
 interface InputTextProps {
   placeholder: string;
   style?: object;
+  value?: string;
+  onChangeText?: (text: string) => void;
 }
 
 const InputText: React.FC<InputTextProps> = ({placeholder, style}) => {
-  return <TextInput style={{...styles.inputText, ...style}} placeholder={placeholder} selectionColor={Colors.light} />;
+  return (
+    <TextInput
+      style={{...styles.inputText, ...style}}
+      placeholder={placeholder}
+      selectionColor={Colors.light}
+      placeholderTextColor={Colors.light}
+      value=""
+      onChangeText={() => {}}
+    />
+  );
 };
 
 const styles = StyleSheet.create({

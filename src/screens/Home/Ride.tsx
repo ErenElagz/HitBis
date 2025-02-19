@@ -13,7 +13,7 @@ import MapView from 'react-native-map-clustering';
 import MapViewDirections from 'react-native-maps-directions';
 import GetLocation from 'react-native-get-location';
 
-export default function RideScreen({route}) {
+export default function RideScreen(route: any) {
   const nav = useNavigation();
   const {places} = route.params || {places: []};
 
@@ -109,7 +109,7 @@ export default function RideScreen({route}) {
             latitudeDelta: 0.043,
             longitudeDelta: 0.043,
           }}>
-          {places.map((place, index) => (
+          {places.map((place: any, index: number) => (
             <Marker key={index} coordinate={{latitude: place.latitude, longitude: place.longitude}} title={place.name} description={place.description} tracksViewChanges={false}>
               <View style={styles.marker}>
                 <Icon name="near-me" size={12} color={Colors.light} />

@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 import MapView from 'react-native-map-clustering';
 
-export default function Map({route}) {
+export default function Map(route: any) {
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
   const {places} = route.params;
   const nav = useNavigation();
