@@ -10,7 +10,7 @@ import Fonts from '../../styles/Fonts';
 
 export default function CreateEventScreen() {
   const nav = useNavigation();
-  
+
   const [eventName, setEventName] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');

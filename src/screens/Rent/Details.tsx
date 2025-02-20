@@ -34,8 +34,8 @@ export default function DetailsScreen({route}: any) {
                 marginTop: 24,
                 gap: 8,
               }}>
-              <Button type='secondary' icon='bike' title="Start the Ride" onPress={() => nav.navigate('Home', {screen: 'Ride'})} />
-              <Button type='tertiary' icon='home' title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
+              <Button type="secondary" icon="bike" title="Start the Ride" onPress={() => nav.navigate('Home', {screen: 'Ride'})} />
+              <Button type="tertiary" icon="home" title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
             </View>
           </View>
         </View>
