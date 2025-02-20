@@ -4,7 +4,6 @@ import {PROVIDER_GOOGLE, Marker} from 'react-native-maps'; // remove PROVIDER_GO
 import MapViewDirections from 'react-native-maps-directions';
 import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Button from '../../components/Button';
 import Colors from '../../styles/Colors';
@@ -12,7 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 import MapView from 'react-native-map-clustering';
 
-export default function Map(route: any) {
+export default function Map(route) {
   const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
   const {places} = route.params;
   const nav = useNavigation();
@@ -29,8 +28,7 @@ export default function Map(route: any) {
   };
 
   return (
-    <>
-      <GestureHandlerRootView>
+    <View>
         <TouchableOpacity
           style={{
             marginTop: 16,
@@ -175,8 +173,7 @@ export default function Map(route: any) {
               ))}
           </BottomSheetView>
         </BottomSheet>
-      </GestureHandlerRootView>
-    </>
+    </View>
   );
 }
 

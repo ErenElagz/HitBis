@@ -1,6 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -93,7 +92,6 @@ export default function RideScreen(route: any) {
 
   return (
     <View style={styles.container}>
-      <GestureHandlerRootView>
         <MapView
           ref={mapRef}
           clusteringEnabled={false}
@@ -173,7 +171,6 @@ export default function RideScreen(route: any) {
             </View>
           </BottomSheetView>
         </BottomSheet>
-      </GestureHandlerRootView>
     </View>
   );
 }

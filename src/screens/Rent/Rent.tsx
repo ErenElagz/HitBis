@@ -1,7 +1,6 @@
 // React
 import React, {useRef, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -26,7 +25,7 @@ export default function RentScreen() {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   return (
-    <GestureHandlerRootView>
+    <View>
       <View style={styles.container}>
         <BackButton />
         <MapView
@@ -138,7 +137,7 @@ export default function RentScreen() {
           <Button title="Scan QR Code" type="secondary" icon="qrcode" onPress={() => nav.navigate('Camera' as never)} />
         </BottomSheetView>
       </BottomSheet>
-    </GestureHandlerRootView>
+    </View>
   );
 }
 

@@ -1,8 +1,6 @@
 // React
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 import React, {useRef} from 'react';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -46,74 +44,69 @@ export default function DetailsScreen({route}: any) {
   };
 
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
-        <MapView
-          customMapStyle={CustomMapStyle}
-          style={styles.map}
-          showsTraffic={true}
-          showsUserLocation={true}
-          provider={PROVIDER_GOOGLE}
-          initialRegion={{
+    <View style={styles.container}>
+      <MapView
+        customMapStyle={CustomMapStyle}
+        style={styles.map}
+        showsTraffic={true}
+        showsUserLocation={true}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: 41.0082,
+          longitude: 28.9784,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
+        }}>
+        <Marker
+          coordinate={{
             latitude: 41.0082,
             longitude: 28.9784,
-            latitudeDelta: 0.1,
-            longitudeDelta: 0.1,
-          }}>
-          <Marker
-            coordinate={{
-              latitude: 41.0082,
-              longitude: 28.9784,
-            }}
-            title="Bike Location"
-            description="This is the location of your bike"
-          />
-        </MapView>
-        <ModalComponent />
-
-        <BottomSheet
-          backgroundStyle={{
-            backgroundColor: Colors.backgroundColor,
           }}
-          ref={bottomSheetRef}
-          handleIndicatorStyle={{backgroundColor: Colors.light}}
-          snapPoints={['30%']}>
-          <BottomSheetView style={styles.contentContainer}>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                borderRadius: 20,
-                padding: 4,
-                borderWidth: 1,
-                backgroundColor: Colors.backgroundColor,
-                borderColor: Colors.borderColor,
-                marginBottom: 8,
-              }}>
-              <View style={{flex: 1, padding: 16}}>
-                <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
-                <Text style={{color: Colors.gray}}>- Bike Code:{codes}</Text>
-                <Text style={{color: Colors.gray}}>- Max Mph 50mph</Text>
-                <Text style={{color: Colors.gray}}>- 8 Vitesli</Text>
-                <Text style={{color: Colors.gray}}>- 21 Inch Wheels</Text>
-              </View>
-              <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
-                <Image style={{width: 160, height: 120}} source={require('../../assets/images/bikeImage.png')} />
-              </View>
+          title="Bike Location"
+          description="This is the location of your bike"
+        />
+      </MapView>
+      <ModalComponent />
+
+      <BottomSheet
+        backgroundStyle={{
+          backgroundColor: Colors.backgroundColor,
+        }}
+        ref={bottomSheetRef}
+        handleIndicatorStyle={{backgroundColor: Colors.light}}
+        snapPoints={['30%']}>
+        <BottomSheetView style={styles.contentContainer}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              borderRadius: 20,
+              padding: 4,
+              borderWidth: 1,
+              backgroundColor: Colors.backgroundColor,
+              borderColor: Colors.borderColor,
+              marginBottom: 8,
+            }}>
+            <View style={{flex: 1, padding: 16}}>
+              <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
+              <Text style={{color: Colors.gray}}>- Bike Code:{codes}</Text>
+              <Text style={{color: Colors.gray}}>- Max Mph 50mph</Text>
+              <Text style={{color: Colors.gray}}>- 8 Vitesli</Text>
+              <Text style={{color: Colors.gray}}>- 21 Inch Wheels</Text>
             </View>
-            <SwipeableButton
-              ref={swipeButtonRef}
-              onSwipeSuccess={() => {
-                setModalVisible(true);
-                setTimeout(() => {
-                  swipeButtonRef.current?.reset();
-                }, 1000);
-              }}
-            />
-          </BottomSheetView>
-        </BottomSheet>
-      </View>
-    </GestureHandlerRootView>
+            <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
+              <Image style={{width: 160, height: 120}} source={require('../../assets/images/bikeImage.png')} />
+            </View>
+          </View>
+          <SwipeableButton
+            ref={swipeButtonRef}
+            onSwipeSuccess={() => {
+              setModalVisible(true);
+            }}
+          />
+        </BottomSheetView>
+      </BottomSheet>
+    </View>
   );
 }
 
