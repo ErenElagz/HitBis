@@ -13,24 +13,22 @@ interface StatsCardProps {
 const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalRentals, totalCaloriesBurned, totalActivities}) => {
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>İstatistiklerim</Text>
-      <View style={styles.statsContainer}>
-        <View style={styles.statItem}>
-          <Icon name="clock-outline" size={24} color={Colors.tertiary} />
-          <Text style={styles.statText}>{totalBikeTime}</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Icon name="bike" size={24} color={Colors.tertiary} />
-          <Text style={styles.statText}>{totalRentals} Kiralama</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Icon name="fire" size={24} color={Colors.tertiary} />
-          <Text style={styles.statText}>{totalCaloriesBurned} kcal</Text>
-        </View>
-        <View style={styles.statItem}>
-          <Icon name="trophy" size={24} color={Colors.tertiary} />
-          <Text style={styles.statText}>{totalActivities} Aktivite</Text>
-        </View>
+      <Text style={styles.title}>My Stats</Text>
+      <View style={styles.statItem}>
+        <Icon name="clock-outline" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalBikeTime}</Text>
+      </View>
+      <View style={styles.statItem}>
+        <Icon name="bike" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalRentals} Rent</Text>
+      </View>
+      <View style={styles.statItem}>
+        <Icon name="fire" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalCaloriesBurned} kcal</Text>
+      </View>
+      <View style={styles.statItem}>
+        <Icon name="trophy" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalActivities} Activity</Text>
       </View>
     </View>
   );
@@ -38,43 +36,30 @@ const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalRentals, total
 
 const styles = StyleSheet.create({
   card: {
+    width: '100%',
+    height: '100%',
     borderRadius: 24,
     padding: 24,
     backgroundColor: Colors.backgroundColorsSecondary,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.primary,
+    color: Colors.light,
     marginBottom: 16,
-    textAlign: 'center',
-  },
-  statsContainer: {
-    marginTop: 8,
   },
   statItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
+    padding: 16,
+    borderRadius: 16,
+    backgroundColor: Colors.backgroundColor,
   },
   statText: {
-    fontSize: 24,
+    fontSize: 20,
     marginLeft: 12,
     color: Colors.light,
-    fontWeight: '500',
-  },
-  button: {
-    backgroundColor: Colors.light,
-    borderRadius: 12,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    alignItems: 'center',
-    marginTop: 16,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: Colors.primary,
   },
 });
 
