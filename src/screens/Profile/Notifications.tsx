@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 // Data
 import NotificationsList from '../../data/notifications';
+import PageHeader from '../../components/PageHeader';
 
 export default function NotificationsScreen() {
   const nav = useNavigation();
@@ -24,25 +25,7 @@ export default function NotificationsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        onPress={() => nav.goBack()}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'flex-start',
-          gap: 8,
-          paddingLeft: 20,
-          paddingBottom: 8,
-        }}>
-        <Icon name="arrow-left" size={20} color={Colors.light} />
-        <Text
-          style={{
-            color: Colors.light,
-            fontSize: 20,
-            fontFamily: Fonts.interBold,
-          }}>
-          All Notifications
-        </Text>
-      </TouchableOpacity>
+      <PageHeader title="Notifications" />
       <FlatList
         showsVerticalScrollIndicator={false}
         data={NotificationsList}

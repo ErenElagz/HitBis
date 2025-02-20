@@ -11,22 +11,12 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
 import InputText from '../../components/InputText';
-
+import PageHeader from '../../components/PageHeader';
 export default function SettingsScreen() {
   const nav = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => nav.goBack()} style={{flexDirection: 'row', alignItems: 'flex-start', gap: 8, paddingLeft: 20}}>
-        <Icon name="arrow-left" size={24} color={Colors.light} />
-        <Text
-          style={{
-            color: Colors.light,
-            fontSize: 20,
-            fontFamily: Fonts.interBold,
-          }}>
-          Settings
-        </Text>
-      </TouchableOpacity>
+      <PageHeader title="Settings" />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
