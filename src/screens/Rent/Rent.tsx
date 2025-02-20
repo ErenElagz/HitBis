@@ -1,6 +1,6 @@
 // React
-import React, {useRef, useCallback, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 // Styles
 import Colors from '../../styles/Colors';
@@ -11,6 +11,7 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Button from '../../components/Button';
+import BackButton from '../../components/BackButton';
 // Data
 import StationsList from '../../data/stations';
 // Map
@@ -27,23 +28,7 @@ export default function RentScreen() {
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
-        <TouchableOpacity
-          style={{
-            marginTop: 16,
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'absolute',
-            zIndex: 999,
-            top: 16,
-            left: 16,
-            backgroundColor: Colors.dark,
-            width: 48,
-            height: 48,
-            borderRadius: 16,
-          }}
-          onPress={() => nav.goBack()}>
-          <Icon name="arrow-left" size={28} color={Colors.light} />
-        </TouchableOpacity>
+        <BackButton />
         <MapView
           clusterColor="#000"
           customMapStyle={CustomMapStyle}

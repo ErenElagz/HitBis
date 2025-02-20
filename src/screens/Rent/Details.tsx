@@ -1,6 +1,8 @@
 // React
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 import React, {useRef} from 'react';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -10,51 +12,44 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
+import SwipeableButton from '../../components/SwipeButton';
 import SwipeButton from 'rn-swipe-button';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
   const {codes} = route.params;
   const swipeButtonRef = useRef<SwipeButton>(null);
+  // ref
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
   const [modalVisible, setModalVisible] = React.useState(false);
   const ModalComponent = () => {
     return (
-      <Modal visible={modalVisible} transparent={false} animationType="slide">
-        <View style={{flex: 1, backgroundColor: Colors.backgroundColor, justifyContent: 'center', alignItems: 'center'}}>
-          <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, borderColor: Colors.borderColor, borderWidth: 1}}>
-            <Text style={{color: Colors.light, fontSize: 24, marginBottom: 12}}>Renting Succesfull</Text>
-            <Text style={{color: Colors.gray, fontSize: 16}}>You have succesfully rented the bike</Text>
-            <View
-              style={{
-                justifyContent: 'space-between',
-                marginTop: 24,
-                gap: 8,
-              }}>
-              <Button type="secondary" icon="bike" title="Start the Ride" onPress={() => nav.navigate('Home', {screen: 'Ride'})} />
-              <Button type="tertiary" icon="home" title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
-            </View>
+      <Modal visible={modalVisible} transparent={true} animationType="slide">
+        <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, borderColor: Colors.borderColor, borderWidth: 1}}>
+          <Text style={{color: Colors.light, fontSize: 24, marginBottom: 12}}>Renting Succesfull</Text>
+          <Text style={{color: Colors.gray, fontSize: 16}}>You have succesfully rented the bike</Text>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              marginTop: 24,
+              gap: 8,
+            }}>
+            <Button type="secondary" icon="bike" title="Start the Ride" onPress={() => nav.navigate('Home', {screen: 'Ride'})} />
+            <Button type="tertiary" icon="home" title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
           </View>
         </View>
       </Modal>
     );
   };
 
-  // JSX
-
   return (
-    <View style={styles.container}>
-      <Header title="Lets Rent" description="Swipe and Unlock your bike" onPress={() => nav.goBack()} />
-      <View
-        style={{
-          margin: 12,
-          borderRadius: 16,
-          overflow: 'hidden',
-          flex: 1,
-        }}>
+    <GestureHandlerRootView>
+      <View style={styles.container}>
         <MapView
           customMapStyle={CustomMapStyle}
           style={styles.map}
@@ -76,57 +71,50 @@ export default function DetailsScreen({route}: any) {
             description="This is the location of your bike"
           />
         </MapView>
-      </View>
-      <ModalComponent />
-      <View style={{padding: 12}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            borderRadius: 20,
-            padding: 16,
+        <ModalComponent />
+
+        <BottomSheet
+          backgroundStyle={{
             backgroundColor: Colors.backgroundColor,
-            borderColor: Colors.borderColor,
-            borderWidth: 1,
-          }}>
-          <View>
-            <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
-            <Text style={{color: Colors.gray, fontSize: 16}}>- Bike Code:{codes}</Text>
-            <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
-            <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
-            <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
-          </View>
-          <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
-            <Image style={{width: 120, height: 120}} source={require('../../assets/images/bikeImage.png')} />
-          </View>
-        </View>
-        <SwipeButton
-          ref={swipeButtonRef}
-          onSwipeSuccess={() => {
-            setModalVisible(true);
-            setTimeout(() => {
-              swipeButtonRef.current?.reset();
-            }, 1000);
           }}
-          containerStyles={{borderRadius: 16}}
-          height={66}
-          railBackgroundColor={Colors.backgroundColorsSecondary}
-          thumbIconBackgroundColor={Colors.primary}
-          thumbIconStyles={{borderRadius: 16, backgroundColor: Colors.dark}}
-          thumbIconWidth={60}
-          swipeSuccessThreshold={90}
-          railBorderColor={Colors.borderColor}
-          railStyles={{borderRadius: 16}}
-          thumbIconBorderColor="transparent"
-          thumbIconComponent={() => <Icon name="lock-open" size={32} color={Colors.light} />}
-          railFillBackgroundColor="#45BD8950"
-          railFillBorderColor={Colors.primary}
-          titleColor="#fff"
-          titleFontSize={18}
-          title="Slide and Unlock"
-        />
+          ref={bottomSheetRef}
+          handleIndicatorStyle={{backgroundColor: Colors.light}}
+          snapPoints={['35%']}>
+          <BottomSheetView style={styles.contentContainer}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderRadius: 20,
+                padding: 16,
+                backgroundColor: Colors.backgroundColor,
+                borderColor: Colors.borderColor,
+                borderWidth: 1,
+              }}>
+              <View>
+                <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
+                <Text style={{color: Colors.gray, fontSize: 16}}>- Bike Code:{codes}</Text>
+                <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
+                <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
+                <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
+              </View>
+              <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
+                <Image style={{width: 120, height: 120}} source={require('../../assets/images/bikeImage.png')} />
+              </View>
+            </View>
+            <SwipeableButton
+              ref={swipeButtonRef}
+              onSwipeSuccess={() => {
+                setModalVisible(true);
+                setTimeout(() => {
+                  swipeButtonRef.current?.reset();
+                }, 1000);
+              }}
+            />
+          </BottomSheetView>
+        </BottomSheet>
       </View>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
@@ -147,7 +135,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   map: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 1,
+    backgroundColor: Colors.backgroundColor,
+    padding: 16,
   },
 });

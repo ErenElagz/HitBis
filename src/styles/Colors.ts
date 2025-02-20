@@ -6,12 +6,12 @@ const Colors = {
   // Helper Colors
   backgroundColor: '#001110',
   backgroundColorsSecondary: '#192827',
-  borderColor: '#ffffff20',
+  borderColor: '#FFFFFF20',
   // Colors
-  light: '#ffffff',
+  light: '#FFFFFF',
   dark: '#000000',
   red: '#FF8C8C',
-  gray: '#AAA',
+  gray: '#AAAAAA',
 };
 
 export default Colors;
