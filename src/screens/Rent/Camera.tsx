@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camera';
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 // Components
+import BackButton from '../../components/BackButton';
 
 export default function CameraScreen() {
   const checkCameraPermission = async () => {
@@ -18,13 +19,13 @@ export default function CameraScreen() {
       case RESULTS.GRANTED:
         break;
       case RESULTS.DENIED:
-        Alert.alert('İzin Reddedildi', 'Kamera kullanımı için izin reddedildi.');
+        Alert.alert('Camera Permission', 'Camera permission is required to scan QR codes.');
         break;
       case RESULTS.BLOCKED:
-        Alert.alert('İzin Engellendi', 'Kamera izinleri ayarlardan etkinleştirilmelidir.');
+        Alert.alert('Camera Permission', 'Camera permission is blocked. Please enable it from settings.');
         break;
       default:
-        Alert.alert('Bilinmeyen Durum', 'Kamera izin durumu bilinmiyor.');
+        Alert.alert('Camera Permission', 'Camera permission is required to scan QR codes.');
     }
   };
 
@@ -44,29 +45,7 @@ export default function CameraScreen() {
   return (
     <View style={styles.container}>
       {devices && <Camera style={styles.camera} device={devices} isActive={true} codeScanner={codeScanner} />}
-      <TouchableOpacity
-        style={{
-          marginTop: 16,
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'absolute',
-          zIndex: 999,
-          top: 16,
-          left: 16,
-          backgroundColor: Colors.dark,
-          width: 48,
-          height: 48,
-          borderRadius: 16,
-        }}>
-        <Icon
-          name="chevron-left"
-          size={28}
-          color={Colors.light}
-          onPress={() => {
-            nav.goBack();
-          }}
-        />
-      </TouchableOpacity>
+      <BackButton />
       <Icon
         name="crop-free"
         size={360}
@@ -75,7 +54,7 @@ export default function CameraScreen() {
           position: 'absolute',
           zIndex: 999,
           alignSelf: 'center',
-          opacity: 0.5,
+          opacity: 0.8,
         }}
       />
     </View>

@@ -32,7 +32,7 @@ const SwipeableButton: React.FC<SwipeButtonProps> = ({ref: swipeButtonRef, onSwi
       railFillBorderColor={Colors.primary}
       titleColor="#fff"
       titleFontSize={18}
-      title="Slide & Unlock"
+      title="Slide and Unlock"
     />
   );
 };

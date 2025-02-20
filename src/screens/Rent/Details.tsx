@@ -14,7 +14,6 @@ import {useNavigation} from '@react-navigation/native';
 // Components
 import SwipeableButton from '../../components/SwipeButton';
 import SwipeButton from 'rn-swipe-button';
-import Header from '../../components/Header';
 import Button from '../../components/Button';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
@@ -25,12 +24,11 @@ export default function DetailsScreen({route}: any) {
   const swipeButtonRef = useRef<SwipeButton>(null);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
-
   const [modalVisible, setModalVisible] = React.useState(false);
   const ModalComponent = () => {
     return (
       <Modal visible={modalVisible} transparent={true} animationType="slide">
-        <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, borderColor: Colors.borderColor, borderWidth: 1}}>
+        <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, alignSelf: 'center', marginTop: 'auto', marginBottom: 'auto'}}>
           <Text style={{color: Colors.light, fontSize: 24, marginBottom: 12}}>Renting Succesfull</Text>
           <Text style={{color: Colors.gray, fontSize: 16}}>You have succesfully rented the bike</Text>
           <View
@@ -79,27 +77,28 @@ export default function DetailsScreen({route}: any) {
           }}
           ref={bottomSheetRef}
           handleIndicatorStyle={{backgroundColor: Colors.light}}
-          snapPoints={['35%']}>
+          snapPoints={['30%']}>
           <BottomSheetView style={styles.contentContainer}>
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 borderRadius: 20,
-                padding: 16,
+                padding: 4,
+                borderWidth: 1,
                 backgroundColor: Colors.backgroundColor,
                 borderColor: Colors.borderColor,
-                borderWidth: 1,
+                marginBottom: 8,
               }}>
-              <View>
+              <View style={{flex: 1, padding: 16}}>
                 <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
-                <Text style={{color: Colors.gray, fontSize: 16}}>- Bike Code:{codes}</Text>
-                <Text style={{color: Colors.gray, fontSize: 16}}>- Max Mph 50mph</Text>
-                <Text style={{color: Colors.gray, fontSize: 16}}>- 8 Vitesli</Text>
-                <Text style={{color: Colors.gray, fontSize: 16}}>- 21 Inch Wheels</Text>
+                <Text style={{color: Colors.gray}}>- Bike Code:{codes}</Text>
+                <Text style={{color: Colors.gray}}>- Max Mph 50mph</Text>
+                <Text style={{color: Colors.gray}}>- 8 Vitesli</Text>
+                <Text style={{color: Colors.gray}}>- 21 Inch Wheels</Text>
               </View>
               <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
-                <Image style={{width: 120, height: 120}} source={require('../../assets/images/bikeImage.png')} />
+                <Image style={{width: 160, height: 120}} source={require('../../assets/images/bikeImage.png')} />
               </View>
             </View>
             <SwipeableButton
@@ -140,6 +139,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    padding: 16,
+    paddingHorizontal: 16,
   },
 });
