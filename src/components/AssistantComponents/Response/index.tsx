@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react';
 import Button from '../../Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
-
+import AssistantPrompt from '../../../data/assistantPrompt';
 function Response(props: any) {
   const [generatedText, setGeneratedText] = useState('');
   const date = new Date();
@@ -16,8 +16,7 @@ function Response(props: any) {
   useEffect(() => {
     const fetchData = async () => {
       const model = genAI.getGenerativeModel({model: 'gemini-pro'});
-      const extraPrompt =
-        'Places must be in Turkey no extra information and it must be in json format but dont add first variable places bestplaces like this DONT ADD json must contain name, latitude, longitude, description, and image_url no more. example structure : [{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""},{"description": "", "latitude": number, "longitude": number, "name": "", "image_url": ""}]';
+      const extraPrompt = AssistantPrompt;
       const prompt = props.prompt + extraPrompt;
       const result = await model.generateContent(prompt);
       let response = result.response.text();
@@ -34,6 +33,7 @@ function Response(props: any) {
       response = JSON.parse(response);
 
       setPlaces(response);
+      console.log(response);
       setGeneratedText(response);
     };
     fetchData();
