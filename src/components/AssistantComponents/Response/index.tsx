@@ -11,8 +11,7 @@ function Response(props: any) {
   const date = new Date();
   const genAI = new GoogleGenerativeAI('AIzaSyDM1CVLLnxjv2ntZU6KU1T7QCj6HONPFhE');
   const nav = useNavigation();
-
-  const [places, setPlaces] = useState(null);
+  const [places, setPlaces] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
