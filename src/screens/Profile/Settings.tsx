@@ -12,8 +12,25 @@ import {useNavigation} from '@react-navigation/native';
 import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 import PageHeader from '../../components/PageHeader';
+import DocumentPicker from 'react-native-document-picker';
+import RNFS from 'react-native-fs';
+
 export default function SettingsScreen() {
   const nav = useNavigation();
+  const handlePickFile = async () => {
+    try {
+      const pickedFile = await DocumentPicker.pickSingle({
+        type: [DocumentPicker.types.allFiles],
+      });
+      console.log(pickedFile);
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log('User cancelled the picker');
+      } else {
+        throw err;
+      }
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <PageHeader title="Settings" />
@@ -23,7 +40,7 @@ export default function SettingsScreen() {
           <View style={{marginTop: 32, width: '100%', gap: 8, alignItems: 'center'}}>
             <View style={{padding: 4, borderRadius: 999, backgroundColor: Colors.primary}}>
               <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
-              <TouchableOpacity style={{position: 'absolute', right: 0, bottom: 0, padding: 8, borderRadius: 999, backgroundColor: Colors.primary}}>
+              <TouchableOpacity onPress={handlePickFile} style={{position: 'absolute', right: 0, bottom: 0, padding: 8, borderRadius: 999, backgroundColor: Colors.primary}}>
                 <Icon name="camera" size={20} color={Colors.dark} />
               </TouchableOpacity>
             </View>
