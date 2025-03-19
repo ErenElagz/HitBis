@@ -26,7 +26,6 @@ const ActivityCard: React.FC<ActivityCardProps> = ({name, description, date, dur
 
   return (
     <View style={[styles.card, style]}>
-      {/* Google Maps Harita */}
       <View style={styles.mapContainer}>
         <MapView
           provider={PROVIDER_GOOGLE}
@@ -41,8 +40,6 @@ const ActivityCard: React.FC<ActivityCardProps> = ({name, description, date, dur
           <Marker coordinate={coordinates} title={name} />
         </MapView>
       </View>
-
-      {/* Aktivite Bilgileri */}
       <View style={styles.content}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.description}>{description}</Text>

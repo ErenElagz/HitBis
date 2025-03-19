@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import Colors from '../../styles/Colors';
 import {useNavigation} from '@react-navigation/native';
 
-// GroupType'ı tekrar tanımlamak istemiyorsanız, orijinal türü buraya taşıyın
 type CategoryType = 'Bisiklet' | 'Koşu' | 'Yoga' | 'Doğa Yürüyüşü' | 'Fitness';
 
 interface GroupCardProps {
@@ -12,7 +11,7 @@ interface GroupCardProps {
   description: string;
   membersCount: number;
   createdAt: string;
-  category: CategoryType; // Düzeltildi
+  category: CategoryType;
   location: string;
   style?: object;
   image: string;
@@ -26,7 +25,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
   createdAt,
   category,
   location,
-  image, // Eksik prop eklendi
+  image,
   style,
 }) => {
   const nav = useNavigation();
@@ -37,7 +36,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
       onPress={() => {
         try {
           nav.navigate('Group', {
-            id, // ID'yi ekledik
+            id, 
             name,
             description,
             membersCount,

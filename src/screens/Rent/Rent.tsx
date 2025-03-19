@@ -32,6 +32,7 @@ export default function RentScreen() {
           clusterColor="#000"
           customMapStyle={CustomMapStyle}
           style={styles.map}
+          showsTraffic={true}
           provider={PROVIDER_GOOGLE}
           showsUserLocation={true}
           initialRegion={{
