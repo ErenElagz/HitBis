@@ -27,17 +27,31 @@ export default function LoginScreen() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
   const handleLogin = async () => {
+    setIsLoading(true);
     try {
       const token = await loginRequest(email, password);
       console.log(token);
       if (token) {
         login(token);
+        setError('');
+      } else {
+        setError('Invalid password or email address.');
       }
     } catch (error) {
       setError('Login failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const isValidEmail = (email: string) => {
+    const regex = /^\S+@\S+\.\S+$/;
+    return regex.test(email);
   };
 
   return (
@@ -49,7 +63,9 @@ export default function LoginScreen() {
 
       <View style={{width: '100%', gap: 8}}>
         <InputText placeholder="Email" value={email} onChangeText={setEmail} error={error} />
-        <InputText placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={true} error={error} />
+        {email !== '' && !isValidEmail(email) && <Text style={{color: 'red', fontSize: 12}}>Please enter a valid email address.</Text>}
+        <InputText placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!isPasswordVisible} showToggle error={error} />
+        {error !== '' && <Text style={{color: 'red', fontSize: 12, marginTop: 8}}>{error}</Text>}
       </View>
 
       <LinkText
@@ -60,7 +76,7 @@ export default function LoginScreen() {
         }}
       />
 
-      <Button type="secondary" title="Sign In" onPress={handleLogin} />
+      <Button type="secondary" title="Sign In" onPress={handleLogin} loading={isLoading} disabled={!isValidEmail(email) || password.trim() === '' || isLoading} />
 
       <OrDivider />
 

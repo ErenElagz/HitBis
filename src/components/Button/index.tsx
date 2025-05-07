@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -8,10 +8,12 @@ interface ButtonProps {
   onPress?: () => void;
   type?: 'primary' | 'secondary' | 'tertiary';
   style?: object;
+  disabled?: boolean;
   icon?: string;
+  loading?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style, icon}) => {
+const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style, icon, disabled, loading}) => {
   return (
     <TouchableOpacity
       style={[
@@ -24,10 +26,18 @@ const Button: React.FC<ButtonProps> = ({title, onPress, type = 'primary', style,
           ? {backgroundColor: Colors.backgroundColor}
           : {backgroundColor: Colors.primary},
         style,
+        disabled && {opacity: 0.5}, // opsiyonel stil: disable durumunda soluklaştır
       ]}
-      onPress={onPress}>
-      {icon && <Icon name={icon} size={20} color={Colors.light} />}
-      {title && <Text style={[styles.text]}>{title}</Text>}
+      onPress={onPress}
+      disabled={disabled}>
+      {loading ? (
+        <ActivityIndicator size="small" color="#fff" />
+      ) : (
+        <>
+          {icon && <Icon name={icon} size={20} color={Colors.light} />}
+          {title && <Text style={styles.text}>{title}</Text>}
+        </>
+      )}
     </TouchableOpacity>
   );
 };

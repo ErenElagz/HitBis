@@ -14,9 +14,18 @@ import InputText from '../../components/InputText';
 import PageHeader from '../../components/PageHeader';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
+import {useAuth} from '../../Context/authContext';
+import {logoutRequest} from '../../api/authService';
 
 export default function SettingsScreen() {
+  const {logout} = useAuth();
   const nav = useNavigation();
+
+  const handleLogout = async () => {
+    await logoutRequest();
+    logout();
+  };
+
   const handlePickFile = async () => {
     try {
       const pickedFile = await DocumentPicker.pickSingle({
@@ -51,7 +60,7 @@ export default function SettingsScreen() {
             <InputText placeholder="Surname" />
             <InputText placeholder="Email" />
             <Button type="secondary" title="Save" />
-            <Button title="Log out" onPress={() => {}} type="tertiary" icon="logout" />
+            <Button title="Log out" onPress={handleLogout} type="tertiary" icon="logout" />
           </View>
         </View>
       </ScrollView>

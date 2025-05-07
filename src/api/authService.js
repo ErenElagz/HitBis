@@ -39,3 +39,14 @@ export const loginRequest = async (email, password) => {
     return null;
   }
 };
+
+export const logoutRequest = async () => {
+  try {
+    const token = await getToken();
+    if (token) {
+      await removeToken();
+    }
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
+};
