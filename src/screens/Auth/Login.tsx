@@ -27,6 +27,8 @@ export default function LoginScreen() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
+  const [emailError, setEmailError] = React.useState('');
+  const [passwordError, setPasswordError] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
@@ -34,6 +36,24 @@ export default function LoginScreen() {
   const handleLogin = async () => {
     setIsLoading(true);
     try {
+      if (email.trim() === '') {
+        setEmailError('Email cannot be empty');
+        return;
+      } else {
+        setEmailError('');
+      }
+      if (!isValidEmail(email)) {
+        setEmailError('Invalid email address');
+        return;
+      } else {
+        setEmailError('');
+      }
+      if (password.trim() === '') {
+        setPasswordError('Password cannot be empty');
+        return;
+      } else {
+        setPasswordError('');
+      }
       const token = await loginRequest(email, password);
       console.log(token);
       if (token) {
@@ -62,9 +82,9 @@ export default function LoginScreen() {
       </View>
 
       <View style={{width: '100%', gap: 8}}>
-        <InputText placeholder="Email" value={email} onChangeText={setEmail} error={error} />
+        <InputText placeholder="Email" value={email} onChangeText={setEmail} error={emailError} />
         {email !== '' && !isValidEmail(email) && <Text style={{color: 'red', fontSize: 12}}>Please enter a valid email address.</Text>}
-        <InputText placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!isPasswordVisible} showToggle error={error} />
+        <InputText placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!isPasswordVisible} showToggle error={passwordError} />
         {error !== '' && <Text style={{color: 'red', fontSize: 12, marginTop: 8}}>{error}</Text>}
       </View>
 
