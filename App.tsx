@@ -19,19 +19,19 @@ const AppContent = () => {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const token = await AsyncStorage.getItem('token'); // Token'ı AsyncStorage'dan alıyoruz
+        const token = await AsyncStorage.getItem('token');
         if (token) {
-          login(token); // Eğer token varsa login fonksiyonunu çağırıyoruz
+          login(token); // ← token gönderilmeli!
         } else {
-          logout(); // Eğer token yoksa logout fonksiyonunu çağırıyoruz
+          logout();
         }
       } catch (error) {
-        console.error('Error checking login status:', error); // Hata durumunda konsola hata mesajını yazdırıyoruz
-        logout(); // Hata durumunda logout fonksiyonunu çağırıyoruz
+        console.error('Error checking login status:', error);
+        logout();
       }
     };
 
-    checkLoginStatus(); // Bileşen yüklendiğinde login durumunu kontrol ediyoruz
+    checkLoginStatus();
   }, []);
 
   const {isAuthenticated} = useAuth(); // AuthContext'ten durumu alıyoruz
