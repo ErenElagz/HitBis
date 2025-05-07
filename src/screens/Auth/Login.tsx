@@ -1,6 +1,6 @@
 // React
 import {View, Text, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 // Styles
 import defaultStyles from '../../styles/DefaultStyles';
@@ -11,9 +11,33 @@ import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 import LinkText from '../../components/LinkText';
 import OrDivider from '../../components/OrDivider';
+//API
+import {loginRequest, fetchUserData} from '../../api/authService';
+// Context
+import {useAuth} from '../../Context/authContext';
+
+import API from '../../api/api';
 
 export default function LoginScreen() {
   const nav = useNavigation();
+
+  const {login} = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleLogin = async () => {
+    try {
+      const token = await loginRequest(email, password);
+      console.log(token);
+      if (token) {
+        login();
+      }
+    } catch (error) {
+      setError('Login failed. Please check your credentials.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -23,8 +47,8 @@ export default function LoginScreen() {
       </View>
 
       <View style={{width: '100%', gap: 8}}>
-        <InputText placeholder="Email" />
-        <InputText placeholder="Password" />
+        <InputText placeholder="Email" value={email} onChangeText={setEmail} error={error} />
+        <InputText placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={true} error={error} />
       </View>
 
       <LinkText
@@ -35,7 +59,7 @@ export default function LoginScreen() {
         }}
       />
 
-      <Button type="secondary" title="Sign In" />
+      <Button type="secondary" title="Sign In" onPress={handleLogin} />
 
       <OrDivider />
 
