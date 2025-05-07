@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-// Navigators
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AuthNavigator from './src/navigators/AuthNavigator';
 import TabNavigator from './src/navigators/TabNavigator';
@@ -10,6 +9,8 @@ import TabNavigator from './src/navigators/TabNavigator';
 import {AuthProvider, useAuth} from './src/Context/authContext';
 // AsyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// Toast
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,13 +22,25 @@ const AppContent = () => {
       try {
         const token = await AsyncStorage.getItem('token');
         if (token) {
-          login(token); // ← token gönderilmeli!
+          login(token); // token gönderilmeli!
+          Toast.show({
+            type: 'success',
+            position: 'top',
+            text1: 'User logged in successfully!',
+            text2: 'Welcome back!',
+          });
         } else {
           logout();
         }
       } catch (error) {
         console.error('Error checking login status:', error);
         logout();
+        Toast.show({
+          type: 'error',
+          position: 'top',
+          text1: 'Login failed!',
+          text2: 'Please try again.',
+        });
       }
     };
 
@@ -44,6 +57,7 @@ const AppContent = () => {
           {isAuthenticated ? <Stack.Screen name="App" component={TabNavigator} /> : <Stack.Screen name="Auth" component={AuthNavigator} />}
         </Stack.Navigator>
       </NavigationContainer>
+      <Toast />
     </GestureHandlerRootView>
   );
 };

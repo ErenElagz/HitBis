@@ -50,3 +50,14 @@ export const logoutRequest = async () => {
     console.error('Error logging out:', error);
   }
 };
+
+export const registerUser = async (username, email, password) => {
+  try {
+    const res = await API.post('/user/register', {username, email, password});
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error.response ? error.response.data : error.message);
+    return null;
+  }
+};
