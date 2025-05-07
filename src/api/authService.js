@@ -30,9 +30,8 @@ export const removeToken = async () => {
 
 export const loginRequest = async (email, password) => {
   try {
-    const responte = await API.post('/auth/login', {email, password});
-    console.log(responte);
-    const {token} = responte.data.accessToken;
+    const res = await API.post('/auth/login', {email, password});
+    const token = res.data.data.accessToken;
     await storeToken(token);
     return token;
   } catch (error) {

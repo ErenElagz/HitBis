@@ -12,11 +12,9 @@ import InputText from '../../components/InputText';
 import LinkText from '../../components/LinkText';
 import OrDivider from '../../components/OrDivider';
 //API
-import {loginRequest, fetchUserData} from '../../api/authService';
+import {loginRequest} from '../../api/authService';
 // Context
 import {useAuth} from '../../Context/authContext';
-
-import API from '../../api/api';
 
 export default function LoginScreen() {
   const nav = useNavigation();
