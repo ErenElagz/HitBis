@@ -1,31 +1,34 @@
 import React, {createContext, useState, useContext, ReactNode} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// AuthContext türünü tanımlayalım
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
+  token: string | null;
+  login: (token: string) => Promise<void>;
+  logout: () => Promise<void>;
 }
 
-// AuthContext'i oluşturuyoruz
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// AuthProvider, context'i sağlayan bileşen
 export const AuthProvider = ({children}: {children: ReactNode}) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
 
-  const login = () => {
-    setIsAuthenticated(true); // Giriş yapıldığında true yap
+  const login = async (newToken: string) => {
+    await AsyncStorage.setItem('token', newToken);
+    setToken(newToken);
+    setIsAuthenticated(true);
   };
 
-  const logout = () => {
-    setIsAuthenticated(false); // Çıkış yapıldığında false yap
+  const logout = async () => {
+    await AsyncStorage.removeItem('token');
+    setToken(null);
+    setIsAuthenticated(false);
   };
 
-  return <AuthContext.Provider value={{isAuthenticated, login, logout}}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{isAuthenticated, token, login, logout}}>{children}</AuthContext.Provider>;
 };
 
-// useAuth, context'e erişim sağlamak için kullanılacak custom hook
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

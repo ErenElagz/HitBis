@@ -15,11 +15,14 @@ import OrDivider from '../../components/OrDivider';
 import {loginRequest} from '../../api/authService';
 // Context
 import {useAuth} from '../../Context/authContext';
+// AsyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// context
 
 export default function LoginScreen() {
   const nav = useNavigation();
 
-  const {login} = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
+  const {login, logout} = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -30,7 +33,7 @@ export default function LoginScreen() {
       const token = await loginRequest(email, password);
       console.log(token);
       if (token) {
-        login();
+        login(token);
       }
     } catch (error) {
       setError('Login failed. Please check your credentials.');
