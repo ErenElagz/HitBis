@@ -13,6 +13,7 @@ import LinkText from '../../components/LinkText';
 import OrDivider from '../../components/OrDivider';
 //API
 import {loginRequest} from '../../api/authService';
+import {getUser} from '../../api/userService';
 // Context
 import {useAuth} from '../../Context/authContext';
 // AsyncStorage
@@ -54,10 +55,11 @@ export default function LoginScreen() {
       } else {
         setPasswordError('');
       }
+
       const token = await loginRequest(email, password);
-      console.log(token);
       if (token) {
-        login(token);
+        const userData = await getUser();
+        login(token, userData);
         setError('');
       } else {
         setError('Invalid password or email address.');

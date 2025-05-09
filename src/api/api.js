@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Config from 'react-native-config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API = axios.create({
   baseURL: Config.BACKEND_API_URL, // Çevre değişkenini doğru şekilde aldığından emin ol
@@ -7,9 +8,11 @@ const API = axios.create({
 
 // İstek öncesi header ayarlarını yap
 API.interceptors.request.use(
-  config => {
-    const token = ''; // Token'ı buradan al
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+  async config => {
+    const token = await AsyncStorage.getItem('token'); // Token'ı async olarak alıyoruz
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   error => {

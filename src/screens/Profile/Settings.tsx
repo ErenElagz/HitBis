@@ -1,25 +1,105 @@
-// React
 import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-// Styles
 import Colors from '../../styles/Colors';
-import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-// Libraries
-import {useNavigation} from '@react-navigation/native';
-// Components
-import Button from '../../components/Button';
 import InputText from '../../components/InputText';
-import PageHeader from '../../components/PageHeader';
-import DocumentPicker from 'react-native-document-picker';
-import RNFS from 'react-native-fs';
+import Button from '../../components/Button';
 import {useAuth} from '../../Context/authContext';
 import {logoutRequest} from '../../api/authService';
+import {updateUser} from '../../api/userService';
+import PageHeader from '../../components/PageHeader';
+import DocumentPicker from 'react-native-document-picker';
+import {useNavigation} from '@react-navigation/native';
+import {getUser} from '../../api/userService';
+import Toast from 'react-native-toast-message';
 
 export default function SettingsScreen() {
-  const {logout} = useAuth();
   const nav = useNavigation();
+  const {logout, token} = useAuth();
+
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [weight, setWeight] = useState('');
+  const [lenght, setLenght] = useState('');
+  const [age, setAge] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [userData, setUserData] = useState<any>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const getUserFromApi = async () => {
+    try {
+      const userData = await getUser();
+      setUserData(userData);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  useEffect(() => {
+    getUserFromApi();
+  }, []);
+
+  useEffect(() => {
+    if (userData) {
+      setName(userData.name || '');
+      setSurname(userData.surname || '');
+      setEmail(userData.email || '');
+      setUsername(userData.username || '');
+      setAge(userData.age?.toString() || '');
+      setWeight(userData.weight?.toString() || '');
+      setLenght(userData.lenght?.toString() || '');
+    }
+  }, [userData]);
+
+  const handleUpdate = async () => {
+    const updatedFields: any = {};
+
+    if (name !== userData.name) updatedFields.name = name;
+    if (surname !== userData.surname) updatedFields.surname = surname;
+    if (email !== userData.email) updatedFields.email = email;
+    if (age !== userData.age) updatedFields.age = age;
+    if (weight !== userData.weight) updatedFields.weight = weight;
+    if (lenght !== userData.lenght) updatedFields.lenght = lenght;
+    if (username !== userData.username) updatedFields.username = username;
+
+    if (Object.keys(updatedFields).length === 0) {
+      Toast.show({
+        type: 'info',
+        text1: 'No Changes',
+        text2: 'No information has been modified.',
+      });
+      setError('No changes detected.');
+      return;
+    }
+
+    try {
+      const updatedUser = await updateUser(updatedFields);
+      if (updatedUser) {
+        Toast.show({
+          type: 'success',
+          text1: 'Success',
+          text2: 'Kullanıcı Your profile has been updated. ',
+        });
+        setMessage('Your information has been updated.');
+        setError('');
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Something went wrong while updating your profile.',
+        });
+        setMessage('');
+        setError('Failed to update information.');
+      }
+    } catch (error) {
+      setMessage('');
+      setError('Something went wrong. Please try again later.');
+    }
+  };
 
   const handleLogout = async () => {
     await logoutRequest();
@@ -40,10 +120,10 @@ export default function SettingsScreen() {
       }
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <PageHeader title="Settings" />
-
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View style={{marginTop: 32, width: '100%', gap: 8, alignItems: 'center'}}>
@@ -54,12 +134,18 @@ export default function SettingsScreen() {
               </TouchableOpacity>
             </View>
           </View>
+
           <View style={{marginTop: 16, width: '100%', gap: 8, alignItems: 'center', paddingHorizontal: 16}}>
-            <InputText placeholder="Username" />
-            <InputText placeholder="Name" />
-            <InputText placeholder="Surname" />
-            <InputText placeholder="Email" />
-            <Button type="secondary" title="Save" />
+            <InputText placeholder="Username" value={username} onChangeText={setUsername} />
+            <InputText placeholder="Name" value={name} onChangeText={setName} />
+            <InputText placeholder="Surname" value={surname} onChangeText={setSurname} />
+            <InputText placeholder="Email" value={email} onChangeText={setEmail} />
+            <View style={{flexDirection: 'column', gap: 8, width: '100%'}}>
+              <InputText placeholder="Lenght" value={lenght} onChangeText={setLenght} />
+              <InputText placeholder="Weight" value={weight} onChangeText={setWeight} />
+            </View>
+            <InputText placeholder="Age" value={age} onChangeText={setAge} />
+            <Button type="secondary" title="Save" onPress={handleUpdate} />
             <Button title="Log out" onPress={handleLogout} type="tertiary" icon="logout" />
           </View>
         </View>
