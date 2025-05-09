@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const updateUser = async (name: string, surname: string, email: string) => {
+export const updateUser = async (name, surname, email) => {
   try {
     const response = await axios.put('https://your-api-url.com/updateUser', {
       name,
