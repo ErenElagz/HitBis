@@ -12,11 +12,13 @@ import PageHeader from '../../components/PageHeader';
 import DocumentPicker from 'react-native-document-picker';
 import {useNavigation} from '@react-navigation/native';
 import {getUser} from '../../api/userService';
+import {uploadUserAvatar} from '../../api/userService';
 import Toast from 'react-native-toast-message';
 
 export default function SettingsScreen() {
   const nav = useNavigation();
   const {logout, token} = useAuth();
+  const {user, setUser} = useAuth();
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -29,6 +31,7 @@ export default function SettingsScreen() {
   const [message, setMessage] = useState('');
   const [userData, setUserData] = useState<any>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [imageURL, setImageURL] = useState('');
 
   const getUserFromApi = async () => {
     try {
@@ -52,10 +55,14 @@ export default function SettingsScreen() {
       setAge(userData.age?.toString() || '');
       setWeight(userData.weight?.toString() || '');
       setLenght(userData.lenght?.toString() || '');
+      setImageURL(userData.avatar || '');
     }
   }, [userData]);
 
   const handleUpdate = async () => {
+    if (isSaving) return;
+    setIsSaving(true);
+
     const updatedFields: any = {};
 
     if (name !== userData.name) updatedFields.name = name;
@@ -73,6 +80,7 @@ export default function SettingsScreen() {
         text2: 'No information has been modified.',
       });
       setError('No changes detected.');
+      setIsSaving(false);
       return;
     }
 
@@ -98,6 +106,8 @@ export default function SettingsScreen() {
     } catch (error) {
       setMessage('');
       setError('Something went wrong. Please try again later.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -106,17 +116,43 @@ export default function SettingsScreen() {
     logout();
   };
 
+  const handleUpload = async pickedFile => {
+    try {
+      const response = await uploadUserAvatar(pickedFile);
+
+      const avatarUrl = response.avatar;
+
+      Toast.show({
+        type: 'success',
+        text1: 'Upload Successful',
+        text2: 'Profile picture updated!',
+      });
+
+      setImageURL(avatarUrl);
+
+      updateUser({avatar: response.data});
+    } catch (err) {
+      console.error('Upload failed', err);
+      Toast.show({
+        type: 'error',
+        text1: 'Upload Failed',
+        text2: 'Please try again.',
+      });
+    }
+  };
+
   const handlePickFile = async () => {
     try {
       const pickedFile = await DocumentPicker.pickSingle({
-        type: [DocumentPicker.types.allFiles],
+        type: [DocumentPicker.types.images],
       });
-      console.log(pickedFile);
+
+      await handleUpload(pickedFile);
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
-        console.log('User cancelled the picker');
+        console.log('User cancelled picker');
       } else {
-        throw err;
+        console.error(err);
       }
     }
   };
@@ -128,7 +164,12 @@ export default function SettingsScreen() {
         <View>
           <View style={{marginTop: 32, width: '100%', gap: 8, alignItems: 'center'}}>
             <View style={{padding: 4, borderRadius: 999, backgroundColor: Colors.primary}}>
-              <Image source={require('../../assets/images/avatar.jpg')} style={{width: 80, height: 80, borderRadius: 999}} />
+              <Image
+                source={
+                  imageURL ? {uri: imageURL} : require('../../assets/images/avatar.jpg') // fallback
+                }
+                style={{width: 80, height: 80, borderRadius: 999}}
+              />
               <TouchableOpacity onPress={handlePickFile} style={{position: 'absolute', right: 0, bottom: 0, padding: 8, borderRadius: 999, backgroundColor: Colors.primary}}>
                 <Icon name="camera" size={20} color={Colors.dark} />
               </TouchableOpacity>
@@ -145,7 +186,7 @@ export default function SettingsScreen() {
               <InputText placeholder="Weight" value={weight} onChangeText={setWeight} />
             </View>
             <InputText placeholder="Age" value={age} onChangeText={setAge} />
-            <Button type="secondary" title="Save" onPress={handleUpdate} />
+            <Button type="secondary" title="Save" onPress={handleUpdate} loading={isSaving} disabled={isSaving} />
             <Button title="Log out" onPress={handleLogout} type="tertiary" icon="logout" />
           </View>
         </View>

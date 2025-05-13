@@ -18,3 +18,21 @@ export const getUser = async () => {
     throw error;
   }
 };
+
+export const uploadUserAvatar = async file => {
+  const formData = new FormData();
+
+  formData.append('file', {
+    uri: Platform.OS === 'ios' ? file.uri.replace('file://', '') : file.uri,
+    name: file.name || 'avatar.jpg',
+    type: file.type || 'image/jpeg',
+  });
+
+  const res = await API.post('user/upload', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+  return res.data.data;
+};
