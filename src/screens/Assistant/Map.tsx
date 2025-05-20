@@ -13,7 +13,7 @@ import MapView from 'react-native-map-clustering';
 import Config from 'react-native-config';
 
 export default function Map(route: any) {
-  const GOOGLE_MAPS_APIKEY = Config.GOOGLE_MAPS_APIKEY;
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyA4KqF7rRfR0YbhxPv8V0rnSC9vOIieHlM';
   const {places} = route.params;
   const nav = useNavigation();
 
