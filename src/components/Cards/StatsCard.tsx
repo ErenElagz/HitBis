@@ -4,31 +4,56 @@ import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface StatsCardProps {
-  totalBikeTime: string;
-  totalRentals: number;
-  totalCaloriesBurned: number;
-  totalActivities: number;
+  totalBikeTime?: number;
+  totalCaloriesBurned?: number;
+  totalActivities?: number;
+  averageSpeed?: number;
+  totalDistance?: number;
 }
 
-const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalRentals, totalCaloriesBurned, totalActivities}) => {
+const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalDistance, averageSpeed, totalCaloriesBurned, totalActivities}) => {
+  function formatTime(minutes: number): string {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    let result = '';
+    if (hours > 0) {
+      result += `${hours} saat`;
+    }
+    if (remainingMinutes > 0) {
+      if (result !== '') {
+        result += ' ';
+      }
+      result += `${remainingMinutes} dakika`;
+    }
+    if (result === '') {
+      return '0 dakika';
+    }
+
+    return result;
+  }
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>My Stats</Text>
       <View style={styles.statItem}>
+        <Icon name="trophy" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalActivities} Activity</Text>
+      </View>
+      <View style={styles.statItem}>
         <Icon name="clock-outline" size={24} color={Colors.tertiary} />
-        <Text style={styles.statText}>{totalBikeTime}</Text>
+        <Text style={styles.statText}>{formatTime(totalBikeTime)}</Text>
       </View>
       <View style={styles.statItem}>
         <Icon name="bike" size={24} color={Colors.tertiary} />
-        <Text style={styles.statText}>{totalRentals} Rent</Text>
+        <Text style={styles.statText}>{averageSpeed} km/s</Text>
+      </View>
+      <View style={styles.statItem}>
+        <Icon name="bike" size={24} color={Colors.tertiary} />
+        <Text style={styles.statText}>{totalDistance} km</Text>
       </View>
       <View style={styles.statItem}>
         <Icon name="fire" size={24} color={Colors.tertiary} />
         <Text style={styles.statText}>{totalCaloriesBurned} kcal</Text>
-      </View>
-      <View style={styles.statItem}>
-        <Icon name="trophy" size={24} color={Colors.tertiary} />
-        <Text style={styles.statText}>{totalActivities} Activity</Text>
       </View>
     </View>
   );
