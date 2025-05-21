@@ -151,6 +151,7 @@ export default function ProfileScreen() {
   const nav = useNavigation();
   const [tab, setTab] = React.useState('activities');
   const {user} = useAuth();
+  console.log(user);
   function ShowTab(tabName: string) {
     switch (tabName) {
       case 'activities':
@@ -176,7 +177,7 @@ export default function ProfileScreen() {
             gap: 16,
             paddingHorizontal: 16,
           }}>
-          <Image source={require('../../assets/images/avatar.jpg')} style={{width: 60, height: 60, borderRadius: 999}} />
+          <Image source={user?.avatar ? {uri: user.avatar} : undefined} style={{width: 60, height: 60, borderRadius: 999}} />
           <Text style={styles.textUsername}>{user?.username}</Text>
         </View>
         <View
