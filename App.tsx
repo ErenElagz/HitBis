@@ -20,26 +20,31 @@ const AppContent = () => {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const token = await AsyncStorage.getItem('token');
-        if (token) {
-          login(token); // token gönderilmeli!
+        // Hem token hem user verisini aynı anda al
+        const [token, userData] = await AsyncStorage.multiGet(['token', 'user']);
+
+        if (token[1] && userData[1]) {
+          // User verisini parse et ve login yap
+          const user = JSON.parse(userData[1]);
+          login(token[1], user); // Artık hem token hem user gerekiyor
+
           Toast.show({
             type: 'success',
             position: 'top',
-            text1: 'User logged in successfully!',
-            text2: 'Welcome back!',
+            text1: 'Oturum açıldı',
+            text2: `Hoş geldiniz ${user.name}`,
           });
         } else {
-          logout();
+          await logout();
         }
       } catch (error) {
-        console.error('Error checking login status:', error);
-        logout();
+        console.error('Oturum kontrol hatası:', error);
+        await logout();
         Toast.show({
           type: 'error',
           position: 'top',
-          text1: 'Login failed!',
-          text2: 'Please try again.',
+          text1: 'Otomatik giriş başarısız',
+          text2: 'Lütfen tekrar giriş yapın',
         });
       }
     };
@@ -47,7 +52,7 @@ const AppContent = () => {
     checkLoginStatus();
   }, []);
 
-  const {isAuthenticated} = useAuth(); // AuthContext'ten durumu alıyoruz
+  const {isAuthenticated} = useAuth();
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>

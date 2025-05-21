@@ -23,7 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function LoginScreen() {
   const nav = useNavigation();
 
-  const {login, logout} = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
+  const {login} = useAuth();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -59,7 +59,12 @@ export default function LoginScreen() {
       const token = await loginRequest(email, password);
       if (token) {
         const userData = await getUser();
-        login(token, userData);
+        console.log(userData);
+        await login(token, {
+          name: userData.name,
+          username: userData.username,
+          avatar: userData.avatar,
+        });
         setError('');
       } else {
         setError('Invalid password or email address.');

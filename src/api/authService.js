@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from './api';
-import axios from 'axios';
 
 export const storeToken = async token => {
   try {
