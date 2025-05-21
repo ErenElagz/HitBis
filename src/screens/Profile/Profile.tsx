@@ -19,8 +19,29 @@ import GroupCard from '../../components/Cards/GroupCard.tsx';
 import MyLastActivities from '../../data/activites.ts';
 import MyLastActivitiesCard from '../../components/Cards/ActivityCard.tsx';
 import StatsCard from '../../components/Cards/StatsCard.tsx';
+//API
+
+import {getActivities} from '../../api/activityService.js';
+import {getStats} from '../../api/activityService.js';
+import {getRoutes} from '../../api/routesService.js';
+//context
+import {useAuth} from '../../Context/authContext.tsx';
 
 function ActivitiesTab() {
+  const [activities, setActivities] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchActivities() {
+      try {
+        const response = await getActivities();
+        setActivities(response.data);
+      } catch (error) {
+        console.error('Error fetching activities:', error);
+      }
+    }
+    fetchActivities();
+  }, [activities]);
+
   return (
     <View
       style={{
@@ -28,8 +49,8 @@ function ActivitiesTab() {
         justifyContent: 'center',
       }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {MyLastActivities.map(route => (
-          <MyLastActivitiesCard key={route.id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
+        {activities.map(activity => (
+          <MyLastActivitiesCard key={activity._id} {...activity} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
         ))}
       </ScrollView>
     </View>
@@ -53,6 +74,21 @@ function GroupsTab() {
 }
 
 function RoutesTab() {
+  const [routes, setRoutes] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchRoutes() {
+      try {
+        const response = await getRoutes();
+        console.log(response);
+        setRoutes(response);
+      } catch (error) {
+        console.error('Error fetching routes:', error);
+      }
+    }
+    fetchRoutes();
+  }, []);
+
   return (
     <View
       style={{
@@ -60,8 +96,8 @@ function RoutesTab() {
         justifyContent: 'center',
       }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {popularRoutes.map(route => (
-          <RouteCard key={route.id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
+        {routes.map(route => (
+          <RouteCard key={route._id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
         ))}
       </ScrollView>
     </View>
@@ -69,6 +105,29 @@ function RoutesTab() {
 }
 
 function StatsTab() {
+  type Stats = {
+    totalCalories?: number;
+    totalDistance?: number;
+    totalDuration?: number;
+    totalActivities?: number;
+    averageSpeed?: number;
+  };
+
+  const [stats, setStats] = React.useState<Stats>({});
+
+  React.useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await getStats();
+        console.log(response.data);
+        setStats(response.data);
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+    fetchStats();
+  }, []);
+
   return (
     <View
       style={{
@@ -77,7 +136,13 @@ function StatsTab() {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <StatsCard totalBikeTime="3 saat 15 dakika" totalRentals={5} totalCaloriesBurned={350} totalActivities={8} />
+      <StatsCard
+        totalBikeTime={stats.totalDuration}
+        totalDistance={stats.totalDistance}
+        totalCaloriesBurned={stats.totalCalories}
+        totalActivities={stats.totalActivities}
+        averageSpeed={stats.averageSpeed}
+      />
     </View>
   );
 }
@@ -85,6 +150,7 @@ function StatsTab() {
 export default function ProfileScreen() {
   const nav = useNavigation();
   const [tab, setTab] = React.useState('activities');
+  const {user} = useAuth();
   function ShowTab(tabName: string) {
     switch (tabName) {
       case 'activities':
@@ -111,7 +177,7 @@ export default function ProfileScreen() {
             paddingHorizontal: 16,
           }}>
           <Image source={require('../../assets/images/avatar.jpg')} style={{width: 60, height: 60, borderRadius: 999}} />
-          <Text style={styles.textUsername}>ErenElagz</Text>
+          <Text style={styles.textUsername}>{user?.username}</Text>
         </View>
         <View
           style={{
