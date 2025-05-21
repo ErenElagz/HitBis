@@ -8,12 +8,12 @@ interface ActivityCardProps {
   id: string;
   name: string;
   description: string;
-  date: string;
+  endTime: string;
   duration: string;
   distance: string;
-  caloriesBurned: number;
-  category: string;
-  location: string;
+  burnedCalories: number;
+  avgSpeed: number;
+  elevationGain: string;
   coordinates: {
     latitude: number;
     longitude: number;
@@ -21,36 +21,26 @@ interface ActivityCardProps {
   style?: object;
 }
 
-const ActivityCard: React.FC<ActivityCardProps> = ({name, description, date, duration, distance, caloriesBurned, category, location, coordinates, style}) => {
+const ActivityCard: React.FC<ActivityCardProps> = ({name, description, endTime, duration, distance, burnedCalories, avgSpeed, elevationGain, coordinates, style}) => {
   const nav = useNavigation();
 
   return (
     <View style={[styles.card, style]}>
       <View style={styles.mapContainer}>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          initialRegion={{
-            latitude: coordinates.latitude,
-            longitude: coordinates.longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-          liteMode={true}>
+        <MapView provider={PROVIDER_GOOGLE} style={styles.map} liteMode={true}>
           <Marker coordinate={coordinates} title={name} />
         </MapView>
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>{name}</Text>
-        <Text style={styles.description}>{description}</Text>
-
+        {description && <Text style={styles.description}>{description}</Text>}
         <View style={styles.details}>
-          <Text style={styles.detailText}>📅 {date}</Text>
-          <Text style={styles.detailText}>⏳ Süre: {duration}</Text>
-          <Text style={styles.detailText}>📏 Mesafe: {distance}</Text>
-          <Text style={styles.detailText}>🔥 Kalori: {caloriesBurned} kcal</Text>
-          <Text style={styles.detailText}>🏆 Kategori: {category}</Text>
-          <Text style={styles.detailText}>📍 Konum: {location}</Text>
+          <Text style={styles.detailText}>📅 {endTime}</Text>
+          <Text style={styles.detailText}>⏳ Süre: {duration} Minutes</Text>
+          <Text style={styles.detailText}>📏 Mesafe: {distance} Km</Text>
+          <Text style={styles.detailText}>🔥 Kalori: {burnedCalories} kcal</Text>
+          <Text style={styles.detailText}>🏆 Avg Speed: {avgSpeed} km/s</Text>
+          <Text style={styles.detailText}>📍 Tırmanma: {elevationGain} m</Text>
         </View>
       </View>
     </View>
@@ -62,7 +52,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 16,
-    width: 300,
+    minWidth: '100%',
     backgroundColor: Colors.backgroundColorsSecondary,
   },
   mapContainer: {
