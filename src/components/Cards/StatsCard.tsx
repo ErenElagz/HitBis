@@ -4,14 +4,14 @@ import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface StatsCardProps {
-  totalBikeTime?: number;
+  totalDuration?: number;
   totalCaloriesBurned?: number;
   totalActivities?: number;
   averageSpeed?: number;
   totalDistance?: number;
 }
 
-const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalDistance, averageSpeed, totalCaloriesBurned, totalActivities}) => {
+const StatsCard: React.FC<StatsCardProps> = ({totalDuration, totalDistance, averageSpeed, totalCaloriesBurned, totalActivities}) => {
   function formatTime(minutes: number): string {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
@@ -41,7 +41,7 @@ const StatsCard: React.FC<StatsCardProps> = ({totalBikeTime, totalDistance, aver
       </View>
       <View style={styles.statItem}>
         <Icon name="clock-outline" size={24} color={Colors.tertiary} />
-        <Text style={styles.statText}>{formatTime(totalBikeTime)}</Text>
+        <Text style={styles.statText}>{formatTime(totalDuration)}</Text>
       </View>
       <View style={styles.statItem}>
         <Icon name="bike" size={24} color={Colors.tertiary} />
