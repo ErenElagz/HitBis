@@ -49,9 +49,13 @@ function ActivitiesTab() {
         justifyContent: 'center',
       }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {activities.map(activity => (
-          <MyLastActivitiesCard key={activity._id} {...activity} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
-        ))}
+        {activities ? (
+          activities.map(activity => <MyLastActivitiesCard key={activity._id} {...activity} style={{width: '100%', marginBottom: 16, marginRight: 0}} />)
+        ) : (
+          <View>
+            <Text>Avtivite Bulunamadi</Text>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -80,7 +84,6 @@ function RoutesTab() {
     async function fetchRoutes() {
       try {
         const response = await getRoutes();
-        console.log(response);
         setRoutes(response);
       } catch (error) {
         console.error('Error fetching routes:', error);
@@ -96,9 +99,13 @@ function RoutesTab() {
         justifyContent: 'center',
       }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {routes.map(route => (
-          <RouteCard key={route._id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />
-        ))}
+        {routes ? (
+          routes.map(route => <RouteCard key={route._id} {...route} style={{width: '100%', marginBottom: 16, marginRight: 0}} />)
+        ) : (
+          <View>
+            <Text>Rota Bulunamadi</Text>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -106,20 +113,20 @@ function RoutesTab() {
 
 function StatsTab() {
   type Stats = {
+    totalActivities?: number;
     totalCalories?: number;
     totalDistance?: number;
     totalDuration?: number;
-    totalActivities?: number;
     averageSpeed?: number;
   };
 
-  const [stats, setStats] = React.useState<Stats>({});
+  const [stats, setStats] = React.useState<Stats>({totalActivities: 0, totalCalories: 0, totalDistance: 0, totalDuration: 0, averageSpeed: 0});
 
   React.useEffect(() => {
     async function fetchStats() {
       try {
         const response = await getStats();
-        console.log(response.data);
+
         setStats(response.data);
       } catch (error) {
         console.error('Error fetching stats:', error);
@@ -137,10 +144,10 @@ function StatsTab() {
         justifyContent: 'center',
       }}>
       <StatsCard
-        totalBikeTime={stats.totalDuration}
-        totalDistance={stats.totalDistance}
-        totalCaloriesBurned={stats.totalCalories}
         totalActivities={stats.totalActivities}
+        totalCaloriesBurned={stats.totalCalories}
+        totalDuration={stats.totalDuration}
+        totalDistance={stats.totalDistance}
         averageSpeed={stats.averageSpeed}
       />
     </View>
@@ -151,7 +158,6 @@ export default function ProfileScreen() {
   const nav = useNavigation();
   const [tab, setTab] = React.useState('activities');
   const {user} = useAuth();
-  console.log(user);
   function ShowTab(tabName: string) {
     switch (tabName) {
       case 'activities':
