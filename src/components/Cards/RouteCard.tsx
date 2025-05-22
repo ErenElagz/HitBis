@@ -6,7 +6,7 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
 
 interface RouteCardProps {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   distance: string;
@@ -20,7 +20,7 @@ interface RouteCardProps {
   style?: object;
 }
 
-const RouteCard: React.FC<RouteCardProps> = ({title, description, estimatedTime, distance, elevationGain, difficulty, coordinates, style}) => {
+const RouteCard: React.FC<RouteCardProps> = ({_id, title, description, estimatedTime, distance, elevationGain, difficulty, coordinates, style}) => {
   const nav = useNavigation();
 
   return (
@@ -28,7 +28,8 @@ const RouteCard: React.FC<RouteCardProps> = ({title, description, estimatedTime,
       style={[styles.card, style]}
       onPress={() => {
         try {
-          nav.navigate('Route', {title, description, estimatedTime, distance, elevationGain, difficulty, coordinates});
+          console.log(_id);
+          nav.navigate('Route', {routeId: _id});
         } catch (e) {
           console.error('Failed to navigate to Route:', e);
         }
@@ -44,7 +45,7 @@ const RouteCard: React.FC<RouteCardProps> = ({title, description, estimatedTime,
         <Text style={[styles.description]}>{description}</Text>
 
         <View style={styles.details}>
-          <Text style={styles.detailText}>⏳ Tahmini Sure: {estimatedTime} dk</Text>
+          <Text style={styles.detailText}>⏳ Tahmini Sure: {estimatedTime}</Text>
           <Text style={styles.detailText}>📏 Mesafe: {distance} km</Text>
           <Text style={styles.detailText}>📏 Tahmini Tirmanis: {elevationGain} m </Text>
           <Text style={[styles.difficulty, difficultyStyle(difficulty)]}>🔥 Zorluk: {difficulty}</Text>

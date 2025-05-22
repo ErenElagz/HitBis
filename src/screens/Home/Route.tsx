@@ -1,13 +1,63 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, View, ScrollView, ActivityIndicator} from 'react-native';
+import React, {useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../styles/Colors';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Button from '../../components/Button';
 import {CustomMapStyle} from '../../styles/MapStyle';
+import {useNavigation, RouteProp} from '@react-navigation/native';
+import {getRouteDetails} from '../../api/routesService';
 
-export default function RouteScreen(route: any) {
-  const {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates} = route.route.params;
+type RouteScreenParams = {
+  routeId: string;
+  title: string;
+  description: string;
+  distance: string;
+  estimatedTime: string;
+  elevationGain: string;
+  difficulty: string;
+  waypoints: Array<{
+    lat: number;
+    long: number;
+  }>;
+};
+
+type RouteScreenRouteProp = RouteProp<{Route: RouteScreenParams}, 'Route'>;
+
+export default function RouteScreen({route}: RouteScreenRouteProp) {
+  const navigation = useNavigation();
+  const {routeId} = route.params;
+  const [routeDetails, setRouteDetails] = React.useState<RouteScreenParams | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+
+  useEffect(() => {
+    const fetchRouteDetails = async () => {
+      try {
+        const response = await getRouteDetails(routeId);
+        console.log(response);
+        setRouteDetails(response.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRouteDetails();
+  }, [routeId]);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color={Colors.primary} />;
+  }
+
+  if (error) {
+    return <Text style={{color: Colors.error}}>Error: {error}</Text>;
+  }
+
+  if (!routeDetails) {
+    return <Text style={{color: Colors.error}}>No route details found</Text>;
+  }
 
   const handleSaveRoute = () => {
     console.log('Route saved!');
@@ -17,34 +67,22 @@ export default function RouteScreen(route: any) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mapContainer}>
-          <MapView
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={{
-              latitude: coordinates.latitude,
-              longitude: coordinates.longitude,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
-            }}
-            customMapStyle={CustomMapStyle}>
-            <Marker coordinate={coordinates} title={name} />
-          </MapView>
+          <MapView provider={PROVIDER_GOOGLE} style={styles.map} customMapStyle={CustomMapStyle}></MapView>
         </View>
 
-        <Text style={styles.routeTitle}>{name}</Text>
+        <Text style={styles.routeTitle}>{routeDetails.title}</Text>
 
         <View style={styles.detailCard}>
           <Text style={styles.sectionTitle}>Route Details</Text>
-          <DetailRow icon="directions-walk" title="Distance" value={distance} />
-          <DetailRow icon="access-time" title="Estimated Time" value={estimatedTime} />
-          <DetailRow icon="terrain" title="Difficulty" value={difficulty} />
-          <DetailRow icon="place" title="Starting Point" value={startingPoint} />
-          <DetailRow icon="flag" title="Ending Point" value={endingPoint} />
+          <DetailRow icon="directions-walk" title="Distance" value={routeDetails.distance} />
+          <DetailRow icon="access-time" title="Estimated Time" value={routeDetails.estimatedTime} />
+          <DetailRow icon="terrain" title="Starting Point" value={routeDetails.elevationGain} />
+          <DetailRow icon="flag" title="Difficulty" value={routeDetails.difficulty} />
         </View>
 
         <View style={styles.descriptionSection}>
           <Text style={styles.sectionTitle}>About the Route</Text>
-          <Text style={styles.descriptionText}>{description}</Text>
+          <Text style={styles.descriptionText}>{routeDetails.description}</Text>
         </View>
       </ScrollView>
 
