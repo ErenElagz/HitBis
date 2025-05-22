@@ -84,7 +84,7 @@ export default function RegisterScreen() {
         setPasswordError('');
       }
 
-      const response = await registerUser(username, email.toLowerCase, password);
+      const response = await registerUser(username, email, password);
       if (response.isSuccess === true) {
         Toast.show({
           type: 'success',
