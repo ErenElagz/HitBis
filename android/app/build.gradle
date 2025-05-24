@@ -118,13 +118,6 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-
-    defaultConfig {
-        applicationId "com.hitbis" // Package name'iniz
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        // Diğer ayarlar...
-    }
 }
 
 
