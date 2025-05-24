@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CommunityScreen from '../screens/Community/Community';
 import CreateEventScreen from '../screens/Community/CreateEvent';
 import SearchScreen from '../screens/Community/Search';
+import RouteScreen from '../screens/Home/Route';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +14,7 @@ export default function CommunityNavigator() {
       <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
+      <Stack.Screen name="Route" component={RouteScreen} />
     </Stack.Navigator>
   );
 }

@@ -6,14 +6,13 @@ import {CustomMapStyle} from '../../styles/MapStyle';
 import {useNavigation} from '@react-navigation/native';
 
 interface RouteCardProps {
-  id: string;
-  name: string;
+  _id: string;
+  title: string;
   description: string;
   distance: string;
+  elevationGain: string;
+  difficulty: string;
   estimatedTime: string;
-  difficulty: 'Kolay' | 'Orta' | 'Zor';
-  startingPoint: string;
-  endingPoint: string;
   coordinates: {
     latitude: number;
     longitude: number;
@@ -21,7 +20,7 @@ interface RouteCardProps {
   style?: object;
 }
 
-const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates, style}) => {
+const RouteCard: React.FC<RouteCardProps> = ({_id, title, description, estimatedTime, distance, elevationGain, difficulty, coordinates, style}) => {
   const nav = useNavigation();
 
   return (
@@ -29,37 +28,26 @@ const RouteCard: React.FC<RouteCardProps> = ({name, description, distance, estim
       style={[styles.card, style]}
       onPress={() => {
         try {
-          nav.navigate('Route', {name, description, distance, estimatedTime, difficulty, startingPoint, endingPoint, coordinates});
+          console.log(_id);
+          nav.navigate('Route', {routeId: _id});
         } catch (e) {
           console.error('Failed to navigate to Route:', e);
         }
       }}>
       <View style={styles.mapContainer}>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          initialRegion={{
-            latitude: coordinates.latitude,
-            longitude: coordinates.longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-          liteMode={true}
-          customMapStyle={CustomMapStyle}>
-          <Marker coordinate={coordinates} title={name} />
+        <MapView provider={PROVIDER_GOOGLE} style={styles.map} liteMode={true} customMapStyle={CustomMapStyle}>
+          <Marker coordinate={coordinates} title={title} />
         </MapView>
       </View>
 
       <View style={styles.content}>
-        <Text style={[styles.title]}>{name}</Text>
+        <Text style={[styles.title]}>{title}</Text>
         <Text style={[styles.description]}>{description}</Text>
 
         <View style={styles.details}>
-          <Text style={styles.detailText}>
-            📍 {startingPoint} 🏁 {endingPoint}
-          </Text>
-          <Text style={styles.detailText}>📏 {distance}</Text>
-          <Text style={styles.detailText}>⏳ {estimatedTime}</Text>
+          <Text style={styles.detailText}>⏳ Tahmini Sure: {estimatedTime}</Text>
+          <Text style={styles.detailText}>📏 Mesafe: {distance} km</Text>
+          <Text style={styles.detailText}>📏 Tahmini Tirmanis: {elevationGain} m </Text>
           <Text style={[styles.difficulty, difficultyStyle(difficulty)]}>🔥 Zorluk: {difficulty}</Text>
         </View>
       </View>
@@ -77,13 +65,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 16,
-    width: 280,
+    width: 300,
     marginRight: 16,
     backgroundColor: Colors.backgroundColorsSecondary,
   },
   mapContainer: {
-    width: '100%',
-    height: 160,
+    width: 360,
+    height: 180,
   },
   map: {
     width: '100%',

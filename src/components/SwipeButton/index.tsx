@@ -1,23 +1,17 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 import SwipeButton from 'rn-swipe-button';
 
 interface SwipeButtonProps {
-  ref: React.RefObject<any>;
   onSwipeSuccess: () => void;
 }
 
-const SwipeableButton: React.FC<SwipeButtonProps> = ({ref: swipeButtonRef, onSwipeSuccess}: SwipeButtonProps) => {
-  const nav = useNavigation();
-  
+const SwipeableButton: React.FC<SwipeButtonProps> = ({onSwipeSuccess}) => {
   return (
     <SwipeButton
-      ref={swipeButtonRef}
       onSwipeSuccess={onSwipeSuccess}
-      containerStyles={{borderRadius:16}}
+      containerStyles={{borderRadius: 16}}
       height={66}
       railBackgroundColor={Colors.backgroundColorsSecondary}
       thumbIconBackgroundColor={Colors.primary}
@@ -36,7 +30,5 @@ const SwipeableButton: React.FC<SwipeButtonProps> = ({ref: swipeButtonRef, onSwi
     />
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default SwipeableButton;

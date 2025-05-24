@@ -1,6 +1,6 @@
 // React
 import {View, StyleSheet, TouchableOpacity, Alert, Platform} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,8 +10,14 @@ import {Camera, useCameraDevice, useCodeScanner} from 'react-native-vision-camer
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 // Components
 import BackButton from '../../components/BackButton';
+// API
+import {getPocketByQRCode} from '../../api/rentService';
 
 export default function CameraScreen() {
+  const [hasScanned, setHasScanned] = useState(false);
+  const nav = useNavigation();
+  const device = useCameraDevice('back');
+
   const checkCameraPermission = async () => {
     const result = await request(Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA);
 
@@ -33,18 +39,45 @@ export default function CameraScreen() {
     checkCameraPermission();
   }, []);
 
-  const nav = useNavigation();
-  const devices = useCameraDevice('back');
   const codeScanner = useCodeScanner({
     codeTypes: ['qr', 'ean-13'],
-    onCodeScanned: codes => {
-      nav.navigate('Details' as never, {codes: codes[0].value});
+    onCodeScanned: async codes => {
+      if (hasScanned) return;
+
+      if (codes.length === 0) {
+        Alert.alert('No Code Detected', 'Please try scanning again.');
+        return;
+      }
+
+      if (codes.length > 1) {
+        Alert.alert('Multiple Codes Detected', 'Please scan one code at a time.');
+        return;
+      }
+
+      const scannedCode = codes[0].value;
+      setHasScanned(true); // Tekrar taramayı engelle
+
+      try {
+        console.log(scannedCode);
+        const response = await getPocketByQRCode(scannedCode);
+        console.log(response);
+        if (response.bikeId) {
+          nav.navigate('Details' as never, {bikeId: response.bikeId, pocketId: response.pocketId, slotCode: response.slotCode} as never);
+        } else {
+          Alert.alert('Error', 'Failed to retrieve pocket information. Please try again.');
+          setHasScanned(false);
+        }
+      } catch (error) {
+        console.error('Error fetching pocket by QR code:', error);
+        Alert.alert('Error', 'An error occurred while processing the QR code. Please try again.');
+        setHasScanned(false);
+      }
     },
   });
 
   return (
     <View style={styles.container}>
-      {devices && <Camera style={styles.camera} device={devices} isActive={true} codeScanner={codeScanner} />}
+      {device && !hasScanned && <Camera style={styles.camera} device={device} isActive={true} codeScanner={codeScanner} />}
       <BackButton />
       <Icon
         name="crop-free"

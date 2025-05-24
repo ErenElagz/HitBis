@@ -10,9 +10,10 @@ import Colors from '../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
 import MapView from 'react-native-map-clustering';
+import Config from 'react-native-config';
 
 export default function Map(route: any) {
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyB4JO7I3nUkkonlX-NvfasHvx1u06DxOS8';
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyA4KqF7rRfR0YbhxPv8V0rnSC9vOIieHlM';
   const {places} = route.params;
   const nav = useNavigation();
 

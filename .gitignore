@@ -73,3 +73,16 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+.env
+# React Native CLI
+# Watchman files
+.watchmanconfig
+
+# React Native packager
+.expo/
+.expo-shared/
+dist/
+# Android API keys
+android/app/src/debug/AndroidManifest.xml
+android/app/src/main/AndroidManifest.xml

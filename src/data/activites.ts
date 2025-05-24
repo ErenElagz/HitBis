@@ -6,7 +6,6 @@ export type ActivityType = {
   duration: string;
   distance: string;
   caloriesBurned: number;
-  category: 'Bisiklet' | 'Koşu' | 'Yoga' | 'Doğa Yürüyüşü' | 'Fitness';
   location: string;
   coordinates: {
     latitude: number;
@@ -23,7 +22,7 @@ export const MyLastActivities: ActivityType[] = [
     duration: '1 saat 45 dk',
     distance: '18 km',
     caloriesBurned: 600,
-    category: 'Bisiklet',
+
     location: 'İstanbul, Türkiye',
     coordinates: {
       latitude: 41.0082,
@@ -38,7 +37,7 @@ export const MyLastActivities: ActivityType[] = [
     duration: '45 dk',
     distance: '7 km',
     caloriesBurned: 450,
-    category: 'Koşu',
+
     location: 'Ankara, Türkiye',
     coordinates: {
       latitude: 39.9334,
@@ -53,7 +52,7 @@ export const MyLastActivities: ActivityType[] = [
     duration: '1 saat',
     distance: '0 km',
     caloriesBurned: 200,
-    category: 'Yoga',
+
     location: 'İzmir, Türkiye',
     coordinates: {
       latitude: 38.4192,
@@ -68,7 +67,7 @@ export const MyLastActivities: ActivityType[] = [
     duration: '2 saat',
     distance: '12 km',
     caloriesBurned: 750,
-    category: 'Doğa Yürüyüşü',
+
     location: 'İstanbul, Türkiye',
     coordinates: {
       latitude: 41.2017,
@@ -83,7 +82,7 @@ export const MyLastActivities: ActivityType[] = [
     duration: '1 saat 15 dk',
     distance: '0 km',
     caloriesBurned: 550,
-    category: 'Fitness',
+
     location: 'Antalya, Türkiye',
     coordinates: {
       latitude: 36.856,
