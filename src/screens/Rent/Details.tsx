@@ -1,6 +1,6 @@
 // React
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 // Styles
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
@@ -14,29 +14,75 @@ import SwipeableButton from '../../components/SwipeButton';
 import SwipeButton from 'rn-swipe-button';
 import Button from '../../components/Button';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+// Api
+import {getBikeDetails} from '../../api/bikeService';
+import {rentBike} from '../../api/rentService';
 
 export default function DetailsScreen({route}: any) {
   // Variables
   const nav = useNavigation();
-  const {codes} = route.params;
   const swipeButtonRef = useRef<SwipeButton>(null);
+  const {bikeId, slotCode} = route.params as {bikeId: string; slotCode: string};
+  const [bikeDetails, setBikeDetails] = React.useState(null);
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [modalVisible, setModalVisible] = React.useState(false);
+
+  useEffect(() => {
+    getBikeDetails(bikeId)
+      .then(response => {
+        if (response.isSuccess === true) {
+          setBikeDetails(response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching bike details:', error);
+      });
+  }, [bikeId]);
+
+  const handleRentBike = () => {
+    if (bikeDetails) {
+      rentBike(slotCode)
+        .then(response => {
+          if (response.isSuccess === true) {
+            setModalVisible(true);
+          } else {
+            console.error('Error renting bike:', response.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error renting bike:', error);
+        });
+    }
+  };
+
   const ModalComponent = () => {
     return (
       <Modal visible={modalVisible} transparent={true} animationType="slide">
-        <View style={{padding: 24, borderRadius: 32, backgroundColor: Colors.backgroundColorsSecondary, alignSelf: 'center', marginTop: 'auto', marginBottom: 'auto'}}>
-          <Text style={{color: Colors.light, fontSize: 24, marginBottom: 12}}>Renting Succesfull</Text>
-          <Text style={{color: Colors.gray, fontSize: 16}}>You have succesfully rented the bike</Text>
-          <View
-            style={{
-              justifyContent: 'space-between',
-              marginTop: 24,
-              gap: 8,
-            }}>
-            <Button type="secondary" icon="bike" title="Start the Ride" onPress={() => nav.navigate('Home', {screen: 'Ride'})} />
-            <Button type="tertiary" icon="home" title="Close the Home " onPress={() => nav.navigate('Home' as never)} />
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text style={styles.modalTitle}>Renting Successful</Text>
+            <Text style={styles.modalSubtitle}>You have successfully rented the bike</Text>
+            <View style={styles.buttonGroup}>
+              <Button
+                type="secondary"
+                icon="bike"
+                title="Start the Ride"
+                onPress={() => {
+                  setModalVisible(false);
+                  nav.navigate('Home', {screen: 'Ride'});
+                }}
+              />
+              <Button
+                type="tertiary"
+                icon="home"
+                title="Close to Home"
+                onPress={() => {
+                  setModalVisible(false);
+                  nav.navigate('Home' as never);
+                }}
+              />
+            </View>
           </View>
         </View>
       </Modal>
@@ -88,22 +134,17 @@ export default function DetailsScreen({route}: any) {
               marginBottom: 8,
             }}>
             <View style={{flex: 1, padding: 16}}>
-              <Text style={{color: Colors.light, fontSize: 24, marginBottom: 8}}>Bike Details</Text>
-              <Text style={{color: Colors.gray}}>- Bike Code:{codes}</Text>
-              <Text style={{color: Colors.gray}}>- Max Mph 50mph</Text>
-              <Text style={{color: Colors.gray}}>- 8 Vitesli</Text>
-              <Text style={{color: Colors.gray}}>- 21 Inch Wheels</Text>
+              <Text style={{color: Colors.light, fontSize: 24, marginBottom: 3}}>Bike Details</Text>
+              <Text style={{color: Colors.gray}}> Bike ID: {bikeDetails ? bikeDetails.bikeCode : ''}</Text>
+              <Text style={{color: Colors.light, fontWeight: 'bold'}}>Description </Text>
+              <Text style={{color: Colors.gray}}>{bikeDetails ? bikeDetails.description : ''}</Text>
             </View>
             <View style={{backgroundColor: Colors.backgroundColorsSecondary, alignItems: 'center', justifyContent: 'center', borderRadius: 16, padding: 8}}>
               <Image style={{width: 160, height: 120}} source={require('../../assets/images/bikeImage.png')} />
             </View>
           </View>
-          <SwipeableButton
-            ref={swipeButtonRef}
-            onSwipeSuccess={() => {
-              setModalVisible(true);
-            }}
-          />
+
+          <SwipeableButton onSwipeSuccess={() => handleRentBike()} />
         </BottomSheetView>
       </BottomSheet>
     </View>
@@ -133,5 +174,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backgroundColor,
     paddingHorizontal: 16,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalBox: {
+    width: '85%',
+    padding: 24,
+    borderRadius: 32,
+    backgroundColor: Colors.backgroundColorsSecondary,
+    elevation: 10, // Android için gölge
+    shadowColor: '#000', // iOS için gölge
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+  },
+  modalTitle: {
+    color: Colors.light,
+    fontSize: 24,
+    marginBottom: 12,
+    textAlign: 'center',
+  },
+  modalSubtitle: {
+    color: Colors.gray,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  buttonGroup: {
+    marginTop: 24,
+    gap: 12,
   },
 });
