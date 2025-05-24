@@ -1,12 +1,17 @@
 import {StyleSheet, Text, View, ScrollView, ActivityIndicator} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Colors from '../../styles/Colors';
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, Polyline, PROVIDER_GOOGLE} from 'react-native-maps';
 import Button from '../../components/Button';
 import {CustomMapStyle} from '../../styles/MapStyle';
-import {useNavigation, RouteProp} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native'; // useRoute eklendi
 import {getRouteDetails} from '../../api/routesService';
+
+type WayPoints = {
+  lat: number;
+  long: number;
+};
 
 type RouteScreenParams = {
   routeId: string;
@@ -16,20 +21,20 @@ type RouteScreenParams = {
   estimatedTime: string;
   elevationGain: string;
   difficulty: string;
-  waypoints: Array<{
-    lat: number;
-    long: number;
-  }>;
+  waypoints: WayPoints[];
 };
 
 type RouteScreenRouteProp = RouteProp<{Route: RouteScreenParams}, 'Route'>;
 
-export default function RouteScreen({route}: RouteScreenRouteProp) {
+export default function RouteScreen() {
+  // Props kaldırıldı
   const navigation = useNavigation();
+  const mapRef = useRef<MapView>(null);
+  const route = useRoute<RouteScreenRouteProp>();
   const {routeId} = route.params;
   const [routeDetails, setRouteDetails] = React.useState<RouteScreenParams | null>(null);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState<string | null>(null);
 
   useEffect(() => {
     const fetchRouteDetails = async () => {
@@ -47,6 +52,21 @@ export default function RouteScreen({route}: RouteScreenRouteProp) {
     fetchRouteDetails();
   }, [routeId]);
 
+  useEffect(() => {
+    if (routeDetails?.waypoints && mapRef.current) {
+      mapRef.current.fitToCoordinates(
+        routeDetails.waypoints.map(w => ({
+          latitude: w.lat,
+          longitude: w.long,
+        })),
+        {
+          edgePadding: {top: 50, right: 50, bottom: 50, left: 50},
+          animated: true,
+        },
+      );
+    }
+  }, [routeDetails]);
+
   if (loading) {
     return <ActivityIndicator size="large" color={Colors.primary} />;
   }
@@ -63,11 +83,53 @@ export default function RouteScreen({route}: RouteScreenRouteProp) {
     console.log('Route saved!');
   };
 
+  const mapRegion = {
+    latitude: routeDetails?.waypoints[0]?.lat || 0,
+    longitude: routeDetails?.waypoints[0]?.long || 0,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.mapContainer}>
-          <MapView provider={PROVIDER_GOOGLE} style={styles.map} customMapStyle={CustomMapStyle}></MapView>
+          <MapView provider={PROVIDER_GOOGLE} style={styles.map} customMapStyle={CustomMapStyle} region={mapRegion} ref={mapRef}>
+            {routeDetails?.waypoints.map((point, index) => (
+              <Marker
+                key={`point-${index}`}
+                coordinate={{
+                  latitude: point.lat,
+                  longitude: point.long,
+                }}
+                title={`Point ${index + 1}`}
+              />
+            ))}
+            <Marker
+              coordinate={{
+                latitude: routeDetails.waypoints[0].lat,
+                longitude: routeDetails.waypoints[0].long,
+              }}
+              pinColor="green"
+              title="Start Point"
+            />
+            <Marker
+              coordinate={{
+                latitude: routeDetails.waypoints[routeDetails.waypoints.length - 1].lat,
+                longitude: routeDetails.waypoints[routeDetails.waypoints.length - 1].long,
+              }}
+              pinColor="red"
+              title="End Point"
+            />
+            <Polyline
+              coordinates={routeDetails?.waypoints.map(point => ({
+                latitude: point.lat,
+                longitude: point.long,
+              }))}
+              strokeColor="#FF0000"
+              strokeWidth={3}
+            />
+          </MapView>
         </View>
 
         <Text style={styles.routeTitle}>{routeDetails.title}</Text>
