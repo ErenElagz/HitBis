@@ -36,3 +36,22 @@ export const getUserGroup = async () => {
     console.error('Error fetching my group:', error);
   }
 };
+
+export const findUserGroup = async () => {
+  try {
+    const response = await API.get(`/group/find`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error checking if user is in group:', error);
+  }
+};
+
+export const joinGroup = async groupId => {
+  try {
+    const response = await API.post(`/group/join?=groupId=${groupId}`);
+    console.log('Group joined successfully:', response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error joining group:', error);
+  }
+};
