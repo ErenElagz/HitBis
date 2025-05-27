@@ -1,68 +1,107 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import Colors from '../../styles/Colors';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
-type CategoryType = 'Bisiklet' | 'Koşu' | 'Yoga' | 'Doğa Yürüyüşü' | 'Fitness';
+import Colors from '../../styles/Colors';
+import {getCityById, getCountryById} from '../../api/locationService';
+import {getGroupUserCount} from '../../api/groupService';
 
 interface GroupCardProps {
-  id: string;
+  _id: string;
   name: string;
   description: string;
-  membersCount: number;
   createdAt: string;
-  category: CategoryType;
-  location: string;
+  cityId?: string;
+  countryId?: string;
   style?: object;
-  image: string;
+  imageURL: string;
 }
 
-const GroupCard: React.FC<GroupCardProps> = ({
-  id,
-  name,
-  description,
-  membersCount,
-  createdAt,
-  category,
-  location,
-  image,
-  style,
-}) => {
+const GroupCard: React.FC<GroupCardProps> = ({_id, name, description, cityId, countryId, createdAt, imageURL, style}) => {
   const nav = useNavigation();
+  const [location, setLocation] = useState<string>('Konum bilgisi yok');
+  const [userCount, setUserCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!cityId || !countryId || !_id) {
+        setIsLoading(false);
+        return;
+      }
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const [cityResponse, countryResponse, countResponse] = await Promise.all([getCityById(cityId), getCountryById(countryId), getGroupUserCount(_id)]);
+
+        if (cityResponse?.name && countryResponse?.name) {
+          setLocation(`${cityResponse.name}, ${countryResponse.name}`);
+        } else {
+          setLocation('Konum bilgisi bulunamadı');
+        }
+
+        setUserCount(countResponse || 0);
+      } catch (err) {
+        console.error('Veri çekme hatası:', err);
+        setError('Veriler yüklenirken hata oluştu');
+        setLocation('Konum bilgisi yüklenemedi');
+        setUserCount(0);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [cityId, countryId, _id]);
+
+  const handlePress = () => {
+    if (isLoading) return;
+
+    nav.navigate('GroupDetail', {
+      group: {
+        _id,
+        name,
+        description,
+        membersCount: userCount,
+        createdAt,
+        location,
+        imageURL,
+      },
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.card, styles.loadingContainer, style]}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+        <Text style={styles.loadingText}>Yükleniyor...</Text>
+      </View>
+    );
+  }
 
   return (
-    <TouchableOpacity
-      style={[styles.card, style]}
-      onPress={() => {
-        try {
-          nav.navigate('Group', {
-            id, 
-            name,
-            description,
-            membersCount,
-            createdAt,
-            category,
-            location,
-            image,
-          });
-        } catch (e) {
-          console.error('Failed to navigate to Group:', e);
-        }
-      }}>
-      {/* Görsel ekleme */}
-      <Image source={{uri: image}} style={styles.image} resizeMode="cover" />
+    <TouchableOpacity style={[styles.card, style]} onPress={handlePress} activeOpacity={0.8} disabled={isLoading}>
+      <Image source={{uri: imageURL}} style={styles.image} resizeMode="cover" />
 
-      {/* Grup Detayları */}
       <View style={styles.content}>
-        <Text style={[styles.title]}>{name}</Text>
-        <Text style={[styles.description]}>{description}</Text>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+          {name}
+        </Text>
+
+        <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">
+          {description || 'Açıklama yok'}
+        </Text>
 
         <View style={styles.details}>
-          <Text style={styles.detailText}>📍 Konum: {location}</Text>
-          <Text style={styles.detailText}>👥 Üye Sayısı: {membersCount}</Text>
-          <Text style={styles.detailText}>📅 Kuruluş Tarihi: {createdAt}</Text>
-          <Text style={styles.detailText}>🏆 Kategori: {category}</Text>
+          <Text style={styles.detailText} numberOfLines={1}>
+            📍 {location}
+          </Text>
+          <Text style={styles.detailText}>👥 Üye: {userCount}</Text>
         </View>
+
+        {error && <Text style={styles.errorText}>⚠️ {error}</Text>}
       </View>
     </TouchableOpacity>
   );
@@ -75,10 +114,16 @@ const styles = StyleSheet.create({
     marginRight: 16,
     width: 300,
     backgroundColor: Colors.backgroundColorsSecondary,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   image: {
     width: '100%',
     height: 150,
+    backgroundColor: Colors.grayLight,
   },
   content: {
     padding: 16,
@@ -87,19 +132,38 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: Colors.light,
+    marginBottom: 4,
   },
   description: {
     fontSize: 14,
-    marginTop: 8,
     color: Colors.light,
+    opacity: 0.9,
+    lineHeight: 20,
   },
   details: {
-    marginTop: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
   },
   detailText: {
-    fontSize: 14,
-    marginTop: 4,
+    fontSize: 13,
     color: Colors.light,
+    opacity: 0.8,
+    maxWidth: '48%',
+  },
+  loadingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 250,
+  },
+  loadingText: {
+    marginTop: 10,
+    color: Colors.light,
+  },
+  errorText: {
+    fontSize: 12,
+    color: Colors.error,
+    marginTop: 8,
   },
 });
 

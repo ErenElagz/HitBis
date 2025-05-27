@@ -19,3 +19,13 @@ export const getRouteDetails = async routeId => {
     throw error;
   }
 };
+
+export const getPublicRoutes = async () => {
+  try {
+    const response = await API.get('/route/public');
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching public routes:', error);
+    throw error;
+  }
+};

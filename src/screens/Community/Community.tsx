@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 // Styles
@@ -10,14 +10,38 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import RouteCard from '../../components/Cards/RouteCard';
-import {popularRoutes} from '../../data/routes';
 import EventCard from '../../components/Cards/EventCard';
 import {events} from '../../data/events';
 import GroupCard from '../../components/Cards/GroupCard';
-import GroupsList from '../../data/groups';
+//API
+import {getPublicRoutes} from '../../api/routesService';
+import {getGroups} from '../../api/groupService';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
+  const [popularRoutes, setPopularRoutes] = useState([]);
+  const [GroupsList, setGroupsList] = useState([]);
+
+  useEffect(() => {
+    const fetchAllGroups = async () => {
+      try {
+        const groups = await getGroups();
+        setGroupsList(groups);
+      } catch (error) {
+        console.error('Error fetching groups:', error);
+      }
+    };
+    const fetchRoutes = async () => {
+      try {
+        const PublicRoutes = await getPublicRoutes();
+        setPopularRoutes(PublicRoutes);
+      } catch (error) {
+        console.error('Error fetching public routes:', error);
+      }
+    };
+    fetchRoutes();
+    fetchAllGroups();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,7 +67,6 @@ export default function CommunityScreen() {
               flexDirection: 'row',
               gap: 16,
             }}>
-            <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never)} />
             <Icon name="magnify" size={32} color={Colors.light} onPress={() => nav.navigate('Search' as never)} />
           </View>
         </View>
@@ -65,24 +88,8 @@ export default function CommunityScreen() {
           </View>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
-          {GroupsList.map(event => (
-            <GroupCard key={event.id} {...event} />
-          ))}
-        </ScrollView>
-
-        <View style={{marginTop: 24, width: '100%', gap: 8}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.text}>Last Events</Text>
-          </View>
-        </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
-          {events.map(event => (
-            <EventCard key={event.id} {...event} style={{marginRight: 16}} />
+          {GroupsList.map(group => (
+            <GroupCard key={group.id} {...group} />
           ))}
         </ScrollView>
       </ScrollView>
