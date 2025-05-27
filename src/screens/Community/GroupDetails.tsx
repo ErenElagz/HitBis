@@ -1,29 +1,105 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, FlatList} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getUsersByGroupId} from '../../api/groupService';
 import {getEvents} from '../../api/eventService';
+import Button from '../../components/Button';
 //Api
 import {getAddressFromCoords} from '../../api/locationService';
+import {joinGroup, isUserMemberOfGroup, leaveGroup, isUserAdminOfGroup} from '../../api/groupService';
+import Toast from 'react-native-toast-message';
+
+type EventWithAddress = {
+  id: string;
+  title: string;
+  startDate: string;
+  addressString: string;
+  location?: {
+    latitude: number;
+    longitude: number;
+  };
+  // Add any other properties your event objects have
+};
+
+type Group = {
+  _id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  membersCount: number;
+  location: string;
+  users?: Array<{
+    id: string;
+    name: string;
+    surname: string;
+    avatar: string;
+  }>;
+  // Add any other properties your group object has
+};
+
+type GroupDetailScreenRouteParams = {
+  group: Group;
+};
+
+type RootStackParamList = {
+  GroupDetail: GroupDetailScreenRouteParams;
+};
 
 const GroupDetailScreen = () => {
   const nav = useNavigation();
-  const route = useRoute();
+  const route = useRoute<RouteProp<RootStackParamList, 'GroupDetail'>>();
   const {group} = route.params;
   const [activeTab, setActiveTab] = useState<'users' | 'events'>('users');
   const [users, setUsers] = useState(group.users || []);
-  const [events, setEvents] = useState(group.events || []);
-  const [eventsWithAddress, setEventsWithAddress] = useState([]);
+  const [eventsWithAddress, setEventsWithAddress] = useState<EventWithAddress[]>([]);
   const [isMember, setIsMember] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleJoinGroup = () => {
-    setIsMember(!isMember);
+  const handleJoinGroup = async () => {
+    try {
+      if (isMember) {
+        const res = await leaveGroup(group._id);
+
+        if (res.isSuccess === false && res.status === 403) {
+          Toast.show({
+            type: 'error',
+            text1: 'Çıkılamıyor',
+            text2: res.message || 'Grup yöneticisi olduğunuz için çıkış yapılamadı.',
+          });
+          return;
+        }
+
+        setIsMember(false);
+        Toast.show({
+          type: 'success',
+          text1: 'Başarılı',
+          text2: 'Gruptan ayrıldınız.',
+        });
+      } else {
+        const res = await joinGroup(group._id);
+        setIsMember(true);
+        Toast.show({
+          type: 'success',
+          text1: 'Başarılı',
+          text2: 'Gruba katıldınız.',
+        });
+      }
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'Hata',
+        text2: 'İşlem sırasında bir sorun oluştu.',
+      });
+      console.error('Grup işlemi hatası:', error);
+    }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchUsers = async () => {
       try {
         const fetchedUsers = await getUsersByGroupId(group._id);
@@ -36,27 +112,54 @@ const GroupDetailScreen = () => {
     const fetchEvents = async () => {
       try {
         const fetchedEvents = await getEvents(group._id);
+        interface EventLocation {
+          latitude: number;
+          longitude: number;
+        }
 
-        const enrichedEvents = await Promise.all(
-          fetchedEvents.map(async event => {
-            const {latitude, longitude} = event.location;
-            const address = await getAddressFromCoords(latitude, longitude);
+        interface Event {
+          id: string;
+          title: string;
+          startDate: string;
+          location?: EventLocation;
+          // Add any other properties your event objects have
+        }
+
+        const enrichedEvents: EventWithAddress[] = await Promise.all(
+          (fetchedEvents as Event[]).map(async (event: Event): Promise<EventWithAddress> => {
+            const {latitude, longitude} = event.location || {};
+            const address: string = latitude && longitude ? await getAddressFromCoords(latitude, longitude) : 'Konum bilgisi yok';
             return {
               ...event,
               addressString: address,
             };
           }),
         );
-
         setEventsWithAddress(enrichedEvents);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
     };
 
+    const checkMembership = async () => {
+      try {
+        const result = await isUserMemberOfGroup(group._id);
+        if (result === true) {
+          const isAdminResult = await isUserAdminOfGroup(group._id);
+          setIsAdmin(isAdminResult);
+        }
+        setIsMember(result === true);
+      } catch (error) {
+        console.error('Error checking group membership:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     fetchUsers();
     fetchEvents();
-  }, [group.id]);
+    checkMembership();
+  }, [group._id, isMember, isAdmin]);
 
   return (
     <View style={styles.container}>
@@ -64,16 +167,14 @@ const GroupDetailScreen = () => {
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.groupName}>{group.name}</Text>
-          <View style={styles.headerIcons}>
-            <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never)} />
-          </View>
+          <View style={styles.headerIcons}>{isAdmin && <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never)} />}</View>
         </View>
       </View>
 
       {/* Grup Detayları ve Sekmeler */}
-      <ScrollView style={styles.content}>
+      <ScrollView style={styles.scrollView}>
         <View style={styles.groupInfo}>
-          <Image source={{uri: group.imageURL}} style={styles.groupImage} />
+          <Image source={{uri: group.imageUrl}} style={styles.groupImage} />
           <Text style={styles.groupDescription}>{group.description}</Text>
           <View style={styles.groupStats}>
             <View style={styles.statItem}>
@@ -134,12 +235,12 @@ const GroupDetailScreen = () => {
         )}
       </ScrollView>
 
-      {/* Sabit Katıl Butonu */}
       <View style={styles.joinButtonContainer}>
-        <TouchableOpacity style={[styles.joinButton, isMember && styles.leaveButton]} onPress={handleJoinGroup}>
-          <Text style={styles.joinButtonText}>{isMember ? 'Gruptan Ayrıl' : 'Gruba Katıl'}</Text>
-          <Icon name={isMember ? 'account-minus' : 'account-plus'} size={24} color={Colors.light} />
-        </TouchableOpacity>
+        {isMember ? (
+          <Button title="Leave Group" onPress={handleJoinGroup} style={[styles.leaveButton]} />
+        ) : (
+          <Button title="Join Group" onPress={handleJoinGroup} style={[styles.joinButton]} />
+        )}
       </View>
     </View>
   );
@@ -148,7 +249,7 @@ const GroupDetailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.backgroundColorsPrimary,
+    backgroundColor: Colors.backgroundColor,
   },
   scrollView: {
     flex: 1,
@@ -157,9 +258,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20, // Butonun üstüne içerik gelmesini engellemek için
   },
   header: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.grayDark,
+    paddingVertical: 20,
+    paddingInline: 16,
   },
   headerContent: {
     flexDirection: 'row',
@@ -211,7 +311,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.grayDark,
+    borderBottomColor: Colors.backgroundColorsSecondary,
   },
   tabButton: {
     flex: 1,
@@ -291,7 +391,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   leaveButton: {
-    backgroundColor: Colors.error,
+    backgroundColor: Colors.red,
   },
   joinButtonText: {
     color: Colors.light,
