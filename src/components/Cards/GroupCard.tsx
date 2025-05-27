@@ -13,10 +13,10 @@ interface GroupCardProps {
   cityId?: string;
   countryId?: string;
   style?: object;
-  imageURL: string;
+  imageUrl: string;
 }
 
-const GroupCard: React.FC<GroupCardProps> = ({_id, name, description, cityId, countryId, createdAt, imageURL, style}) => {
+const GroupCard: React.FC<GroupCardProps> = ({_id, name, description, cityId, countryId, createdAt, imageUrl, style}) => {
   const nav = useNavigation();
   const [location, setLocation] = useState<string>('Konum bilgisi yok');
   const [userCount, setUserCount] = useState<number>(0);
@@ -67,7 +67,7 @@ const GroupCard: React.FC<GroupCardProps> = ({_id, name, description, cityId, co
         membersCount: userCount,
         createdAt,
         location,
-        imageURL,
+        imageUrl,
       },
     });
   };
@@ -83,7 +83,7 @@ const GroupCard: React.FC<GroupCardProps> = ({_id, name, description, cityId, co
 
   return (
     <TouchableOpacity style={[styles.card, style]} onPress={handlePress} activeOpacity={0.8} disabled={isLoading}>
-      <Image source={{uri: imageURL}} style={styles.image} resizeMode="cover" />
+      <Image source={{uri: imageUrl}} style={styles.image} resizeMode="cover" />
 
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">

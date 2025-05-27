@@ -15,12 +15,13 @@ import {events} from '../../data/events';
 import GroupCard from '../../components/Cards/GroupCard';
 //API
 import {getPublicRoutes} from '../../api/routesService';
-import {getGroups} from '../../api/groupService';
+import {getGroups, findUserGroup} from '../../api/groupService';
 
 export default function CommunityScreen() {
   const nav = useNavigation();
   const [popularRoutes, setPopularRoutes] = useState([]);
   const [GroupsList, setGroupsList] = useState([]);
+  const [isUserInGroup, setIsUserInGroup] = useState(false);
 
   useEffect(() => {
     const fetchAllGroups = async () => {
@@ -31,6 +32,22 @@ export default function CommunityScreen() {
         console.error('Error fetching groups:', error);
       }
     };
+
+    const checkUserGroupMembership = async () => {
+      try {
+        const userGroup = await findUserGroup();
+        if (userGroup?.data) {
+          setGroupsList([userGroup.data]);
+          setIsUserInGroup(true);
+        } else {
+          setIsUserInGroup(false);
+          await fetchAllGroups();
+        }
+      } catch (error) {
+        console.error('Error checking user group membership:', error);
+      }
+    };
+
     const fetchRoutes = async () => {
       try {
         const PublicRoutes = await getPublicRoutes();
@@ -40,7 +57,7 @@ export default function CommunityScreen() {
       }
     };
     fetchRoutes();
-    fetchAllGroups();
+    checkUserGroupMembership();
   }, []);
 
   return (
@@ -73,7 +90,7 @@ export default function CommunityScreen() {
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8}}>
           {popularRoutes.map(route => (
-            <RouteCard key={route.id} {...route} />
+            <RouteCard key={route._id} {...route} />
           ))}
         </ScrollView>
 
