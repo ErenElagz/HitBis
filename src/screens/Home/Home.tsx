@@ -7,7 +7,7 @@ import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomMapStyle} from '../../styles/MapStyle';
 // Libraries
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native';
 // Components
 import Header from '../../components/Header';
@@ -68,8 +68,9 @@ export default function HomeScreen() {
               longitude: 28.9855,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
-            }}
-          />
+            }}>
+            <Marker coordinate={{latitude: 41.0085, longitude: 28.9785}} title="Istanbul"></Marker>
+          </MapView>
         </View>
         <View
           style={{

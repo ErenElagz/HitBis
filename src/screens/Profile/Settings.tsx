@@ -17,8 +17,7 @@ import Toast from 'react-native-toast-message';
 
 export default function SettingsScreen() {
   const nav = useNavigation();
-  const {logout, token} = useAuth();
-  const {user, setUser} = useAuth();
+  const {logout} = useAuth();
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -90,7 +89,7 @@ export default function SettingsScreen() {
         Toast.show({
           type: 'success',
           text1: 'Success',
-          text2: 'Kullanıcı Your profile has been updated. ',
+          text2: 'Your profile has been updated. ',
         });
         setMessage('Your information has been updated.');
         setError('');
