@@ -167,7 +167,9 @@ const GroupDetailScreen = () => {
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.groupName}>{group.name}</Text>
-          <View style={styles.headerIcons}>{isAdmin && <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never)} />}</View>
+          <View style={styles.headerIcons}>
+            {isAdmin && <Icon name="plus" size={32} color={Colors.light} onPress={() => nav.navigate('CreateEvent' as never, {groupId: group._id})} />}
+          </View>
         </View>
       </View>
 

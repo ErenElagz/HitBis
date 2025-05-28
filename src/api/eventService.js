@@ -18,3 +18,13 @@ export const getActiveEvents = async id => {
     console.error('Error fetching active events:', error);
   }
 };
+
+export const createEvent = async (eventData, groupId) => {
+  try {
+    const response = await API.post(`/event/create?groupId=${groupId}`, eventData);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating event:', error);
+  }
+};

@@ -2,31 +2,72 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import Colors from '../../styles/Colors';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fonts from '../../styles/Fonts';
+import Toast from 'react-native-toast-message';
+//API
+import {createEvent} from '../../api/eventService';
 
 export default function CreateEventScreen() {
   const nav = useNavigation();
-
+  const route = useRoute();
+  const groupId = route.params?.groupId ?? '';
   const [eventName, setEventName] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
-  const [participants, setParticipants] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [difficulty, setDifficulty] = useState<'Easy' | 'Medium' | 'Hard'>('Medium');
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
   const handleCreateEvent = () => {
-    if (!eventName || !description || !location || !participants) {
-      Alert.alert('Eror', 'Please Fill All Fields!');
+    if (!eventName || !description || !latitude || !longitude) {
+      Alert.alert('Error', 'Please fill all fields!');
       return;
     }
 
-    Alert.alert('Success', 'Event Created!');
-    nav.goBack();
+    const payload = {
+      title: eventName,
+      description: description,
+      location: {
+        latitude: latitude,
+        longitude: longitude,
+      },
+      startDate: date,
+      isActive: true,
+      isPublic: false,
+    };
+
+    try {
+      createEvent(payload, groupId)
+        .then(() => {
+          Toast.show({
+            type: 'success',
+            text1: 'Success',
+            text2: 'Event created successfully!',
+          });
+          nav.goBack();
+        })
+        .catch(error => {
+          console.error('Error creating event:', error);
+          Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Failed to create event. Please try again.',
+          });
+        });
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'An unexpected error occurred.',
+      });
+    }
   };
 
   return (
@@ -64,10 +105,8 @@ export default function CreateEventScreen() {
       />
 
       {/* Konum */}
-      <InputText placeholder="Location" value={location} onChangeText={setLocation} />
-
-      {/* Katılımcı Sayısı */}
-      <InputText placeholder="Participants" value={participants} onChangeText={setParticipants} />
+      <InputText placeholder="latitude" value={latitude} onChangeText={setLatitude} />
+      <InputText placeholder="longitude" value={longitude} onChangeText={setLongitude} />
 
       {/* Tarih Seçici (React Native Date Picker) */}
       <TouchableOpacity onPress={() => setOpen(true)} style={styles.datePicker}>
@@ -78,7 +117,8 @@ export default function CreateEventScreen() {
         modal
         open={open}
         date={date}
-        mode="date"
+        mode="datetime"
+        minimumDate={new Date()}
         onConfirm={selectedDate => {
           setOpen(false);
           setDate(selectedDate);
