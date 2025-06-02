@@ -44,12 +44,21 @@ export default function CreateEventScreen() {
 
     try {
       createEvent(payload, groupId)
-        .then(() => {
-          Toast.show({
-            type: 'success',
-            text1: 'Success',
-            text2: 'Event created successfully!',
-          });
+        .then(response => {
+          console.log(response.isSuccess);
+          if (response.isSuccess === false) {
+            Toast.show({
+              type: 'error',
+              text1: 'Error',
+              text2: response.message || 'Failed to create event. Please try again.',
+            });
+          } else {
+            Toast.show({
+              type: 'success',
+              text1: 'Success',
+              text2: 'Event created successfully!',
+            });
+          }
           nav.goBack();
         })
         .catch(error => {
