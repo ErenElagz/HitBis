@@ -1,27 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, FlatList} from 'react-native';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute, validatePathConfig} from '@react-navigation/native';
 import Colors from '../../styles/Colors';
 import Fonts from '../../styles/Fonts';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getUsersByGroupId} from '../../api/groupService';
-import {getEvents} from '../../api/eventService';
 import Button from '../../components/Button';
+import EventCard from '../../components/Cards/EventCard';
+import Toast from 'react-native-toast-message';
 //Api
 import {getAddressFromCoords} from '../../api/locationService';
-import {joinGroup, isUserMemberOfGroup, leaveGroup, isUserAdminOfGroup} from '../../api/groupService';
-import Toast from 'react-native-toast-message';
+import {joinGroup, isUserMemberOfGroup, leaveGroup, isUserAdminOfGroup, getUsersByGroupId} from '../../api/groupService';
+import {getEvents, getEventUsersCount} from '../../api/eventService';
+import {openSettings} from 'react-native-permissions';
 
 type EventWithAddress = {
   id: string;
   title: string;
   startDate: string;
-  addressString: string;
   location?: {
     latitude: number;
     longitude: number;
   };
-  // Add any other properties your event objects have
+  difficulty?: 'Kolay' | 'Orta' | 'Zor' | 'Medium' | 'Hard' | 'Easy';
 };
 
 type Group = {
@@ -37,7 +37,6 @@ type Group = {
     surname: string;
     avatar: string;
   }>;
-  // Add any other properties your group object has
 };
 
 type GroupDetailScreenRouteParams = {
@@ -54,7 +53,7 @@ const GroupDetailScreen = () => {
   const {group} = route.params;
   const [activeTab, setActiveTab] = useState<'users' | 'events'>('users');
   const [users, setUsers] = useState(group.users || []);
-  const [eventsWithAddress, setEventsWithAddress] = useState<EventWithAddress[]>([]);
+  const [events, setEvents] = useState<EventWithAddress[]>([]);
   const [isMember, setIsMember] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -118,24 +117,13 @@ const GroupDetailScreen = () => {
         }
 
         interface Event {
-          id: string;
+          _id: string;
           title: string;
           startDate: string;
           location?: EventLocation;
-          // Add any other properties your event objects have
+          difficulty?: 'Kolay' | 'Orta' | 'Zor' | 'Medium' | 'Hard' | 'Easy';
         }
-
-        const enrichedEvents: EventWithAddress[] = await Promise.all(
-          (fetchedEvents as Event[]).map(async (event: Event): Promise<EventWithAddress> => {
-            const {latitude, longitude} = event.location || {};
-            const address: string = latitude && longitude ? await getAddressFromCoords(latitude, longitude) : 'Konum bilgisi yok';
-            return {
-              ...event,
-              addressString: address,
-            };
-          }),
-        );
-        setEventsWithAddress(enrichedEvents);
+        setEvents(fetchedEvents);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -155,15 +143,13 @@ const GroupDetailScreen = () => {
         setIsLoading(false);
       }
     };
-
     fetchUsers();
     fetchEvents();
     checkMembership();
-  }, [group._id, isMember, isAdmin]);
+  }, []);
 
   return (
     <View style={styles.container}>
-      {/* Grup Başlık Bölümü */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.groupName}>{group.name}</Text>
@@ -215,21 +201,11 @@ const GroupDetailScreen = () => {
           />
         ) : (
           <FlatList
-            data={eventsWithAddress}
+            data={events}
             keyExtractor={item => item.id}
             renderItem={({item}) => (
-              <View style={styles.eventCard}>
-                <Text style={styles.eventTitle}>{item.title}</Text>
-                <View style={styles.eventDetails}>
-                  <View style={styles.eventDetailItem}>
-                    <Icon name="calendar" size={16} color={Colors.light} />
-                    <Text style={styles.eventDetailText}>{item.startDate}</Text>
-                  </View>
-                  <View style={styles.eventDetailItem}>
-                    <Icon name="map-marker" size={16} color={Colors.light} />
-                    <Text style={styles.eventDetailText}>{item.addressString}</Text>
-                  </View>
-                </View>
+              <View style={{width: '100%', gap: 8}}>
+                <EventCard key={item.id} {...item} />
               </View>
             )}
             scrollEnabled={false}
