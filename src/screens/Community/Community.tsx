@@ -106,7 +106,7 @@ export default function CommunityScreen() {
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginTop: 16, marginLeft: 8, marginBottom: 16}}>
           {GroupsList.map(group => (
-            <GroupCard key={group.id} {...group} />
+            <GroupCard key={group._id} {...group} />
           ))}
         </ScrollView>
       </ScrollView>

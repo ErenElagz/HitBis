@@ -6,6 +6,7 @@ import CreateEventScreen from '../screens/Community/CreateEvent';
 import SearchScreen from '../screens/Community/Search';
 import RouteScreen from '../screens/Home/Route';
 import GroupDetailScreen from '../screens/Community/GroupDetails';
+import EventScreen from '../screens/Home/Event';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function CommunityNavigator() {
       <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
       <Stack.Screen name="Route" component={RouteScreen} />
       <Stack.Screen name="GroupDetail" component={GroupDetailScreen} />
+      <Stack.Screen name="Event" component={EventScreen} />
     </Stack.Navigator>
   );
 }
