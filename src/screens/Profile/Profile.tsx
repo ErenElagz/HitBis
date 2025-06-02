@@ -184,7 +184,7 @@ export default function ProfileScreen() {
             paddingHorizontal: 16,
           }}>
           <Image source={user?.avatar ? {uri: user.avatar} : undefined} style={{width: 60, height: 60, borderRadius: 999}} />
-          <Text style={styles.textUsername}>{user?.username}</Text>
+          <Text style={styles.textUsername}>{user?.name}</Text>
         </View>
         <View
           style={{
