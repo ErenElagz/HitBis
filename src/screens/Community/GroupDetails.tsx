@@ -370,6 +370,7 @@ const styles = StyleSheet.create({
   },
   leaveButton: {
     backgroundColor: Colors.red,
+    fontSize: 18,
   },
   joinButtonText: {
     color: Colors.light,
