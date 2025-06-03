@@ -25,6 +25,7 @@ const EventCard: React.FC<EventCardProps> = ({id, title, description, startDate,
   const [latitude, longitude] = [location.latitude, location.longitude];
   const [addressString, setAddressString] = React.useState<string>('Konum bilgisi yok');
   const [participants, setParticipants] = React.useState<number>(0);
+
   useEffect(() => {
     const formatAddress = async (longitude, latitude) => {
       const address: string = latitude && longitude ? await getAddressFromCoords(latitude, longitude) : 'Konum bilgisi yok';

@@ -54,3 +54,30 @@ export const joinEvent = async eventId => {
     console.error('Error joining event:', error);
   }
 };
+
+export const isUserInEvent = async eventId => {
+  try {
+    const response = await API.get(`/event/isuserinevent?eventId=${eventId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error checking if user is in event:', error);
+  }
+};
+
+export const leaveEvent = async eventId => {
+  try {
+    const response = await API.post(`/event/leave?eventId=${eventId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error leaving event:', error);
+  }
+};
+
+export const getEventUsers = async eventId => {
+  try {
+    const response = await API.get(`/event/users?eventId=${eventId}`);
+    return response.data.data;
+  } catch (error) {
+    console.error('Error fetching event users:', error);
+  }
+};
